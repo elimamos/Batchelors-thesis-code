@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/Icons">
+        <file>icons/up.png</file>
+        <file>icons/backspace.png</file>
+    </qresource>
+</RCC>
