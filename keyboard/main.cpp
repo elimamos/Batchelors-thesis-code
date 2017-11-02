@@ -12,10 +12,13 @@ int main(int argc, char *argv[])
 
     //enter full screen mode
   // w.setWindowState(w.windowState() ^ Qt::WindowFullScreen);
-qDebug() << "show";
 
-     //  myTimer mTimer;
+    //qDebug() << "show";
+
+    //qDebug()<<"Debug test";
+     // myTimer mTimer;
     w.show();
+
 
     return a.exec();
 }

@@ -13,7 +13,7 @@ QTextEdit{
 QPushButton {
  font: 20px arial, sans-serif;
   border-radius: 28px;
-	 font-weight: bold;
+font-weight: bold;
   color: #ffffff;
  
   background: #9fb5c4;

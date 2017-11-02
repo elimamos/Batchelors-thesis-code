@@ -1,22 +1,29 @@
 #ifndef BUTTONOPERATOR_H
 #define BUTTONOPERATOR_H
+using namespace std;
 #include <QtWidgets>
+#include <QStringList>
+
 
 class ButtonOperator : public QPushButton
 {
     Q_OBJECT
 
-
 public:
    explicit ButtonOperator(QWidget *parent=0);
-
+    void setIndex(int sIndex);
+    int getIndex();
+    void setDisplayList(QStringList sDisplayList);
+    QStringList getDisplayList();
 
 protected:
     void hoverEnter(QHoverEvent *event);
     void hoverLeave(QHoverEvent *event);
     void hoverMove(QHoverEvent *event);
     bool event(QEvent *event);
-
+private:
+    int index;
+    QStringList displayList;
 protected slots:
    /* void mousePressEvent(QMouseEvent *e){
         if (e->button() == Qt::RightButton) emit rightClicked();

@@ -1,15 +1,17 @@
 #include "buttonoperator.h"
 #include "mytimer.h"
+#include <QDebug>
+
 
 ButtonOperator::ButtonOperator(QWidget *parent):QPushButton(parent)
     {
         setMouseTracking(true);
         setAttribute(Qt::WA_Hover);
+
     }
 
     void ButtonOperator::hoverEnter(QHoverEvent *)
     {
-
 
 
         QFont font = this->font();
@@ -56,4 +58,18 @@ ButtonOperator::ButtonOperator(QWidget *parent):QPushButton(parent)
         }
         return QWidget::event(event);
     }
+    void ButtonOperator::setIndex(int sIndex){
+        index=sIndex;
+    }
+    int ButtonOperator::getIndex(){
+        return index;
+    }
+
+    QStringList ButtonOperator::getDisplayList(){
+        return displayList;
+     }
+     void ButtonOperator::setDisplayList(QStringList sDisplayList){
+        displayList=sDisplayList;
+     }
+
 
