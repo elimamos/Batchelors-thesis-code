@@ -1,0 +1,44 @@
+QTextEdit{
+	 min-height: 10px;
+ min-width: 100px;
+  border-radius: 28px;
+  font-family: Arial;
+  
+  font-size: 20px;
+  background:  #ffffff;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+ 
+}
+QPushButton {
+ font: 20px arial, sans-serif;
+  border-radius: 28px;
+	 font-weight: bold;
+  color: #ffffff;
+ 
+  background: #9fb5c4;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+
+}
+QPushButton::text{
+color:red;
+}
+QPushButton:hover{
+ background: #4a6373;
+  text-decoration: none;
+}
+QPushButton:pressed{
+background: #2b4454;
+  text-decoration: none;
+}
+QPushButton:focus {
+   outline: none;
+}
+QScrollBar:vertical {           
+       border: none;
+        background:#343434;
+        width:10px;    
+        margin: 5px 5px 5px 5px;
+    }
+  

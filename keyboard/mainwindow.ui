@@ -438,50 +438,7 @@
    <bool>true</bool>
   </property>
   <property name="styleSheet">
-   <string notr="true">QTextEdit{
-	 min-height: 10px;
- min-width: 100px;
-  border-radius: 28px;
-  font-family: Arial;
-  
-  font-size: 20px;
-  background:  #ffffff;
-  padding: 10px 20px 10px 20px;
-  text-decoration: none;
- 
-}
-QPushButton {
- font: 20px arial, sans-serif;
-  border-radius: 28px;
-	 font-weight: bold;
-  color: #ffffff;
- 
-  background: #9fb5c4;
-  padding: 10px 20px 10px 20px;
-  text-decoration: none;
-
-}
-QPushButton::text{
-color:red;
-}
-QPushButton:hover{
- background: #4a6373;
-  text-decoration: none;
-}
-QPushButton:pressed{
-background: #2b4454;
-  text-decoration: none;
-}
-QPushButton:focus {
-   outline: none;
-}
-QScrollBar:vertical {           
-       border: none;
-        background:#343434;
-        width:10px;    
-        margin: 5px 5px 5px 5px;
-    }
-  </string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralWidget">
    <property name="sizePolicy">
@@ -602,7 +559,7 @@ QScrollBar:vertical {
        </widget>
       </item>
       <item row="0" column="9">
-       <widget class="QPushButton" name="pushButton_17">
+       <widget class="QPushButton" name="zero">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
           <horstretch>1</horstretch>
@@ -1554,7 +1511,7 @@ QScrollBar:vertical {
      </layout>
     </item>
     <item row="4" column="1">
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="ButtonOperator" name="pushButton_2">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
         <horstretch>0</horstretch>
@@ -1568,29 +1525,7 @@ QScrollBar:vertical {
        </size>
       </property>
       <property name="text">
-       <string>PushButton</string>
-      </property>
-      <property name="default">
-       <bool>false</bool>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0">
-     <widget class="QPushButton" name="pushButton">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-        <horstretch>1</horstretch>
-        <verstretch>1</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>100</width>
-        <height>100</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>CLEAR</string>
+       <string>Wyślij</string>
       </property>
       <property name="default">
        <bool>false</bool>
@@ -1801,12 +1736,58 @@ QScrollBar:vertical {
       </item>
      </layout>
     </item>
+    <item row="1" column="0">
+     <widget class="QPushButton" name="clear">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+        <horstretch>1</horstretch>
+        <verstretch>1</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>100</width>
+        <height>100</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>CLEAR</string>
+      </property>
+      <property name="default">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>ButtonOperator</class>
+   <extends>QPushButton</extends>
+   <header location="global">buttonoperator.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="resources.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>clear</sender>
+   <signal>clicked()</signal>
+   <receiver>textEdit</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>89</x>
+     <y>250</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>215</x>
+     <y>252</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

@@ -23,9 +23,7 @@ HEADERS  += mainwindow.h \
 
 FORMS    += mainwindow.ui
 
-DISTFILES += \
-    UiForm.ui.qml \
-    Ui.qml
+DISTFILES +=
 
 RESOURCES += \
     resources.qrc

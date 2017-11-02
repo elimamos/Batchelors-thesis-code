@@ -1,14 +1,59 @@
 #include "buttonoperator.h"
+#include "mytimer.h"
 
-ButtonOperator::ButtonOperator()
-{
-        button=   new QPushButton();
-        connect(button,SIGNAL(QHoverEvent),this, SLOT(MySlot()));
-   }
-   void ButtonOperator::MySlot()
-   {
-       /*QPushButton* buttonSender = qobject_cast<QPushButton*>(sender()); // retrieve the button you have clicked
-          QString buttonText = buttonSender->text(); // retrive the text from the button clicked*/
+ButtonOperator::ButtonOperator(QWidget *parent):QPushButton(parent)
+    {
+        setMouseTracking(true);
+        setAttribute(Qt::WA_Hover);
+    }
 
-   }
+    void ButtonOperator::hoverEnter(QHoverEvent *)
+    {
+
+
+
+        QFont font = this->font();
+        font.setUnderline(true);
+        font.setBold(false);
+        this->setFont(font);
+        repaint();
+    }
+
+    void ButtonOperator::hoverLeave(QHoverEvent *)
+    {       myTimer myTime;
+        QFont font = this->font();
+        font.setBold(false);
+        this->setFont(font);
+        repaint();
+    }
+
+    void ButtonOperator::hoverMove(QHoverEvent *)
+    {
+        QFont font = this->font();
+        font.setBold(true);
+        this->setFont(font);
+        repaint();
+    }
+
+    bool ButtonOperator::event(QEvent *event)
+    {
+        switch(event->type())
+        {
+        case QEvent::HoverEnter:
+            hoverEnter(static_cast<QHoverEvent*>(event));
+            return true;
+            break;
+        case QEvent::HoverLeave:
+            hoverLeave(static_cast<QHoverEvent*>(event));
+            return true;
+            break;
+        case QEvent::HoverMove:
+            hoverMove(static_cast<QHoverEvent*>(event));
+            return true;
+            break;
+        default:
+            break;
+        }
+        return QWidget::event(event);
+    }
 
