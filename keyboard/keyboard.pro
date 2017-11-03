@@ -14,13 +14,15 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    mytimer.cpp \
-    buttonoperator.cpp
+    buttonoperator.cpp \
+    hovermanager.cpp \
+    TimeManager.cpp
 
 HEADERS  += mainwindow.h \
-    mytimer.h \
     buttonoperator.h \
-    const.h
+    const.h \
+    hovermanager.h \
+    TimeManager.h
 
 FORMS    += mainwindow.ui
 

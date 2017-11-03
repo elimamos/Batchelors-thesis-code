@@ -1,5 +1,5 @@
 #include "buttonoperator.h"
-#include "mytimer.h"
+#include "TimeManager.h"
 #include <QDebug>
 
 
@@ -13,24 +13,24 @@ ButtonOperator::ButtonOperator(QWidget *parent):QPushButton(parent)
     void ButtonOperator::hoverEnter(QHoverEvent *)
     {
 
+      //  qDebug()<<index;
+
+        isHovered=true;
+     //   qDebug()<<isHovered;
 
     }
 
 
     void ButtonOperator::hoverLeave(QHoverEvent *)
     {
-        QFont font = this->font();
-        font.setBold(false);
-        this->setFont(font);
-        repaint();
+       // qDebug()<<index;
+        isHovered=false;
+       // qDebug()<<isHovered;
     }
 
     void ButtonOperator::hoverMove(QHoverEvent *)
     {
-        QFont font = this->font();
-        font.setBold(true);
-        this->setFont(font);
-        repaint();
+
     }
 
     bool ButtonOperator::event(QEvent *event)
@@ -73,5 +73,7 @@ ButtonOperator::ButtonOperator(QWidget *parent):QPushButton(parent)
      bool ButtonOperator::getSpecial(){
          return isSpecial;
      }
-
+    bool ButtonOperator::getHover(){
+        return isHovered;
+    }
 

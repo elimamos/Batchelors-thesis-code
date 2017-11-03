@@ -2,7 +2,7 @@
 #include <QApplication>
 #include<QElapsedTimer>
 #include<QDebug>
-#include"mytimer.h"
+#include"TimeManager.h"
 #include "buttonoperator.h"
 
 int main(int argc, char *argv[])
@@ -10,6 +10,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
 
+    w.show();
     //enter full screen mode
   // w.setWindowState(w.windowState() ^ Qt::WindowFullScreen);
 
@@ -17,9 +18,9 @@ int main(int argc, char *argv[])
 
     //qDebug()<<"Debug test";
    // w.getButtonList()[0].setText("TEST");
-     myTimer *mTimer= new myTimer(w.getButtonList(),w.getTextEdit());
+  //  ButtonOperator currentList[]=w.getButtonList();
+     TimeManager *mTimer= new TimeManager(w.getButtonList(),w.getTextEdit());
      mTimer->startTimer();
-    w.show();
 
 
     return a.exec();

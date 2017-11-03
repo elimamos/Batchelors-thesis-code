@@ -18,6 +18,7 @@ public:
     QStringList getDisplayList();
     void setSpecial(bool sIsSpecial);
     bool getSpecial();
+    bool getHover();
 
 
 protected:
@@ -28,7 +29,7 @@ protected:
 
 private:
     bool isSpecial;
-    bool hovered;
+    bool isHovered;
     int index;
     QStringList displayList;
 protected slots:
