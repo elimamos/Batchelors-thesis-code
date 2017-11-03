@@ -4,6 +4,7 @@
 #include "buttonoperator.h"
 #include <QStringList>
 
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -28,12 +29,17 @@ MainWindow::MainWindow(QWidget *parent) :
 
 }
 void MainWindow::setButtons(){
-    setNoneChangingButton(ui->b1,0,"1");
-    setButtonInfo(ui->b11,10,"q","Q","=",":)","Ą");
-    buttonList[0]->setText(buttonList[0]->getDisplayList().at(1));
+    textEdit=ui->textBox;
+    setNoneChangingButton(ui->b1,0,"1",false);
+    setButtonInfo(ui->b11,10,"q","Q","=",":)","Ą",false);
+    //buttonList[0]->setText(buttonList[0]->getDisplayList().at(1));
 
 }
-void MainWindow::setButtonInfo(ButtonOperator *myButton,int index, QString s1,QString s2,QString s3,QString s4,QString s5){
+ButtonOperator *MainWindow::getButtonList(){
+    return *buttonList;
+}
+
+void MainWindow::setButtonInfo(ButtonOperator *myButton,int index, QString s1,QString s2,QString s3,QString s4,QString s5,bool isSpecial){
     buttonList[index]=myButton;
     buttonList[index]->setIndex(index);
     QStringList myList;
@@ -43,10 +49,15 @@ void MainWindow::setButtonInfo(ButtonOperator *myButton,int index, QString s1,QS
     myList.append(s4);
     myList.append(s5);
     buttonList[index]->setDisplayList(myList);
+    buttonList[index]->setSpecial(isSpecial);
 
 }
-void MainWindow::setNoneChangingButton(ButtonOperator *myButton, int index, QString s1){
-    setButtonInfo(myButton,index,s1,s1,s1,s1,s1);
+void MainWindow::setNoneChangingButton(ButtonOperator *myButton, int index, QString s1,bool isSpecial){
+    setButtonInfo(myButton,index,s1,s1,s1,s1,s1,isSpecial);
+}
+QTextEdit *MainWindow::getTextEdit()
+{
+    return textEdit;
 }
 
 MainWindow::~MainWindow()

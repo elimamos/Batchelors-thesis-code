@@ -16,7 +16,9 @@ int main(int argc, char *argv[])
     //qDebug() << "show";
 
     //qDebug()<<"Debug test";
-     // myTimer mTimer;
+   // w.getButtonList()[0].setText("TEST");
+     myTimer *mTimer= new myTimer(w.getButtonList(),w.getTextEdit());
+     mTimer->startTimer();
     w.show();
 
 

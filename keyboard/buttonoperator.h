@@ -5,6 +5,7 @@ using namespace std;
 #include <QStringList>
 
 
+
 class ButtonOperator : public QPushButton
 {
     Q_OBJECT
@@ -15,13 +16,19 @@ public:
     int getIndex();
     void setDisplayList(QStringList sDisplayList);
     QStringList getDisplayList();
+    void setSpecial(bool sIsSpecial);
+    bool getSpecial();
+
 
 protected:
     void hoverEnter(QHoverEvent *event);
     void hoverLeave(QHoverEvent *event);
     void hoverMove(QHoverEvent *event);
     bool event(QEvent *event);
+
 private:
+    bool isSpecial;
+    bool hovered;
     int index;
     QStringList displayList;
 protected slots:

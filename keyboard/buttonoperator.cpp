@@ -14,15 +14,11 @@ ButtonOperator::ButtonOperator(QWidget *parent):QPushButton(parent)
     {
 
 
-        QFont font = this->font();
-        font.setUnderline(true);
-        font.setBold(false);
-        this->setFont(font);
-        repaint();
     }
 
+
     void ButtonOperator::hoverLeave(QHoverEvent *)
-    {       myTimer myTime;
+    {
         QFont font = this->font();
         font.setBold(false);
         this->setFont(font);
@@ -70,6 +66,12 @@ ButtonOperator::ButtonOperator(QWidget *parent):QPushButton(parent)
      }
      void ButtonOperator::setDisplayList(QStringList sDisplayList){
         displayList=sDisplayList;
+     }
+     void ButtonOperator::setSpecial(bool sIsSpecial){
+         isSpecial=sIsSpecial;
+     }
+     bool ButtonOperator::getSpecial(){
+         return isSpecial;
      }
 
 

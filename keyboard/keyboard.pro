@@ -19,7 +19,8 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     mytimer.h \
-    buttonoperator.h
+    buttonoperator.h \
+    const.h
 
 FORMS    += mainwindow.ui
 
