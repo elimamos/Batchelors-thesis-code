@@ -7,25 +7,21 @@ ButtonOperator::ButtonOperator(QWidget *parent):QPushButton(parent)
     {
         setMouseTracking(true);
         setAttribute(Qt::WA_Hover);
+        isHovered=false;
 
     }
 
     void ButtonOperator::hoverEnter(QHoverEvent *)
     {
-
-      //  qDebug()<<index;
-
+        this->update();
         isHovered=true;
-     //   qDebug()<<isHovered;
-
     }
 
 
     void ButtonOperator::hoverLeave(QHoverEvent *)
     {
-       // qDebug()<<index;
+        this->update();
         isHovered=false;
-       // qDebug()<<isHovered;
     }
 
     void ButtonOperator::hoverMove(QHoverEvent *)
@@ -53,12 +49,6 @@ ButtonOperator::ButtonOperator(QWidget *parent):QPushButton(parent)
             break;
         }
         return QWidget::event(event);
-    }
-    void ButtonOperator::setIndex(int sIndex){
-        index=sIndex;
-    }
-    int ButtonOperator::getIndex(){
-        return index;
     }
 
     QStringList ButtonOperator::getDisplayList(){

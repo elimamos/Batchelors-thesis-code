@@ -12,9 +12,7 @@ class ButtonOperator : public QPushButton
 
 public:
    explicit ButtonOperator(QWidget *parent=0);
-    void setIndex(int sIndex);
-    int getIndex();
-    void setDisplayList(QStringList sDisplayList);
+       void setDisplayList(QStringList sDisplayList);
     QStringList getDisplayList();
     void setSpecial(bool sIsSpecial);
     bool getSpecial();
@@ -30,7 +28,7 @@ protected:
 private:
     bool isSpecial;
     bool isHovered;
-    int index;
+
     QStringList displayList;
 protected slots:
    /* void mousePressEvent(QMouseEvent *e){

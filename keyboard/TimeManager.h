@@ -11,16 +11,24 @@ class TimeManager : public QObject
 
     Q_OBJECT
 public:
-   TimeManager(std::vector<ButtonOperator*> sButtonList,QTextEdit *sTextEdit);
+   TimeManager(std::vector<ButtonOperator*> sButtonList,QTextEdit *sTextEdit,QProgressBar *sProgressBar);
     QTimer *timer;
+    HoverManager *updateHoverState(int currentHover);
+
 
 
     void startTimer();
 private:
-    HoverManager *previousHover;
+    HoverManager *hoverState;
     std::vector<ButtonOperator*> buttonList;
     QTextEdit *textEdit;
+    QProgressBar *progressBar;
     int getHoveredButton();
+    HoverManager *executeTimerStep();
+    HoverManager *executeSpecialButton();
+    void executeNormalButton();
+
+
 
 public slots:
     void TimerStep();

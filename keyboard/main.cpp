@@ -14,12 +14,8 @@ int main(int argc, char *argv[])
     //enter full screen mode
   // w.setWindowState(w.windowState() ^ Qt::WindowFullScreen);
 
-    //qDebug() << "show";
 
-    //qDebug()<<"Debug test";
-   // w.getButtonList()[0].setText("TEST");
-  //  ButtonOperator currentList[]=w.getButtonList();
-     TimeManager *mTimer= new TimeManager(w.getButtonList(),w.getTextEdit());
+     TimeManager *mTimer= new TimeManager(w.getButtonList(),w.getTextEdit(),w.getProgressBar());
      mTimer->startTimer();
 
 
