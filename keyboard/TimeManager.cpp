@@ -21,7 +21,7 @@ void TimeManager::TimerStep()
     hoverState=updateHoverState(currentHoverID);
     hoverState= executeTimerStep();
     progressBar->setValue(hoverState->getHoveredCount());
-
+updateButtonLook();
  //   qDebug()<<hoverState->getLastHoveredID();
    // qDebug()<<hoverState->getHoveredCount();
    // qDebug()<<" ";
@@ -60,6 +60,9 @@ HoverManager *TimeManager::executeSpecialButton(){
             }
             return new HoverManager(hoverState->getLastHoveredID(),0,1,CAPS_ID,0);
         case SHIFT_ID:
+            if(hoverState->getLastSpecialID()==SHIFT_ID){
+                 return new HoverManager(hoverState->getLastHoveredID(),0,0,-1,0);
+            }
              return new HoverManager(hoverState->getLastHoveredID(),0,1,SHIFT_ID,0);
         case SPECIAL_ID:
             qDebug()<<"Special";
@@ -113,5 +116,11 @@ void TimeManager::startTimer(){
 
      connect (timer,SIGNAL(timeout()),this, SLOT(TimerStep()));
      timer->start(TIMER_TICK);
+}
+void TimeManager::updateButtonLook(){
+    for(ButtonOperator *btn:buttonList){
+        btn->setText(btn->getDisplayList().at(hoverState->getKeyboardState()));
+    }
+
 }
 

@@ -27,6 +27,7 @@ private:
     HoverManager *executeTimerStep();
     HoverManager *executeSpecialButton();
     void executeNormalButton();
+    void updateButtonLook();
 
 
 
