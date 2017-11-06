@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->setupUi(this);
 
-     setButtons();
+    setButtons();
 
 
     /*m_button[0] = ui->zero;
@@ -28,7 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
     qDebug()<<m_button[0]->getDisplayList().at(1);
     m_button[0]->setText(m_button[0]->getDisplayList().at(1));*/
 
-  //  connect(ui->zero,SIGNAL(onHover()),ui->textEdit,SLOT(setText()));
+    //  connect(ui->zero,SIGNAL(onHover()),ui->textEdit,SLOT(setText()));
 
 
 }
@@ -49,41 +49,42 @@ void MainWindow::setButtons(){
     setNoneChangingButton(ui->b8,"8",false);
     setNoneChangingButton(ui->b9,"9",false);
     setNoneChangingButton(ui->b0,"0",false);
-    setButtonInfo(ui->b10,"q","Q","=",":)","Ą",false);
-    setButtonInfo(ui->b11,"w","Q","=",":)","Ą",false);
-    setButtonInfo(ui->b12,"e","Q","=",":)","Ą",false);
-    setButtonInfo(ui->b13,"r","Q","=",":)","Ą",false);
-    setButtonInfo(ui->b14,"t","Q","=",":)","Ą",false);
-    setButtonInfo(ui->b15,"y","Q","=",":)","Ą",false);
-    setButtonInfo(ui->b16,"u","Q","=",":)","Ą",false);
-    setButtonInfo(ui->b17,"i","Q","=",":)","Ą",false);
-    setButtonInfo(ui->b18,"o","Q","=",":)","Ą",false);
-    setButtonInfo(ui->b19,"p","Q","=",":)","Ą",false);
-    setNoneChangingButton(ui->caps,"CapsLock",true);
-    setButtonInfo(ui->b21,"a","Q","=",":)","Ą",false);
-    setButtonInfo(ui->b22,"s","Q","=",":)","Ą",false);
-    setButtonInfo(ui->b23,"d","Q","=",":)","Ą",false);
-    setButtonInfo(ui->b24,"f","Q","=",":)","Ą",false);
-    setButtonInfo(ui->b25,"g","Q","=",":)","Ą",false);
-    setButtonInfo(ui->b26,"h","Q","=",":)","Ą",false);
-    setButtonInfo(ui->b27,"j","Q","=",":)","Ą",false);
-    setButtonInfo(ui->b28,"k","Q","=",":)","Ą",false);
-    setButtonInfo(ui->b29,"l","Q","=",":)","Ą",false);
+    setButtonInfo(ui->b10,"q","Q","=","","",false);
+    setButtonInfo(ui->b11,"w","W","+",":)","Ą",false);
+    setButtonInfo(ui->b12,"e","E","%",":)","ą",false);
+    setButtonInfo(ui->b13,"r","R","*",":)","Ć",false);
+    setButtonInfo(ui->b14,"t","T","[",":)","ć",false);
+    setButtonInfo(ui->b15,"y","Y","]",":)","Ę",false);
+    setButtonInfo(ui->b16,"u","U","{",":)","ę",false);
+    setButtonInfo(ui->b17,"i","I","}",":)","Ł",false);
+    setButtonInfo(ui->b18,"o","O","<",":)","ł",false);
+    setButtonInfo(ui->b19,"p","P",">",":)","Ń",false);
+    setNoneChangingButton(ui->caps,"",true);
+    setButtonInfo(ui->b21,"a","A",":",":)","ń",false);
+    setButtonInfo(ui->b22,"s","S",";",":)","Ó",false);
+    setButtonInfo(ui->b23,"d","D","_",":)","ó",false);
+    setButtonInfo(ui->b24,"f","F","-",":)","Ś",false);
+    setButtonInfo(ui->b25,"g","G","#",":)","ś",false);
+    setButtonInfo(ui->b26,"h","H","=",":)","Ź",false);
+    setButtonInfo(ui->b27,"j","J","(",":)","ź",false);
+    setButtonInfo(ui->b28,"k","K",")",":)","Ż",false);
+    setButtonInfo(ui->b29,"l","L","/",":)","ż",false);
     setNoneChangingButton(ui->shift,"aA",true);
-    setButtonInfo(ui->b31,"z","Q","=",":)","Ą",false);
-    setButtonInfo(ui->b32,"x","Q","=",":)","Ą",false);
-    setButtonInfo(ui->b33,"c","Q","=",":)","Ą",false);
-    setButtonInfo(ui->b34,"v","Q","=",":)","Ą",false);
-    setButtonInfo(ui->b35,"b","Q","=",":)","Ą",false);
-    setButtonInfo(ui->b36,"n","Q","=",":)","Ą",false);
-    setButtonInfo(ui->b37,"m","Q","=",":)","Ą",false);
-    setButtonInfo(ui->b38,",","Q","=",":)","Ą",false);
-    setButtonInfo(ui->b39,".","Q","=",":)","Ą",false);
-    setNoneChangingButton(ui->pl,"ążś",true);
+    setButtonInfo(ui->b31,"z","Z","\\",":)","",false);
+    setButtonInfo(ui->b32,"x","X",".",":)","",false);
+    setButtonInfo(ui->b33,"c","C",",",":)","",false);
+    setButtonInfo(ui->b34,"v","V","?",":)","",false);
+    setButtonInfo(ui->b35,"b","B","!",":)","",false);
+    setButtonInfo(ui->b36,"n","N","'",":)","",false);
+    setButtonInfo(ui->b37,"m","M","\"",":)","",false);
+    setButtonInfo(ui->b38,",",",","...",":)","",false);
+    setButtonInfo(ui->b39,".",".","$",":)","",false);
     setNoneChangingButton(ui->special,"?!$",true);
-   // setNoneChangingButton(ui->ctrl,"Ctrl",true);
     setNoneChangingButton(ui->space," ",false);
-   // setNoneChangingButton(ui->alt,"Alt",true);
+    setNoneChangingButton(ui->pl,"ążś",true);
+
+    // setNoneChangingButton(ui->ctrl,"Ctrl",true);
+    // setNoneChangingButton(ui->alt,"Alt",true);
     setNoneChangingButton(ui->enter,"\n",false);
 }
 
@@ -98,7 +99,7 @@ void MainWindow::setButtonInfo(ButtonOperator *myButton, QString s1,QString s2,Q
     myList.append(s3);
     myList.append(s4);
     myList.append(s5);
-     myButton->setDisplayList(myList);
+    myButton->setDisplayList(myList);
     myButton->setSpecial(isSpecial);
     buttonList.push_back(myButton);
 

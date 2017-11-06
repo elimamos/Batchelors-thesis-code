@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1074</width>
-    <height>862</height>
+    <height>878</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -441,7 +441,18 @@
    <bool>true</bool>
   </property>
   <property name="styleSheet">
-   <string notr="true">QTextEdit{
+   <string notr="true">QProgressBar{
+    border: 2px solid #343434;
+    border-radius: 5px;
+    text-align: center;
+	color: #343434;
+
+}
+QProgressBar::chunk {
+    background-color: #5C83D5;
+
+}
+QTextEdit{
 	 min-height: 10px;
  min-width: 100px;
   border-radius: 28px;
@@ -454,19 +465,21 @@
  
 }
 QPushButton {
- font: 20px arial, sans-serif;
+ font: 28px arial, sans-serif;
   border-radius: 28px;
 font-weight: bold;
   color: #ffffff;
- 
+ font-weight:bold;
   background: #9fb5c4;
   padding: 10px 20px 10px 20px;
   text-decoration: none;
 
 }
-QPushButton::text{
-color:red;
+QPushButton#clear {
+  font-size: 18px;
 }
+
+
 QPushButton:hover{
  background: #4a6373;
   text-decoration: none;
@@ -1065,7 +1078,17 @@ QScrollBar:vertical {
          </size>
         </property>
         <property name="text">
-         <string>Caps</string>
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/Icons/icons/caps-lock-button.png</normaloff>:/Icons/icons/caps-lock-button.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
         </property>
         <property name="default">
          <bool>false</bool>
@@ -1460,12 +1483,22 @@ QScrollBar:vertical {
         </property>
         <property name="minimumSize">
          <size>
-          <width>70</width>
-          <height>70</height>
+          <width>90</width>
+          <height>90</height>
          </size>
         </property>
         <property name="text">
-         <string>DOWN</string>
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/Icons/icons/down.png</normaloff>:/Icons/icons/down.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
         </property>
         <property name="default">
          <bool>false</bool>
@@ -1482,12 +1515,22 @@ QScrollBar:vertical {
         </property>
         <property name="minimumSize">
          <size>
-          <width>70</width>
-          <height>70</height>
+          <width>90</width>
+          <height>90</height>
          </size>
         </property>
         <property name="text">
-         <string>UP</string>
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/Icons/icons/up.png</normaloff>:/Icons/icons/up.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
         </property>
         <property name="default">
          <bool>false</bool>
@@ -1504,12 +1547,22 @@ QScrollBar:vertical {
         </property>
         <property name="minimumSize">
          <size>
-          <width>70</width>
-          <height>70</height>
+          <width>90</width>
+          <height>90</height>
          </size>
         </property>
         <property name="text">
-         <string>LEFT</string>
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/Icons/icons/left.png</normaloff>:/Icons/icons/left.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
         </property>
         <property name="default">
          <bool>false</bool>
@@ -1526,12 +1579,22 @@ QScrollBar:vertical {
         </property>
         <property name="minimumSize">
          <size>
-          <width>70</width>
-          <height>70</height>
+          <width>90</width>
+          <height>90</height>
          </size>
         </property>
         <property name="text">
-         <string>RIGHT</string>
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/Icons/icons/right.png</normaloff>:/Icons/icons/right.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
         </property>
         <property name="default">
          <bool>false</bool>
@@ -1543,17 +1606,27 @@ QScrollBar:vertical {
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>1</horstretch>
-          <verstretch>0</verstretch>
+          <verstretch>1</verstretch>
          </sizepolicy>
         </property>
         <property name="minimumSize">
          <size>
-          <width>70</width>
-          <height>70</height>
+          <width>90</width>
+          <height>90</height>
          </size>
         </property>
         <property name="text">
-         <string>TX TO SP</string>
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/Icons/icons/speaker.png</normaloff>:/Icons/icons/speaker.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
         </property>
         <property name="default">
          <bool>false</bool>
@@ -1597,8 +1670,8 @@ QScrollBar:vertical {
         </property>
         <property name="minimumSize">
          <size>
-          <width>100</width>
-          <height>100</height>
+          <width>90</width>
+          <height>90</height>
          </size>
         </property>
         <property name="text">
@@ -1649,7 +1722,7 @@ QScrollBar:vertical {
        </size>
       </property>
       <property name="text">
-       <string>CLEAR</string>
+       <string>CZYŚĆ</string>
       </property>
       <property name="default">
        <bool>false</bool>
@@ -1658,25 +1731,6 @@ QScrollBar:vertical {
     </item>
     <item row="6" column="0" colspan="2">
      <layout class="QHBoxLayout" name="horizontalLayout_3">
-      <item>
-       <widget class="ButtonOperator" name="pl">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-          <horstretch>1</horstretch>
-          <verstretch>1</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>70</width>
-          <height>70</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>ążś</string>
-        </property>
-       </widget>
-      </item>
       <item>
        <widget class="ButtonOperator" name="special">
         <property name="sizePolicy">
@@ -1693,31 +1747,6 @@ QScrollBar:vertical {
         </property>
         <property name="text">
          <string>?!$</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="ButtonOperator" name="ctrl">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-          <horstretch>2</horstretch>
-          <verstretch>2</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>70</width>
-          <height>70</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>Ctrl</string>
-        </property>
-        <property name="default">
-         <bool>false</bool>
         </property>
        </widget>
       </item>
@@ -1743,6 +1772,25 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="ButtonOperator" name="pl">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>1</horstretch>
+          <verstretch>1</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>70</width>
+          <height>70</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>ążś</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </item>
     <item row="5" column="2" rowspan="2">
@@ -1764,14 +1812,68 @@ QScrollBar:vertical {
         </property>
         <property name="iconSize">
          <size>
-          <width>16</width>
-          <height>16</height>
+          <width>32</width>
+          <height>32</height>
          </size>
         </property>
         <property name="default">
          <bool>false</bool>
         </property>
        </widget>
+      </item>
+      <item row="2" column="0">
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="ButtonOperator" name="ctrl">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>2</horstretch>
+            <verstretch>2</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>70</width>
+            <height>70</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Ctrl</string>
+          </property>
+          <property name="default">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="ButtonOperator" name="alt">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>2</horstretch>
+            <verstretch>1</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>70</width>
+            <height>70</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Alt</string>
+          </property>
+          <property name="default">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
       <item row="1" column="0">
        <widget class="ButtonOperator" name="enter">
@@ -1782,32 +1884,17 @@ QScrollBar:vertical {
          </sizepolicy>
         </property>
         <property name="text">
-         <string>ENTER</string>
+         <string/>
         </property>
-        <property name="default">
-         <bool>false</bool>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/Icons/icons/enter.png</normaloff>:/Icons/icons/enter.png</iconset>
         </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="ButtonOperator" name="alt">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-          <horstretch>4</horstretch>
-          <verstretch>1</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
+        <property name="iconSize">
          <size>
-          <width>70</width>
-          <height>70</height>
+          <width>64</width>
+          <height>64</height>
          </size>
-        </property>
-        <property name="text">
-         <string>Alt</string>
         </property>
         <property name="default">
          <bool>false</bool>

@@ -2,5 +2,11 @@
     <qresource prefix="/Icons">
         <file>icons/up.png</file>
         <file>icons/backspace.png</file>
+        <file>icons/caps-lock-button.png</file>
+        <file>icons/enter.png</file>
+        <file>icons/speaker.png</file>
+        <file>icons/down.png</file>
+        <file>icons/left.png</file>
+        <file>icons/right.png</file>
     </qresource>
 </RCC>

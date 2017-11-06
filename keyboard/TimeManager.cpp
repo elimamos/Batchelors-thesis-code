@@ -21,27 +21,27 @@ void TimeManager::TimerStep()
     hoverState=updateHoverState(currentHoverID);
     hoverState= executeTimerStep();
     progressBar->setValue(hoverState->getHoveredCount());
-updateButtonLook();
- //   qDebug()<<hoverState->getLastHoveredID();
-   // qDebug()<<hoverState->getHoveredCount();
-   // qDebug()<<" ";
+    updateButtonLook();
+    //   qDebug()<<hoverState->getLastHoveredID();
+    // qDebug()<<hoverState->getHoveredCount();
+    // qDebug()<<" ";
 
 }
 HoverManager *TimeManager::executeTimerStep(){
     if(hoverState->getHoveredCount()<TICK_COUNTER){
         return hoverState;
     }
-  if(buttonList[hoverState->getLastHoveredID()]->getSpecial()==true){
-      qDebug()<<"SPECIAL PRESSED";
-     return executeSpecialButton();
+    if(buttonList[hoverState->getLastHoveredID()]->getSpecial()==true){
+        qDebug()<<"SPECIAL PRESSED";
+        return executeSpecialButton();
 
-  }
+    }
 
     qDebug()<<"NONE special pressed";
     executeNormalButton();
-if(hoverState->getLastSpecialID()==SHIFT_ID){
- return new HoverManager(hoverState->getLastHoveredID(),0,0,-1,0);
-}else return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
+    if(hoverState->getLastSpecialID()==SHIFT_ID){
+        return new HoverManager(hoverState->getLastHoveredID(),0,0,-1,0);
+    }else return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
 
 }
 void TimeManager::executeNormalButton(){
@@ -53,30 +53,30 @@ void TimeManager::executeNormalButton(){
 HoverManager *TimeManager::executeSpecialButton(){
 
     switch(hoverState->getLastHoveredID()){
-        case CAPS_ID:
-            qDebug()<<"CAPSLOCK";
-            if(hoverState->getLastSpecialID()==CAPS_ID){
-                 return new HoverManager(hoverState->getLastHoveredID(),0,0,-1,0);
+    case CAPS_ID:
+        qDebug()<<"CAPSLOCK";
+        if(hoverState->getLastSpecialID()==CAPS_ID){
+            return new HoverManager(hoverState->getLastHoveredID(),0,0,-1,0);
+        }
+        return new HoverManager(hoverState->getLastHoveredID(),0,1,CAPS_ID,0);
+    case SHIFT_ID:
+        if(hoverState->getLastSpecialID()==SHIFT_ID){
+            return new HoverManager(hoverState->getLastHoveredID(),0,0,-1,0);
+        }
+        return new HoverManager(hoverState->getLastHoveredID(),0,1,SHIFT_ID,0);
+    case SPECIAL_ID:
+        qDebug()<<"Special";
+        if(hoverState->getLastSpecialID()==SPECIAL_ID){
+            if(hoverState->getLastSpecialCount()==1){
+                return new HoverManager(hoverState->getLastHoveredID(),0,3,SPECIAL_ID,2);
             }
-            return new HoverManager(hoverState->getLastHoveredID(),0,1,CAPS_ID,0);
-        case SHIFT_ID:
-            if(hoverState->getLastSpecialID()==SHIFT_ID){
-                 return new HoverManager(hoverState->getLastHoveredID(),0,0,-1,0);
-            }
-             return new HoverManager(hoverState->getLastHoveredID(),0,1,SHIFT_ID,0);
-        case SPECIAL_ID:
-            qDebug()<<"Special";
-            if(hoverState->getLastSpecialID()==SPECIAL_ID){
-                if(hoverState->getLastSpecialCount()==1){
-                    return new HoverManager(hoverState->getLastHoveredID(),0,3,SPECIAL_ID,2);
-                }
-                return new HoverManager(hoverState->getLastHoveredID(),0,0,-1,0);
-            }
-           return new HoverManager(hoverState->getLastHoveredID(),0,2,SPECIAL_ID,1);
+            return new HoverManager(hoverState->getLastHoveredID(),0,0,-1,0);
+        }
+        return new HoverManager(hoverState->getLastHoveredID(),0,2,SPECIAL_ID,1);
         break;
-        case PL_ID:
+    case PL_ID:
         if(hoverState->getLastSpecialID()==PL_ID){
-             return new HoverManager(hoverState->getLastHoveredID(),0,0,-1,0);
+            return new HoverManager(hoverState->getLastHoveredID(),0,0,-1,0);
         }
         return new HoverManager(hoverState->getLastHoveredID(),0,4,PL_ID,0);
 
@@ -114,8 +114,8 @@ HoverManager *TimeManager::updateHoverState(int currentHover){
 void TimeManager::startTimer(){
     timer = new QTimer (this);
 
-     connect (timer,SIGNAL(timeout()),this, SLOT(TimerStep()));
-     timer->start(TIMER_TICK);
+    connect (timer,SIGNAL(timeout()),this, SLOT(TimerStep()));
+    timer->start(TIMER_TICK);
 }
 void TimeManager::updateButtonLook(){
     for(ButtonOperator *btn:buttonList){
