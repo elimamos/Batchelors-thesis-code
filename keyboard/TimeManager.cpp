@@ -33,11 +33,13 @@ HoverManager *TimeManager::executeTimerStep(){
     }
     if(buttonList[hoverState->getLastHoveredID()]->getSpecial()==true){
         qDebug()<<"SPECIAL PRESSED";
+        textEdit->setFocus();
         return executeSpecialButton();
 
     }
 
     qDebug()<<"NONE special pressed";
+    textEdit->setFocus();
     executeNormalButton();
     if(hoverState->getLastSpecialID()==SHIFT_ID){
         return new HoverManager(hoverState->getLastHoveredID(),0,0,-1,0);
@@ -47,7 +49,7 @@ HoverManager *TimeManager::executeTimerStep(){
 void TimeManager::executeNormalButton(){
 
     textEdit->insertPlainText(buttonList[hoverState->getLastHoveredID()]->getDisplayList().at(hoverState->getKeyboardState()));
-    textEdit->moveCursor (QTextCursor::End);
+    //    textEdit->moveCursor (QTextCursor::End);
 }
 
 HoverManager *TimeManager::executeSpecialButton(){
@@ -79,10 +81,43 @@ HoverManager *TimeManager::executeSpecialButton(){
             return new HoverManager(hoverState->getLastHoveredID(),0,0,-1,0);
         }
         return new HoverManager(hoverState->getLastHoveredID(),0,4,PL_ID,0);
+    case BACK_ID:
+        textEdit->textCursor().deletePreviousChar();
+        return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
+    case SEND_ID:
+        //HERE BROADCAST TO BE IMPLEMENTED
+        return hoverState;
+    case END_ID:
+        textEdit->moveCursor(QTextCursor::End);
+        return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
+    case CLEAR_ID:
+        textEdit->clear();
+        return hoverState;
+    case HOME_ID:
+        textEdit->moveCursor(QTextCursor::Start);
+        return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
+    case LEFT_ID:
+        textEdit->moveCursor(QTextCursor::Left);
+        return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
+    case UP_ID:
+        textEdit->moveCursor(QTextCursor::Up);
+        return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
+    case RIGHT_ID:
+        textEdit->moveCursor(QTextCursor::Right);
+        return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
+    case DOWN_ID:
+        textEdit->moveCursor(QTextCursor::Down);
+        return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
+    case TXT2SPEACH_ID:
+        //HERE Text to speech  BE IMPLEMENTED
+        return hoverState;
+
+    case LEAVE_ID:
+        qApp->quit();
+        return hoverState;
 
 
     }
-
     return hoverState;
 
 }
@@ -92,8 +127,9 @@ int TimeManager::getHoveredButton(){
         if(buttonList[i]->getHover()){
             return i;
         }
-    }
+}
     return -1;
+
 }
 HoverManager *TimeManager::updateHoverState(int currentHover){
     if(currentHover==-1){

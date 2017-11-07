@@ -25,6 +25,7 @@ private slots:
     void on_leave_clicked();
 
 
+
 private:
     Ui::MainWindow *ui;
     std::vector<ButtonOperator*> buttonList;

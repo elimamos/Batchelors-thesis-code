@@ -86,6 +86,18 @@ void MainWindow::setButtons(){
     // setNoneChangingButton(ui->ctrl,"Ctrl",true);
     // setNoneChangingButton(ui->alt,"Alt",true);
     setNoneChangingButton(ui->enter,"\n",false);
+    setNoneChangingButton(ui->back,"",true);
+    setNoneChangingButton(ui->send,"WYŚLIJ",true);
+    setNoneChangingButton(ui->end,"END",true);
+    setNoneChangingButton(ui->clear,"CZYŚĆ",true);
+    setNoneChangingButton(ui->home,"HOME",true);
+    setNoneChangingButton(ui->aLeft,"",true);
+    setNoneChangingButton(ui->aUP,"",true);
+    setNoneChangingButton(ui->aRight,"",true);
+    setNoneChangingButton(ui->aDown,"",true);
+    setNoneChangingButton(ui->txt2speech,"",true);
+    setNoneChangingButton(ui->leave,"x",true);
+
 }
 
 std::vector<ButtonOperator*> MainWindow::getButtonList(){

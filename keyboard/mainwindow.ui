@@ -478,6 +478,14 @@ font-weight: bold;
 QPushButton#clear {
   font-size: 18px;
 }
+QPushButton#home {
+  font-size: 18px;
+}
+QPushButton#end {
+  font-size: 18px;
+}
+
+
 
 
 QPushButton:hover{
@@ -1474,7 +1482,7 @@ QScrollBar:vertical {
     <item row="1" column="2">
      <layout class="QGridLayout" name="gridLayout">
       <item row="4" column="1">
-       <widget class="QPushButton" name="pushButton_4">
+       <widget class="ButtonOperator" name="aDown">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
           <horstretch>1</horstretch>
@@ -1506,7 +1514,7 @@ QScrollBar:vertical {
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QPushButton" name="pushButton_3">
+       <widget class="ButtonOperator" name="aUP">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
           <horstretch>1</horstretch>
@@ -1538,7 +1546,7 @@ QScrollBar:vertical {
        </widget>
       </item>
       <item row="3" column="0">
-       <widget class="QPushButton" name="pushButton_5">
+       <widget class="ButtonOperator" name="aLeft">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
           <horstretch>1</horstretch>
@@ -1570,7 +1578,7 @@ QScrollBar:vertical {
        </widget>
       </item>
       <item row="3" column="2">
-       <widget class="QPushButton" name="pushButton_7">
+       <widget class="ButtonOperator" name="aRight">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
           <horstretch>1</horstretch>
@@ -1602,7 +1610,7 @@ QScrollBar:vertical {
        </widget>
       </item>
       <item row="3" column="1">
-       <widget class="QPushButton" name="pushButton_6">
+       <widget class="ButtonOperator" name="txt2speech">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>1</horstretch>
@@ -1643,6 +1651,12 @@ QScrollBar:vertical {
         <verstretch>3</verstretch>
        </sizepolicy>
       </property>
+      <property name="cursor" stdset="0">
+       <cursorShape>IBeamCursor</cursorShape>
+      </property>
+      <property name="cursorWidth">
+       <number>2</number>
+      </property>
      </widget>
     </item>
     <item row="0" column="2">
@@ -1661,7 +1675,7 @@ QScrollBar:vertical {
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="leave">
+       <widget class="ButtonOperator" name="leave">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -1706,28 +1720,6 @@ QScrollBar:vertical {
        </size>
       </property>
      </spacer>
-    </item>
-    <item row="1" column="0">
-     <widget class="QPushButton" name="clear">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-        <horstretch>1</horstretch>
-        <verstretch>1</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>100</width>
-        <height>100</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>CZYŚĆ</string>
-      </property>
-      <property name="default">
-       <bool>false</bool>
-      </property>
-     </widget>
     </item>
     <item row="6" column="0" colspan="2">
      <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -1914,7 +1906,7 @@ QScrollBar:vertical {
      </widget>
     </item>
     <item row="4" column="1">
-     <widget class="ButtonOperator" name="pushButton_2">
+     <widget class="ButtonOperator" name="send">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
         <horstretch>0</horstretch>
@@ -1935,6 +1927,73 @@ QScrollBar:vertical {
       </property>
      </widget>
     </item>
+    <item row="1" column="0">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="ButtonOperator" name="home">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>1</horstretch>
+          <verstretch>1</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>70</width>
+          <height>70</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>HOME</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="ButtonOperator" name="clear">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>1</horstretch>
+          <verstretch>1</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>100</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>CZYŚĆ</string>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="ButtonOperator" name="end">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>1</horstretch>
+          <verstretch>1</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>70</width>
+          <height>70</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>END</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
    </layout>
   </widget>
  </widget>
@@ -1950,22 +2009,6 @@ QScrollBar:vertical {
   <include location="resources.qrc"/>
  </resources>
  <connections>
-  <connection>
-   <sender>clear</sender>
-   <signal>clicked()</signal>
-   <receiver>textBox</receiver>
-   <slot>clear()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>89</x>
-     <y>250</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>215</x>
-     <y>252</y>
-    </hint>
-   </hints>
-  </connection>
   <connection>
    <sender>leave</sender>
    <signal>clicked()</signal>
