@@ -9,4 +9,7 @@
         <file>icons/left.png</file>
         <file>icons/right.png</file>
     </qresource>
+    <qresource prefix="/">
+        <file>slowa.txt</file>
+    </qresource>
 </RCC>

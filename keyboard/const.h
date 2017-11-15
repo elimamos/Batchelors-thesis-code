@@ -20,4 +20,10 @@ const int DOWN_ID=52;
 const int TXT2SPEACH_ID=53;
 const int LEAVE_ID=54;
 
+
+const int MIN_HINT_SIZE=1;
+const int ALPHABETS= 35;
+
+const int MAX_WORD_SIZE= 25;
+
 #endif // CONST_H

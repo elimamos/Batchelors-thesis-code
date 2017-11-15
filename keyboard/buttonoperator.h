@@ -3,6 +3,7 @@
 using namespace std;
 #include <QtWidgets>
 #include <QStringList>
+#include"qroundprogressbar.h"
 
 
 

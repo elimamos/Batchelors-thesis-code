@@ -4,6 +4,8 @@
 #include "buttonoperator.h"
 #include <QStringList>
 #include<vector>
+#include "qroundprogressbar.h"
+
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -32,13 +34,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
 }
-QProgressBar *MainWindow::getProgressBar(){
-    return progressBar;
+QRoundProgressBar *MainWindow::getProgressBar(){
+    return roundProgressBar;
 }
 void MainWindow::setButtons(){
     textEdit=ui->textBox;
-    progressBar=ui->progressBar;
-    progressBar->setMaximum(TICK_COUNTER);
+    roundProgressBar=ui->roundprogressbar;
+    roundProgressBar->setMaximum(TICK_COUNTER);
     setNoneChangingButton(ui->b1,"1",false);
     setNoneChangingButton(ui->b2,"2",false);
     setNoneChangingButton(ui->b3,"3",false);
@@ -97,9 +99,22 @@ void MainWindow::setButtons(){
     setNoneChangingButton(ui->aDown,"",true);
     setNoneChangingButton(ui->txt2speech,"",true);
     setNoneChangingButton(ui->leave,"x",true);
+    setNoneChangingButton(ui->hintB1,"",true);
+    setNoneChangingButton(ui->hintB2,"",true);
+    setNoneChangingButton(ui->hintB3,"",true);
+    setNoneChangingButton(ui->hintB4,"",true);
+
+    hintButtonList.push_back(ui->hintB1);
+    hintButtonList.push_back(ui->hintB2);
+    hintButtonList.push_back(ui->hintB3);
+    hintButtonList.push_back(ui->hintB4);
 
 }
 
+
+std::vector<ButtonOperator*> MainWindow::getHintButtonList(){
+    return hintButtonList;
+}
 std::vector<ButtonOperator*> MainWindow::getButtonList(){
     return buttonList;
 }

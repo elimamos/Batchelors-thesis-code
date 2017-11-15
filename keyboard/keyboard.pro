@@ -16,13 +16,19 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     buttonoperator.cpp \
     hovermanager.cpp \
-    TimeManager.cpp
+    TimeManager.cpp \
+    dictionary.cpp \
+    qroundprogressbar.cpp \
+    progressbutton.cpp
 
 HEADERS  += mainwindow.h \
     buttonoperator.h \
     const.h \
     hovermanager.h \
-    TimeManager.h
+    TimeManager.h \
+    dictionary.h \
+    qroundprogressbar.h \
+    progressbutton.h
 
 FORMS    += mainwindow.ui
 
