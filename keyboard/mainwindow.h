@@ -28,6 +28,10 @@ private slots:
 
 
 
+    void on_menu_clicked();
+
+    void on_textBox_textChanged();
+
 private:
     Ui::MainWindow *ui;
     std::vector<ButtonOperator*> buttonList;

@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     TimeManager.cpp \
     dictionary.cpp \
     qroundprogressbar.cpp \
-    progressbutton.cpp
+    progressbutton.cpp \
+    personalizeview.cpp
 
 HEADERS  += mainwindow.h \
     buttonoperator.h \
@@ -28,9 +29,11 @@ HEADERS  += mainwindow.h \
     TimeManager.h \
     dictionary.h \
     qroundprogressbar.h \
-    progressbutton.h
+    progressbutton.h \
+    personalizeview.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    personalizeview.ui
 
 DISTFILES +=
 

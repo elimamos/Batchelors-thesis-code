@@ -27,10 +27,14 @@ public:
     void getSimilarEndings(struct node * trieTree, vector<QChar> word,vector<QString>*endings);
     int getLetterIndex(char alfabet[], char currentLetter);
     void update(QString chosenLetter);
-     void backSpace();
+    void backSpace();
+    void useHint(int hintID);
+    void moveCursor(QString direction);
 
 private:
     QString currentWord;
+    int currentWordSart;
+    int currentPosition;
     QString wholeTxt;
     //   int cursorsPosition;
     QTextEdit *textEdit;
@@ -42,6 +46,11 @@ private:
     vector<QChar> printUtil;
     void readDictionaryFile();
     void updateHints();
+    void clearHints();
+    void getCurrentWordStart();
+    void getCurrentWord();
+    void moveCursor(QString direction, int distance );
+
 };
 
 #endif // DICTIONARY_H

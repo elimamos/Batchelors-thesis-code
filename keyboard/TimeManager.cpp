@@ -15,8 +15,8 @@ TimeManager::TimeManager(std::vector<ButtonOperator*> sButtonList,QTextEdit *sTe
     textEdit=sTextEdit;
     roundProgressBar=sProgressBar;
 
-dictionary= new Dictionary(sTextEdit,sHintButtonList);
-   /* dictionary->insertWord(trieTree,  QString:: fromUtf8("bęc"),1);
+    dictionary= new Dictionary(sTextEdit,sHintButtonList);
+    /* dictionary->insertWord(trieTree,  QString:: fromUtf8("bęc"),1);
   dictionary->insertWord(trieTree, QString:: fromUtf8("eliska"),2);
       dictionary->insertWord(trieTree, QString:: fromUtf8("kopytko"),3);
       dictionary->insertWord(trieTree, QString:: fromUtf8("aęaaa"),4);
@@ -50,7 +50,7 @@ HoverManager *TimeManager::executeTimerStep(){
 
     }
 
- //   qDebug()<<"NONE special pressed";
+    //   qDebug()<<"NONE special pressed";
     textEdit->setFocus();
     executeNormalButton();
     if(hoverState->getLastSpecialID()==SHIFT_ID){
@@ -60,9 +60,9 @@ HoverManager *TimeManager::executeTimerStep(){
 }
 void TimeManager::executeNormalButton(){
 
-   //textEdit->insertPlainText(buttonList[hoverState->getLastHoveredID()]->getDisplayList().at(hoverState->getKeyboardState()));
-  // QString currentText=textEdit->toPlainText();
-     dictionary->update(buttonList[hoverState->getLastHoveredID()]->getDisplayList().at(hoverState->getKeyboardState()));
+    //textEdit->insertPlainText(buttonList[hoverState->getLastHoveredID()]->getDisplayList().at(hoverState->getKeyboardState()));
+    // QString currentText=textEdit->toPlainText();
+    dictionary->update(buttonList[hoverState->getLastHoveredID()]->getDisplayList().at(hoverState->getKeyboardState()));
     //    textEdit->moveCursor (QTextCursor::End);
 }
 
@@ -74,14 +74,14 @@ HoverManager *TimeManager::executeSpecialButton(){
         if(hoverState->getLastSpecialID()==CAPS_ID){
 
 
-//      vector<QString> *endings=new vector<QString>();
-  //        Dictionary:: node * trieNode =  dictionary->searchWord(trieTree, "bę");
-    //       dictionary->getSimilarEndings(trieNode,printUtil,endings);
-      //          textEdit->append(endings->at(2));
+            //      vector<QString> *endings=new vector<QString>();
+            //        Dictionary:: node * trieNode =  dictionary->searchWord(trieTree, "bę");
+            //       dictionary->getSimilarEndings(trieNode,printUtil,endings);
+            //          textEdit->append(endings->at(2));
 
             return new HoverManager(hoverState->getLastHoveredID(),0,0,-1,0);
         }
-       //   dictionary->update("o");
+        //   dictionary->update("o");
         return new HoverManager(hoverState->getLastHoveredID(),0,1,CAPS_ID,0);
     case SHIFT_ID:
         if(hoverState->getLastSpecialID()==SHIFT_ID){
@@ -120,13 +120,15 @@ HoverManager *TimeManager::executeSpecialButton(){
         textEdit->moveCursor(QTextCursor::Start);
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
     case LEFT_ID:
-        textEdit->moveCursor(QTextCursor::Left);
+        //textEdit->moveCursor(QTextCursor::Left);
+        dictionary->moveCursor("left");
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
     case UP_ID:
         textEdit->moveCursor(QTextCursor::Up);
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
     case RIGHT_ID:
-        textEdit->moveCursor(QTextCursor::Right);
+        dictionary->moveCursor("right");
+        //  textEdit->moveCursor(QTextCursor::Right);
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
     case DOWN_ID:
         textEdit->moveCursor(QTextCursor::Down);
@@ -134,7 +136,20 @@ HoverManager *TimeManager::executeSpecialButton(){
     case TXT2SPEACH_ID:
         //HERE Text to speech  BE IMPLEMENTED
         return hoverState;
-
+    case MENU_ID:
+        return hoverState;
+    case HINT1_ID:
+        dictionary->useHint(0);
+        return hoverState;
+    case HINT2_ID:
+        dictionary->useHint(1);
+        return hoverState;
+    case HINT3_ID:
+        dictionary->useHint(2);
+        return hoverState;
+    case HINT4_ID:
+        dictionary->useHint(3);
+        return hoverState;
     case LEAVE_ID:
         qApp->quit();
         return hoverState;
@@ -150,7 +165,7 @@ int TimeManager::getHoveredButton(){
         if(buttonList[i]->getHover()){
             return i;
         }
-}
+    }
     return -1;
 
 }

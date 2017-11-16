@@ -5,6 +5,7 @@
 #include <QStringList>
 #include<vector>
 #include "qroundprogressbar.h"
+#include "personalizeview.h"
 
 
 
@@ -98,12 +99,12 @@ void MainWindow::setButtons(){
     setNoneChangingButton(ui->aRight,"",true);
     setNoneChangingButton(ui->aDown,"",true);
     setNoneChangingButton(ui->txt2speech,"",true);
-    setNoneChangingButton(ui->leave,"x",true);
+    setNoneChangingButton(ui->menu,"menu",true);
     setNoneChangingButton(ui->hintB1,"",true);
     setNoneChangingButton(ui->hintB2,"",true);
     setNoneChangingButton(ui->hintB3,"",true);
     setNoneChangingButton(ui->hintB4,"",true);
-
+    setNoneChangingButton(ui->leave,"x",true);
     hintButtonList.push_back(ui->hintB1);
     hintButtonList.push_back(ui->hintB2);
     hintButtonList.push_back(ui->hintB3);
@@ -152,4 +153,16 @@ MainWindow::~MainWindow()
 void MainWindow::on_leave_clicked()
 {
     this->close();
+}
+
+void MainWindow::on_menu_clicked()
+{
+
+    PersonalizeView *personalize= new PersonalizeView(); // Be sure to destroy your window somewhere
+    personalize->show();
+}
+
+void MainWindow::on_textBox_textChanged()
+{
+
 }

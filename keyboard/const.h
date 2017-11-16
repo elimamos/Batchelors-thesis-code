@@ -18,12 +18,17 @@ const int UP_ID=50;
 const int RIGHT_ID=51;
 const int DOWN_ID=52;
 const int TXT2SPEACH_ID=53;
-const int LEAVE_ID=54;
+const int MENU_ID=54;
+const int HINT1_ID=55;
+const int HINT2_ID=56;
+const int HINT3_ID=57;
+const int HINT4_ID=58;
+const int LEAVE_ID=59;
 
 
 const int MIN_HINT_SIZE=1;
 const int ALPHABETS= 35;
 
 const int MAX_WORD_SIZE= 25;
-
+const int MAX_CHAR_EDITTEXT_LINE=100;
 #endif // CONST_H

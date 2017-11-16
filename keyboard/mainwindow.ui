@@ -2049,7 +2049,7 @@ QScrollBar:vertical {
      </layout>
     </item>
     <item row="0" column="0">
-     <widget class="QPushButton" name="pushButton">
+     <widget class="ButtonOperator" name="menu">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
         <horstretch>1</horstretch>
@@ -2075,7 +2075,7 @@ QScrollBar:vertical {
        </size>
       </property>
       <property name="text">
-       <string>PushButton</string>
+       <string>Menu</string>
       </property>
      </widget>
     </item>

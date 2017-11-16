@@ -81,16 +81,26 @@ Dictionary::Dictionary(QTextEdit *sTextEdit,std::vector<ButtonOperator*> sHintBu
 
 
     currentWord="";
+    currentPosition=0;
     wholeTxt="";
-    /*  insertWord(trieTree,  QString:: fromUtf8("bęc"),1);
-    insertWord(trieTree, QString:: fromUtf8("eliska"),2);
-    insertWord(trieTree, QString:: fromUtf8("kopytko"),3);
-    insertWord(trieTree, QString:: fromUtf8("aęaaa"),4);
-    insertWord(trieTree,"a",5);
-    insertWord(trieTree,QString::fromUtf8("aaaę"),6);
-    insertWord(trieTree,QString::fromUtf8("będę"),7);
-    insertWord(trieTree,QString::fromUtf8("będąc"),8);*/
+    currentWordSart=0;
+
     readDictionaryFile();
+
+}
+void Dictionary::moveCursor(QString direction){
+    moveCursor(direction,1);
+    if(direction=="right"){
+        currentPosition++;
+
+
+    }
+    else{currentPosition--;}
+
+    wholeTxt.insert(currentWordSart,currentWord);
+    getCurrentWordStart();
+    getCurrentWord();
+    wholeTxt.remove(currentWordSart,currentWord.length());
 
 }
 void Dictionary::readDictionaryFile(){
@@ -116,36 +126,34 @@ void Dictionary::readDictionaryFile(){
         }
     }
     file.close();
+
 }
 void Dictionary::update(QString chosenLetter){
-   // textEdit->clear();
 
 
-    if(chosenLetter==" "){
-          textEdit->clear();
-        wholeTxt+=currentWord+" ";
-        currentWord="";
-        setHintText("",hintButtonList.at(0));
-        setHintText("",hintButtonList.at(1));
-        setHintText("",hintButtonList.at(2));
-        setHintText("",hintButtonList.at(3));
-        textEdit->insertPlainText(wholeTxt);
-        return;
-    }
     currentWord+=chosenLetter;
+    QString currentText=wholeTxt;
+    currentText.insert(currentWordSart,currentWord);
+    currentPosition++;
 
+    textEdit->clear();
+    textEdit->insertPlainText(currentText);
+    textEdit->moveCursor (QTextCursor::Start);
+    moveCursor("right",currentPosition);
+
+    if( chosenLetter==" "){
+        wholeTxt=currentText;
+        getCurrentWordStart();
+        getCurrentWord();
+    }
     updateHints();
-
-
-
-
 }
+
 void Dictionary::updateHints(){
-      textEdit->clear();
-     textEdit->insertPlainText(wholeTxt+currentWord);
+
     if(currentWord.size()>MIN_HINT_SIZE){
 
-        Dictionary:: node * trieNode =  searchWord(trieTree, currentWord);
+        Dictionary:: node * trieNode =  searchWord(trieTree, currentWord.toLower());
         if(trieNode!=NULL){
             vector<QString> *endings=new vector<QString>();
             getSimilarEndings(trieNode,printUtil,endings);
@@ -160,26 +168,94 @@ void Dictionary::updateHints(){
             for(int a=endingsListLength;a<hintButtonList.size();a++){
                 setHintText("",hintButtonList.at(a));
             }
+
             return;
         }
-
-
     }
 
+    clearHints();
+}
+
+void Dictionary::useHint(int hintID){
+    if(hintButtonList.at(hintID)->getDisplayList().at(0)!=""){
+        QString hintText=hintButtonList.at(hintID)->getDisplayList().at(0)+" ";
+        wholeTxt.insert(currentWordSart,hintText);
+        currentPosition=currentWordSart+hintText.length();
+        currentWordSart=currentPosition;
+        currentWord="";
+
+        textEdit->clear();
+        textEdit->setText(wholeTxt);
+        textEdit->moveCursor (QTextCursor::Start);
+        moveCursor("right",currentPosition);
+
+        clearHints();
+    }
+
+}
+void Dictionary::moveCursor(QString direction, int distance ){
+
+    if(direction== "right"){
+        for(int i =0;i <distance;i++){
+            textEdit->moveCursor (QTextCursor::Right);
+        }
+        return;
+    }
+    if(direction=="left"){
+        for(int i =0;i <distance;i++){
+            textEdit->moveCursor (QTextCursor::Left);
+        }
+        return;
+    }
+
+}
+void  Dictionary::getCurrentWordStart(){
+    if(wholeTxt!=""){
+        if(currentPosition!=0){
+            for(int i = currentPosition-1; i>=0;i--){
+                QChar character = wholeTxt.at(i);
+                if(!(character.isDigit()||character.isLetter())){
+                    currentWordSart=i+1;
+                    return;
+                }
+            }
+        }
+    }
+    currentWordSart=0;
+}
+void Dictionary::getCurrentWord(){
+    currentWord=wholeTxt.mid(currentWordSart,currentPosition-currentWordSart);
+}
+
+void Dictionary::clearHints(){
     setHintText("",hintButtonList.at(0));
     setHintText("",hintButtonList.at(1));
     setHintText("",hintButtonList.at(2));
     setHintText("",hintButtonList.at(3));
-
 }
+
 void Dictionary::backSpace(){
     if(currentWord!=""){
         currentWord=currentWord.remove(currentWord.size()-1,1);
+        QString currentText=wholeTxt;
+        currentText.insert(currentWordSart,currentWord);
+        currentPosition--;
+        textEdit->clear();
+        textEdit->insertPlainText(currentText);
+    }
+    else{
+        currentPosition--;
+        wholeTxt.remove(currentPosition,1);
+        getCurrentWordStart();
+        getCurrentWord();
 
+        textEdit->clear();
+        textEdit->insertPlainText(wholeTxt);
+        wholeTxt.remove(currentWordSart,currentWord.length());
     }
     updateHints();
-
 }
+
 void Dictionary::setHintText(QString text,ButtonOperator *button){
     QStringList myList;
     myList.append(text);
