@@ -1654,6 +1654,9 @@ QScrollBar:vertical {
       <property name="cursor" stdset="0">
        <cursorShape>IBeamCursor</cursorShape>
       </property>
+      <property name="readOnly">
+       <bool>false</bool>
+      </property>
       <property name="cursorWidth">
        <number>2</number>
       </property>

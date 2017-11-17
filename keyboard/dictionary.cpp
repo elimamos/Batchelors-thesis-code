@@ -88,6 +88,25 @@ Dictionary::Dictionary(QTextEdit *sTextEdit,std::vector<ButtonOperator*> sHintBu
     readDictionaryFile();
 
 }
+void Dictionary::moveCursorEnd(QString direction){
+    if(direction=="home"){
+        wholeTxt.insert(currentWordSart,currentWord);
+        currentPosition=0;
+
+        getCurrentWordStart();
+        getCurrentWord();
+
+        textEdit->moveCursor (QTextCursor::Start);
+    }else{
+        wholeTxt.insert(currentWordSart,currentWord);
+        currentPosition=wholeTxt.length();
+        getCurrentWordStart();
+        getCurrentWord();
+        textEdit->moveCursor (QTextCursor::End);
+
+    }
+
+}
 void Dictionary::moveCursor(QString direction){
     moveCursor(direction,1);
     if(direction=="right"){
@@ -105,7 +124,7 @@ void Dictionary::moveCursor(QString direction){
 }
 void Dictionary::readDictionaryFile(){
 
-    QString filename="/home/elisa/Pulpit/gitBoard/slowa.txt";
+    QString filename="/home/elisa/Pulpit/gitBoard/polish";
     QFile file(filename);
     if(!file.exists()){
         qDebug() << "NO existe el archivo "<<filename;
@@ -127,6 +146,13 @@ void Dictionary::readDictionaryFile(){
     }
     file.close();
 
+}
+void Dictionary::clearTextbox(){
+    wholeTxt="";
+    currentWord="";
+    currentPosition=0;
+    currentWordSart=0;
+      textEdit->clear();
 }
 void Dictionary::update(QString chosenLetter){
 
@@ -242,10 +268,12 @@ void Dictionary::backSpace(){
         currentPosition--;
         textEdit->clear();
         textEdit->insertPlainText(currentText);
+
     }
     else{
         currentPosition--;
-        wholeTxt.remove(currentPosition,1);
+
+        currentWord.remove(currentPosition,1);
         getCurrentWordStart();
         getCurrentWord();
 
@@ -253,6 +281,8 @@ void Dictionary::backSpace(){
         textEdit->insertPlainText(wholeTxt);
         wholeTxt.remove(currentWordSart,currentWord.length());
     }
+    textEdit->moveCursor (QTextCursor::Start);
+ moveCursor("right",currentPosition);
     updateHints();
 }
 

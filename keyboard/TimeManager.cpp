@@ -111,13 +111,16 @@ HoverManager *TimeManager::executeSpecialButton(){
         //HERE BROADCAST TO BE IMPLEMENTED
         return hoverState;
     case END_ID:
-        textEdit->moveCursor(QTextCursor::End);
+         dictionary->moveCursorEnd("end");
+       // textEdit->moveCursor(QTextCursor::End);
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
     case CLEAR_ID:
-        textEdit->clear();
+        dictionary->clearTextbox();
+      //  textEdit->clear();
         return hoverState;
     case HOME_ID:
-        textEdit->moveCursor(QTextCursor::Start);
+         dictionary->moveCursorEnd("home");
+       // textEdit->moveCursor(QTextCursor::Start);
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
     case LEFT_ID:
         //textEdit->moveCursor(QTextCursor::Left);

@@ -30,6 +30,8 @@ public:
     void backSpace();
     void useHint(int hintID);
     void moveCursor(QString direction);
+    void moveCursorEnd(QString direction);
+    void clearTextbox();
 
 private:
     QString currentWord;
