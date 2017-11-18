@@ -1,3 +1,4 @@
+#include <QString>
 #ifndef CONST_H
 #define CONST_H
 const int TIMER_TICK=200;
@@ -24,6 +25,7 @@ const int HINT2_ID=56;
 const int HINT3_ID=57;
 const int HINT4_ID=58;
 const int LEAVE_ID=59;
+const int STOP_ID=60;
 
 
 const int MIN_HINT_SIZE=1;
@@ -31,4 +33,5 @@ const int ALPHABETS= 35;
 
 const int MAX_WORD_SIZE= 25;
 const int MAX_CHAR_EDITTEXT_LINE=100;
+const QString GOOGLE_URL= "https://www.googleapis.com/customsearch/v1?key=AIzaSyCYJXxtbDUUUGUVH1feRH2K9R8LjAVLu2g&cx=003632838831069368478:enz_is9xetu&q=%1";
 #endif // CONST_H

@@ -16,7 +16,7 @@ public:
     TimeManager(std::vector<ButtonOperator*> sButtonList,QTextEdit *sTextEdit,QRoundProgressBar *sProgressBar ,std::vector<ButtonOperator*> sHintButtonList);
     QTimer *timer;
     HoverManager *updateHoverState(int currentHover);
-
+    bool stop;
 
 
     void startTimer();

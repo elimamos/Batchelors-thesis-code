@@ -2,7 +2,7 @@
 #define PERSONALIZEVIEW_H
 
 #include <QWidget>
-
+using namespace std;
 namespace Ui {
 class PersonalizeView;
 }
@@ -20,6 +20,7 @@ private slots:
 
 private:
     Ui::PersonalizeView *ui;
+
 };
 
 #endif // PERSONALIZEVIEW_H

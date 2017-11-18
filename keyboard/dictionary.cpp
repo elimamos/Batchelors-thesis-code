@@ -124,12 +124,12 @@ void Dictionary::moveCursor(QString direction){
 }
 void Dictionary::readDictionaryFile(){
 
-    QString filename="/home/elisa/Pulpit/gitBoard/polish";
+    QString filename="/home/elisa/Pulpit/gitBoard/slowa.txt";
     QFile file(filename);
     if(!file.exists()){
-        qDebug() << "NO existe el archivo "<<filename;
+        qDebug() << "Nie znaleziono pliku ze słownikiem "<<filename;
     }else{
-        qDebug() << filename<<" encontrado...";
+        qDebug() << filename<<" Wczytuję...";
     }
     QString line;
     //ui->textEdit->clear();
@@ -143,6 +143,8 @@ void Dictionary::readDictionaryFile(){
             index++;
             //qDebug() << "linea: "<<line;
         }
+        QString lines= QString::number(index);
+        qDebug()<<lines;
     }
     file.close();
 
