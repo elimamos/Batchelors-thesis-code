@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT      += network widgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -20,7 +21,8 @@ SOURCES += main.cpp\
     dictionary.cpp \
     qroundprogressbar.cpp \
     progressbutton.cpp \
-    personalizeview.cpp
+    personalizeview.cpp \
+    googlesearcher.cpp
 
 HEADERS  += mainwindow.h \
     buttonoperator.h \
@@ -30,7 +32,8 @@ HEADERS  += mainwindow.h \
     dictionary.h \
     qroundprogressbar.h \
     progressbutton.h \
-    personalizeview.h
+    personalizeview.h \
+    googlesearcher.h
 
 FORMS    += mainwindow.ui \
     personalizeview.ui

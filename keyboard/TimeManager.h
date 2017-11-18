@@ -7,7 +7,7 @@
 #include<vector>
 #include"qroundprogressbar.h"
 #include"dictionary.h"
-
+#include "googlesearcher.h"
 class TimeManager : public QObject
 {
 
@@ -16,7 +16,7 @@ public:
     TimeManager(std::vector<ButtonOperator*> sButtonList,QTextEdit *sTextEdit,QRoundProgressBar *sProgressBar ,std::vector<ButtonOperator*> sHintButtonList);
     QTimer *timer;
     HoverManager *updateHoverState(int currentHover);
-    bool stop;
+    bool stop;    
 
 
     void startTimer();
@@ -32,7 +32,8 @@ private:
     void executeNormalButton();
     void updateButtonLook();
     Dictionary *dictionary;
-
+    bool isSending;
+    GoogleSearcher *googler;
 
 
 

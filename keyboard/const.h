@@ -33,5 +33,5 @@ const int ALPHABETS= 35;
 
 const int MAX_WORD_SIZE= 25;
 const int MAX_CHAR_EDITTEXT_LINE=100;
-const QString GOOGLE_URL= "https://www.googleapis.com/customsearch/v1?key=AIzaSyCYJXxtbDUUUGUVH1feRH2K9R8LjAVLu2g&cx=003632838831069368478:enz_is9xetu&q=%1";
+const QString GOOGLE_URL= "https://www.googleapis.com/customsearch/v1?key=AIzaSyCYJXxtbDUUUGUVH1feRH2K9R8LjAVLu2g&cx=003632838831069368478:eoxvklfvqlu&q=%1";
 #endif // CONST_H

@@ -7,7 +7,7 @@
 #include"hovermanager.h"
 #include<vector>
 #include "dictionary.h"
-//#include "googlesearcher.h"
+#include "googlesearcher.h"
 TimeManager::TimeManager(std::vector<ButtonOperator*> sButtonList,QTextEdit *sTextEdit,QRoundProgressBar *sProgressBar,std::vector<ButtonOperator*> sHintButtonList)
 {
     hintButtonList=sHintButtonList;
@@ -15,6 +15,10 @@ TimeManager::TimeManager(std::vector<ButtonOperator*> sButtonList,QTextEdit *sTe
     buttonList=sButtonList;
     textEdit=sTextEdit;
     roundProgressBar=sProgressBar;
+   googler = new GoogleSearcher;
+   googler->setHintButtonList(hintButtonList);
+   googler->setTextEdit(textEdit);
+    isSending=false;
     stop=true;
     for(int i=0;i<buttonList.size();i++){
         if(buttonList.at(i)->getSpecial()==false){
@@ -80,19 +84,19 @@ void TimeManager::executeNormalButton(){
 }
 
 HoverManager *TimeManager::executeSpecialButton(){
-
+QString searchText;
     switch(hoverState->getLastHoveredID()){
     case CAPS_ID:
         qDebug()<<"CAPSLOCK";
         if(hoverState->getLastSpecialID()==CAPS_ID){
 
-            //GoogleSearcher *googler = new GoogleSearcher;
-            //googler->search("STUFF");
+
             return new HoverManager(hoverState->getLastHoveredID(),0,0,-1,0);
         }
         //   dictionary->update("o");
         return new HoverManager(hoverState->getLastHoveredID(),0,1,CAPS_ID,0);
     case SHIFT_ID:
+
         if(hoverState->getLastSpecialID()==SHIFT_ID){
             return new HoverManager(hoverState->getLastHoveredID(),0,0,-1,0);
         }
@@ -117,8 +121,11 @@ HoverManager *TimeManager::executeSpecialButton(){
         dictionary->backSpace();
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
     case SEND_ID:
-        //HERE BROADCAST TO BE IMPLEMENTED
-        return hoverState;
+        isSending=true;
+        searchText= textEdit->toPlainText();
+        googler->search(searchText);
+        return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
+
     case END_ID:
         dictionary->moveCursorEnd("end");
         // textEdit->moveCursor(QTextCursor::End);
@@ -151,17 +158,37 @@ HoverManager *TimeManager::executeSpecialButton(){
     case MENU_ID:
         return hoverState;
     case HINT1_ID:
-        dictionary->useHint(0);
-        return hoverState;
+        if(isSending){
+
+              googler->openLink(0);
+              isSending=false;
+              textEdit->clear();
+        }else dictionary->useHint(0);
+        return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
     case HINT2_ID:
-        dictionary->useHint(1);
-        return hoverState;
+        if(isSending){
+              googler->openLink(1);
+              isSending=false;
+              textEdit->clear();
+        }else dictionary->useHint(1);
+        return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
+
     case HINT3_ID:
-        dictionary->useHint(2);
-        return hoverState;
+        if(isSending){
+              googler->openLink(2);
+              isSending=false;
+              textEdit->clear();
+        }else dictionary->useHint(2);
+        return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
+
     case HINT4_ID:
-        dictionary->useHint(3);
-        return hoverState;
+        if(isSending){
+              googler->openLink(3);
+              isSending=false;
+              textEdit->clear();
+        }else dictionary->useHint(3);
+        return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
+
     case LEAVE_ID:
         qApp->quit();
         return hoverState;
