@@ -32,6 +32,7 @@ private:
      vector<ButtonOperator*> hintButtonList;
      QTextEdit *textEdit;
      void setHintText(QString text,ButtonOperator *button);
+     QString setDisplayListElement( int index);
 
 };
 

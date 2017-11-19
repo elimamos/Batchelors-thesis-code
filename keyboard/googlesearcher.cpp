@@ -33,18 +33,18 @@ void GoogleSearcher::handleNetworkData(QNetworkReply *networkReply)
 
         setHintButtons();
         textEdit->clear();
-        QString title1="1. "+ searchResults.value(QString("items")).toArray()[0].toObject().value("title").toString()+"\n";
-        QString title2="2. "+ searchResults.value(QString("items")).toArray()[1].toObject().value("title").toString()+"\n";
-        QString title3="3. "+ searchResults.value(QString("items")).toArray()[2].toObject().value("title").toString()+"\n";
-        QString title4="4. "+ searchResults.value(QString("items")).toArray()[3].toObject().value("title").toString()+"\n";
-        textEdit->append(title1);
-        textEdit->append(title2);
-        textEdit->append(title3);
-        textEdit->append(title4);
+
+        textEdit->append(setDisplayListElement(0));
+        textEdit->append(setDisplayListElement(1));
+        textEdit->append(setDisplayListElement(2));
+        textEdit->append(setDisplayListElement(3));
     }
     networkReply->deleteLater();
 }
-
+QString GoogleSearcher::setDisplayListElement( int index){
+    return QString::number(index+1)+". "+ searchResults.value(QString("items")).toArray()[index].toObject().value("title").toString()+"\n"+
+            searchResults.value(QString("items")).toArray()[index].toObject().value("link").toString()+"\n";
+}
 
 void GoogleSearcher::setHintButtonList( vector<ButtonOperator*> sHintButtonList){
         hintButtonList=sHintButtonList;
