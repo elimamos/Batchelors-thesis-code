@@ -8,6 +8,7 @@
 #include"qroundprogressbar.h"
 #include"dictionary.h"
 #include "googlesearcher.h"
+#include"personalizeview.h"
 class TimeManager : public QObject
 {
 
@@ -34,6 +35,8 @@ private:
     Dictionary *dictionary;
     bool isSending;
     GoogleSearcher *googler;
+     PersonalizeView *personalize;
+     int sendingState;
 
 
 

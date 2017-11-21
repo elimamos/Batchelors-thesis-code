@@ -20,9 +20,9 @@ SOURCES += main.cpp\
     TimeManager.cpp \
     dictionary.cpp \
     qroundprogressbar.cpp \
-    progressbutton.cpp \
     personalizeview.cpp \
-    googlesearcher.cpp
+    googlesearcher.cpp \
+    layoutlook.cpp
 
 HEADERS  += mainwindow.h \
     buttonoperator.h \
@@ -31,9 +31,9 @@ HEADERS  += mainwindow.h \
     TimeManager.h \
     dictionary.h \
     qroundprogressbar.h \
-    progressbutton.h \
     personalizeview.h \
-    googlesearcher.h
+    googlesearcher.h \
+    layoutlook.h
 
 FORMS    += mainwindow.ui \
     personalizeview.ui

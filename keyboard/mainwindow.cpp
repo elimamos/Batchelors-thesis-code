@@ -159,8 +159,7 @@ void MainWindow::on_leave_clicked()
 void MainWindow::on_menu_clicked()
 {
 
-    PersonalizeView *personalize= new PersonalizeView(); // Be sure to destroy your window somewhere
-    personalize->show();
+
 }
 
 void MainWindow::on_textBox_textChanged()

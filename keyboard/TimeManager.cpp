@@ -8,6 +8,7 @@
 #include<vector>
 #include "dictionary.h"
 #include "googlesearcher.h"
+#include "personalizeview.h"
 TimeManager::TimeManager(std::vector<ButtonOperator*> sButtonList,QTextEdit *sTextEdit,QRoundProgressBar *sProgressBar,std::vector<ButtonOperator*> sHintButtonList)
 {
     hintButtonList=sHintButtonList;
@@ -15,11 +16,12 @@ TimeManager::TimeManager(std::vector<ButtonOperator*> sButtonList,QTextEdit *sTe
     buttonList=sButtonList;
     textEdit=sTextEdit;
     roundProgressBar=sProgressBar;
-   googler = new GoogleSearcher;
-   googler->setHintButtonList(hintButtonList);
-   googler->setTextEdit(textEdit);
+    googler = new GoogleSearcher;
+    googler->setHintButtonList(hintButtonList);
+    googler->setTextEdit(textEdit);
     isSending=false;
     stop=true;
+    sendingState=1;
     for(int i=0;i<buttonList.size();i++){
         if(buttonList.at(i)->getSpecial()==false){
             buttonList.at(i)->setStyleSheet("background-color:#818b91");
@@ -84,7 +86,7 @@ void TimeManager::executeNormalButton(){
 }
 
 HoverManager *TimeManager::executeSpecialButton(){
-QString searchText;
+    QString searchText;
     switch(hoverState->getLastHoveredID()){
     case CAPS_ID:
         qDebug()<<"CAPSLOCK";
@@ -156,36 +158,41 @@ QString searchText;
         //HERE Text to speech  BE IMPLEMENTED
         return hoverState;
     case MENU_ID:
-        return hoverState;
+        personalize= new PersonalizeView(); // Be sure to destroy your window somewhere
+        personalize->setAttribute( Qt::WA_DeleteOnClose );
+        personalize->setButtonList(buttonList);
+        personalize->setSendingState(&sendingState);
+        personalize->show();
+        return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
     case HINT1_ID:
         if(isSending){
 
-              googler->openLink(0);
-              isSending=false;
-              textEdit->clear();
+            googler->openLink(0);
+            isSending=false;
+            textEdit->clear();
         }else dictionary->useHint(0);
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
     case HINT2_ID:
         if(isSending){
-              googler->openLink(1);
-              isSending=false;
-              textEdit->clear();
+            googler->openLink(1);
+            isSending=false;
+            textEdit->clear();
         }else dictionary->useHint(1);
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
 
     case HINT3_ID:
         if(isSending){
-              googler->openLink(2);
-              isSending=false;
-              textEdit->clear();
+            googler->openLink(2);
+            isSending=false;
+            textEdit->clear();
         }else dictionary->useHint(2);
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
 
     case HINT4_ID:
         if(isSending){
-              googler->openLink(3);
-              isSending=false;
-              textEdit->clear();
+            googler->openLink(3);
+            isSending=false;
+            textEdit->clear();
         }else dictionary->useHint(3);
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
 

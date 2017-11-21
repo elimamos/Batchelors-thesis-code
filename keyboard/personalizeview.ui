@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>808</width>
-    <height>597</height>
+    <height>667</height>
    </rect>
   </property>
   <property name="baseSize">
@@ -25,11 +25,79 @@
   <property name="autoFillBackground">
    <bool>true</bool>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QProgressBar{
+    border: 2px solid #343434;
+    border-radius: 5px;
+    text-align: center;
+	color: #343434;
+
+}
+QProgressBar::chunk {
+    background-color: #5C83D5;
+
+}
+QTextEdit{
+	 min-height: 10px;
+ min-width: 100px;
+  border-radius: 28px;
+  font-family: Arial;
+  
+  font-size: 20px;
+  background:  #ffffff;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+ 
+}
+QPushButton {
+ font: 28px arial, sans-serif;
+  border-radius: 28px;
+font-weight: bold;
+  color: #ffffff;
+ font-weight:bold;
+  background: #9fb5c4;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+
+}
+QPushButton:hover{
+ background: #4a6373;
+  text-decoration: none;
+}
+QPushButton#clear {
+  font-size: 18px;
+}
+QPushButton#home {
+  font-size: 18px;
+}
+QPushButton#end {
+  font-size: 18px;
+}
+
+
+
+
+
+QPushButton:pressed{
+background: #2b4454;
+  text-decoration: none;
+}
+QPushButton:focus {
+   outline: none;
+}
+QScrollBar:vertical {           
+       border: none;
+        background:#343434;
+        width:10px;    
+        margin: 5px 5px 5px 5px;
+    }
+  </string>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="6" column="0">
     <layout class="QGridLayout" name="items">
      <item row="9" column="2">
-      <widget class="ButtonOperator" name="pushButton_9">
+      <widget class="ButtonOperator" name="mod2">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>1</horstretch>
@@ -53,25 +121,6 @@
        </property>
       </widget>
      </item>
-     <item row="11" column="0" colspan="2">
-      <widget class="ButtonOperator" name="pushButton_5">
-       <property name="minimumSize">
-        <size>
-         <width>70</width>
-         <height>70</height>
-        </size>
-       </property>
-       <property name="sizeIncrement">
-        <size>
-         <width>0</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Anuluj</string>
-       </property>
-      </widget>
-     </item>
      <item row="4" column="0" colspan="5">
       <widget class="QLabel" name="label_2">
        <property name="sizePolicy">
@@ -86,7 +135,7 @@
       </widget>
      </item>
      <item row="3" column="2" colspan="2">
-      <widget class="ButtonOperator" name="pushButton_2">
+      <widget class="ButtonOperator" name="m2">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -118,7 +167,7 @@
       </spacer>
      </item>
      <item row="9" column="4">
-      <widget class="ButtonOperator" name="pushButton_10">
+      <widget class="ButtonOperator" name="mod3">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>1</horstretch>
@@ -156,7 +205,7 @@
       </spacer>
      </item>
      <item row="2" column="2" colspan="2">
-      <widget class="ButtonOperator" name="pushButton">
+      <widget class="ButtonOperator" name="m1">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -175,7 +224,7 @@
       </widget>
      </item>
      <item row="5" column="2" colspan="2">
-      <widget class="ButtonOperator" name="pushButton_3">
+      <widget class="ButtonOperator" name="f1">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>1</horstretch>
@@ -194,7 +243,7 @@
       </widget>
      </item>
      <item row="6" column="2" colspan="2">
-      <widget class="ButtonOperator" name="pushButton_4">
+      <widget class="ButtonOperator" name="f2">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -226,7 +275,7 @@
       </widget>
      </item>
      <item row="9" column="0">
-      <widget class="ButtonOperator" name="pushButton_8">
+      <widget class="ButtonOperator" name="mod1">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>1</horstretch>
@@ -287,7 +336,7 @@
       </spacer>
      </item>
      <item row="11" column="3" colspan="2">
-      <widget class="ButtonOperator" name="pushButton_7">
+      <widget class="ButtonOperator" name="exit">
        <property name="minimumSize">
         <size>
          <width>70</width>
@@ -301,41 +350,9 @@
         </size>
        </property>
        <property name="text">
-        <string>Zapisz</string>
+        <string>WYJDŹ</string>
        </property>
       </widget>
-     </item>
-     <item row="0" column="4">
-      <widget class="QPushButton" name="pushButton_6">
-       <property name="minimumSize">
-        <size>
-         <width>70</width>
-         <height>70</height>
-        </size>
-       </property>
-       <property name="sizeIncrement">
-        <size>
-         <width>2</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>x</string>
-       </property>
-      </widget>
-     </item>
-     <item row="12" column="0">
-      <spacer name="horizontalSpacer_4">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
      </item>
      <item row="2" column="1" rowspan="2">
       <widget class="QPlainTextEdit" name="plainTextEdit">
@@ -347,7 +364,40 @@
        </property>
       </widget>
      </item>
+     <item row="0" column="0" colspan="5">
+      <widget class="QProgressBar" name="progressBar">
+       <property name="value">
+        <number>24</number>
+       </property>
+      </widget>
+     </item>
     </layout>
+   </item>
+   <item row="7" column="0">
+    <spacer name="horizontalSpacer_4">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="0" column="0">
+    <spacer name="horizontalSpacer_5">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
    </item>
   </layout>
  </widget>

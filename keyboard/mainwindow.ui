@@ -800,6 +800,9 @@ QScrollBar:vertical {
           <height>70</height>
          </size>
         </property>
+        <property name="cursor">
+         <cursorShape>ArrowCursor</cursorShape>
+        </property>
         <property name="text">
          <string>p</string>
         </property>
