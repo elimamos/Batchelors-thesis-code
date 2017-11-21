@@ -441,7 +441,8 @@
    <bool>true</bool>
   </property>
   <property name="styleSheet">
-   <string notr="true">QProgressBar{
+   <string notr="true">
+QProgressBar{
     border: 2px solid #343434;
     border-radius: 5px;
     text-align: center;
@@ -581,6 +582,9 @@ QScrollBar:vertical {
       </colorrole>
      </disabled>
     </palette>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
    </property>
    <layout class="QGridLayout" name="gridLayout_4">
     <item row="5" column="0" colspan="2">
@@ -2094,6 +2098,16 @@ QScrollBar:vertical {
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1074</width>
+     <height>25</height>
+    </rect>
+   </property>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

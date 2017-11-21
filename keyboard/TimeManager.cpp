@@ -162,6 +162,7 @@ HoverManager *TimeManager::executeSpecialButton(){
         personalize->setAttribute( Qt::WA_DeleteOnClose );
         personalize->setButtonList(buttonList);
         personalize->setSendingState(&sendingState);
+
         personalize->show();
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
     case HINT1_ID:
@@ -214,7 +215,7 @@ HoverManager *TimeManager::executeSpecialButton(){
                     buttonList.at(i)->setStyleSheet("QPushButton { background: #9fb5c4;} QPushButton:hover{background: #4a6373;}");
                 }
             }
-            // roundProgressBar->setMaximum(TICK_COUNTER);
+            roundProgressBar->setMaximum(TICK_COUNTER);
 
         }
         else {

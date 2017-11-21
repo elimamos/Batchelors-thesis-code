@@ -27,6 +27,17 @@ const int HINT4_ID=58;
 const int LEAVE_ID=59;
 const int STOP_ID=60;
 
+const int MODE_UP=1;
+const int MODE_DOWN=2;
+const int SIZE_UP=3;
+const int SIZE_DOWN=4;
+const int EXIT=0;
+const int BRODCAST=5;
+const int GOOGLE=6;
+const int FILM=7;
+
+
+
 
 const int MIN_HINT_SIZE=1;
 const int ALPHABETS= 35;

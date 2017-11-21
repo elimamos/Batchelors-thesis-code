@@ -3,6 +3,7 @@
 #include"buttonoperator.h"
 #include <QWidget>
 #include"layoutlook.h"
+#include "hovermanager.h"
 
 using namespace std;
 namespace Ui {
@@ -33,6 +34,13 @@ private:
     void setButtonInfo(ButtonOperator *myButton, QString s1,QString s2,QString s3,QString s4,QString s5,bool isSpecial);
     void setNoneChangingButton(ButtonOperator *myButton, QString s1,bool isSpecial);
     int *sendingState;
+    HoverManager *hoverState;
+    HoverManager *updateHoverState(int currentHover);
+    void updateButtonLook();
+    HoverManager *executeTimerStep();
+    HoverManager *executeButton();
+    int currentMod;
+    void setLayout(int id);
 
 };
 

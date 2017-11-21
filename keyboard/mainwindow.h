@@ -23,6 +23,7 @@ public:
     QTextEdit *getTextEdit ();
     QRoundProgressBar *getProgressBar();
     std::vector<ButtonOperator*> getHintButtonList();
+    QWidget *getMainWidget();
 private slots:
     void on_leave_clicked();
 
@@ -41,6 +42,8 @@ private:
     void setButtons();
     void setButtonInfo(ButtonOperator *myButton, QString s1,QString s2,QString s3,QString s4,QString s5, bool isSpecial);
     void setNoneChangingButton(ButtonOperator *myButton, QString s1, bool isSpecial);
+    QWidget *mainWidget;
+
 
 };
 

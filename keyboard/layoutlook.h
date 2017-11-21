@@ -1,18 +1,19 @@
 #ifndef LAYOUTLOOK_H
 #define LAYOUTLOOK_H
 #include<QString>
+#include<QPalette>
 
 class LayoutLook
 {
 public:
-    LayoutLook(QString sLayoutName,QString sButtonLook,QString sBackgroundLook);
+    LayoutLook(QString sLayoutName,QString sButtonLook,QPalette sBackgroundLook);
     QString getLayoutName();
     QString getLayouButtonLook();
-    QString getLayoutBackgroundLook();
+    QPalette getLayoutBackgroundLook();
 private:
     QString layoutName;
     QString layoutButtonLook;
-    QString layoutBackgroundLook;
+    QPalette backgroundColor;
 
 };
 

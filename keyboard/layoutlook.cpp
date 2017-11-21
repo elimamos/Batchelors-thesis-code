@@ -1,10 +1,10 @@
 #include "layoutlook.h"
 
-LayoutLook::LayoutLook(QString sLayoutName,QString sButtonLook,QString sBackgroundLook)
+LayoutLook::LayoutLook(QString sLayoutName,QString sButtonLook,QPalette sBackgroundLook)
 {
     layoutName=sLayoutName;
     layoutButtonLook=sButtonLook;
-    layoutBackgroundLook=sBackgroundLook;
+    backgroundColor=sBackgroundLook;
 }
 QString LayoutLook::getLayoutName(){
     return layoutName;
@@ -12,6 +12,6 @@ QString LayoutLook::getLayoutName(){
 QString LayoutLook::getLayouButtonLook(){
     return layoutButtonLook;
 }
-QString LayoutLook::getLayoutBackgroundLook(){
-    return layoutBackgroundLook;
+QPalette LayoutLook::getLayoutBackgroundLook(){
+    return backgroundColor;
 }

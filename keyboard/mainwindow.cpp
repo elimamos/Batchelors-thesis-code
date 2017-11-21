@@ -113,6 +113,9 @@ void MainWindow::setButtons(){
 
 }
 
+QWidget *MainWindow::getMainWidget(){
+    return ui->centralWidget;
+}
 
 std::vector<ButtonOperator*> MainWindow::getHintButtonList(){
     return hintButtonList;
