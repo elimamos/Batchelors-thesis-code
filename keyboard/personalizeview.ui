@@ -403,7 +403,14 @@ QScrollBar:vertical {
       <widget class="QListWidget" name="listWidget"/>
      </item>
      <item row="5" column="1" rowspan="2">
-      <widget class="QListWidget" name="listWidget_2"/>
+      <widget class="QLineEdit" name="lineEdit">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>146</height>
+        </size>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

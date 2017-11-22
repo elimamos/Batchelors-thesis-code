@@ -21,6 +21,7 @@ public:
      vector<ButtonOperator*> menuButtons;
       void setButtonList(vector<ButtonOperator*> buttonList);
       void setSendingState(int *sSendingState);
+      void setTextEdit(QTextEdit *sTextEdit);
 private slots:
     void on_pushButton_clicked();
 
@@ -41,6 +42,9 @@ private:
     HoverManager *executeButton();
     int currentMod;
     void setLayout(int id);
+    int textFontSize;
+    QTextEdit *textEdit;
+
 
 };
 
