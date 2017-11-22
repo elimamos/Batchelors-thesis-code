@@ -15,9 +15,9 @@ PersonalizeView::PersonalizeView(QWidget *parent) :QWidget(parent), ui(new Ui::P
     setNoneChangingButton(ui->m2,"",false);
     setNoneChangingButton(ui->f1,"",false);
     setNoneChangingButton(ui->f2,"",false);
-    setNoneChangingButton(ui->mod1,"Wiadomość",false);
-    setNoneChangingButton(ui->mod2,"Google",false);
-    setNoneChangingButton(ui->mod3,"Filmweb",false);
+  //  setNoneChangingButton(ui->mod1,"Wiadomość",false);
+  //  setNoneChangingButton(ui->mod2,"Google",false);
+   // setNoneChangingButton(ui->mod3,"Filmweb",false);
     QPalette pal =this->palette();
     pal.setColor(QPalette::Background, "#343434");
     QPalette pal2 = this->palette();

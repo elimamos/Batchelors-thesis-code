@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1074</width>
-    <height>878</height>
+    <height>903</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -442,6 +442,12 @@
   </property>
   <property name="styleSheet">
    <string notr="true">
+DARK
+
+QWidget{
+background-color:#5a5c51;
+}
+
 QProgressBar{
     border: 2px solid #343434;
     border-radius: 5px;
@@ -450,7 +456,7 @@ QProgressBar{
 
 }
 QProgressBar::chunk {
-    background-color: #5C83D5;
+    background-color: #fae596;
 
 }
 QTextEdit{
@@ -458,26 +464,26 @@ QTextEdit{
  min-width: 100px;
   border-radius: 28px;
   font-family: Arial;
-  
   font-size: 20px;
   background:  #ffffff;
   padding: 10px 20px 10px 20px;
   text-decoration: none;
  
 }
+
 QPushButton {
  font: 28px arial, sans-serif;
   border-radius: 28px;
 font-weight: bold;
-  color: #ffffff;
+  color: #fae596;
  font-weight:bold;
-  background: #9fb5c4;
+  background: #312c32;
   padding: 10px 20px 10px 20px;
   text-decoration: none;
 
 }
 QPushButton:hover{
- background: #4a6373;
+ background:#5a5c51;
   text-decoration: none;
 }
 QPushButton#clear {
@@ -489,25 +495,24 @@ QPushButton#home {
 QPushButton#end {
   font-size: 18px;
 }
-
-
-
-
-
 QPushButton:pressed{
 background: #2b4454;
+  text-decoration: none;
+}
+QPushButton#menu{
+background: #fae596;
   text-decoration: none;
 }
 QPushButton:focus {
    outline: none;
 }
+
 QScrollBar:vertical {           
        border: none;
         background:#343434;
         width:10px;    
         margin: 5px 5px 5px 5px;
-    }
-  </string>
+    }</string>
   </property>
   <property name="toolButtonStyle">
    <enum>Qt::ToolButtonFollowStyle</enum>
@@ -587,12 +592,34 @@ QScrollBar:vertical {
     <string notr="true"/>
    </property>
    <layout class="QGridLayout" name="gridLayout_4">
-    <item row="5" column="0" colspan="2">
+    <item row="6" column="0" colspan="2">
      <layout class="QGridLayout" name="gridLayout_2">
       <property name="spacing">
        <number>2</number>
       </property>
-      <item row="1" column="2">
+      <item row="2" column="7">
+       <widget class="ButtonOperator" name="b17">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>1</horstretch>
+          <verstretch>1</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>70</width>
+          <height>70</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>i</string>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
        <widget class="ButtonOperator" name="b12">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -614,7 +641,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="0" column="4">
+      <item row="1" column="4">
        <widget class="ButtonOperator" name="b5">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -636,7 +663,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="0" column="9">
+      <item row="1" column="9">
        <widget class="ButtonOperator" name="b0">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -658,7 +685,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="3" column="8">
+      <item row="4" column="8">
        <widget class="ButtonOperator" name="b38">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -680,7 +707,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="0" column="2">
+      <item row="1" column="2">
        <widget class="ButtonOperator" name="b3">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -702,7 +729,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="2" column="2">
+      <item row="3" column="2">
        <widget class="ButtonOperator" name="b22">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -724,7 +751,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="3" column="0">
+      <item row="4" column="0">
        <widget class="ButtonOperator" name="shift">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -746,7 +773,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="1" column="3">
+      <item row="2" column="3">
        <widget class="ButtonOperator" name="b13">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -768,7 +795,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="3" column="6">
+      <item row="4" column="6">
        <widget class="ButtonOperator" name="b36">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -790,7 +817,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="1" column="9">
+      <item row="2" column="9">
        <widget class="ButtonOperator" name="b19">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -815,7 +842,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="3" column="9">
+      <item row="4" column="9">
        <widget class="ButtonOperator" name="b39">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -837,7 +864,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="3" column="4">
+      <item row="4" column="4">
        <widget class="ButtonOperator" name="b34">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -859,7 +886,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="3" column="2">
+      <item row="4" column="2">
        <widget class="ButtonOperator" name="b32">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -881,7 +908,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="2" column="6">
+      <item row="3" column="6">
        <widget class="ButtonOperator" name="b26">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -903,7 +930,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="3" column="5">
+      <item row="4" column="5">
        <widget class="ButtonOperator" name="b35">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -925,7 +952,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="2" column="8">
+      <item row="3" column="8">
        <widget class="ButtonOperator" name="b28">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -947,7 +974,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="0" column="7">
+      <item row="1" column="7">
        <widget class="ButtonOperator" name="b8">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -969,7 +996,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="2" column="9">
+      <item row="3" column="9">
        <widget class="ButtonOperator" name="b29">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -991,29 +1018,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="1" column="7">
-       <widget class="ButtonOperator" name="b17">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-          <horstretch>1</horstretch>
-          <verstretch>1</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>70</width>
-          <height>70</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>i</string>
-        </property>
-        <property name="default">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
+      <item row="2" column="0">
        <widget class="ButtonOperator" name="b10">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -1035,7 +1040,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="3" column="7">
+      <item row="4" column="7">
        <widget class="ButtonOperator" name="b37">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -1057,7 +1062,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="3" column="3">
+      <item row="4" column="3">
        <widget class="ButtonOperator" name="b33">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -1079,7 +1084,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="2" column="0">
+      <item row="3" column="0">
        <widget class="ButtonOperator" name="caps">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -1111,7 +1116,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="2" column="3">
+      <item row="3" column="3">
        <widget class="ButtonOperator" name="b23">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -1133,7 +1138,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="1" column="1">
+      <item row="2" column="1">
        <widget class="ButtonOperator" name="b11">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -1155,7 +1160,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="2" column="5">
+      <item row="3" column="5">
        <widget class="ButtonOperator" name="b25">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -1177,7 +1182,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="1" column="6">
+      <item row="2" column="6">
        <widget class="ButtonOperator" name="b16">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -1199,7 +1204,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="2" column="7">
+      <item row="3" column="7">
        <widget class="ButtonOperator" name="b27">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -1221,7 +1226,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="2" column="1">
+      <item row="3" column="1">
        <widget class="ButtonOperator" name="b21">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -1243,7 +1248,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="0" column="8">
+      <item row="1" column="8">
        <widget class="ButtonOperator" name="b9">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -1265,7 +1270,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="1" column="8">
+      <item row="2" column="8">
        <widget class="ButtonOperator" name="b18">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -1287,7 +1292,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="1" column="5">
+      <item row="2" column="5">
        <widget class="ButtonOperator" name="b15">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -1309,7 +1314,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="0" column="6">
+      <item row="1" column="6">
        <widget class="ButtonOperator" name="b7">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -1331,7 +1336,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="0" column="3">
+      <item row="1" column="3">
        <widget class="ButtonOperator" name="b4">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -1353,7 +1358,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="0" column="1">
+      <item row="1" column="1">
        <widget class="ButtonOperator" name="b2">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -1375,7 +1380,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="2" column="4">
+      <item row="3" column="4">
        <widget class="ButtonOperator" name="b24">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -1397,7 +1402,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="3" column="1">
+      <item row="4" column="1">
        <widget class="ButtonOperator" name="b31">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -1419,7 +1424,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="0" column="5">
+      <item row="1" column="5">
        <widget class="ButtonOperator" name="b6">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -1441,7 +1446,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="0" column="0">
+      <item row="1" column="0">
        <widget class="ButtonOperator" name="b1">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -1463,7 +1468,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="1" column="4">
+      <item row="2" column="4">
        <widget class="ButtonOperator" name="b14">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -1479,170 +1484,6 @@ QScrollBar:vertical {
         </property>
         <property name="text">
          <string>t</string>
-        </property>
-        <property name="default">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item row="1" column="2">
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="4" column="1">
-       <widget class="ButtonOperator" name="aDown">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-          <horstretch>1</horstretch>
-          <verstretch>1</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>90</width>
-          <height>90</height>
-         </size>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="resources.qrc">
-          <normaloff>:/Icons/icons/down.png</normaloff>:/Icons/icons/down.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>32</width>
-          <height>32</height>
-         </size>
-        </property>
-        <property name="default">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="ButtonOperator" name="aUP">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-          <horstretch>1</horstretch>
-          <verstretch>1</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>90</width>
-          <height>90</height>
-         </size>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="resources.qrc">
-          <normaloff>:/Icons/icons/up.png</normaloff>:/Icons/icons/up.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>32</width>
-          <height>32</height>
-         </size>
-        </property>
-        <property name="default">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="ButtonOperator" name="aLeft">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-          <horstretch>1</horstretch>
-          <verstretch>1</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>90</width>
-          <height>90</height>
-         </size>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="resources.qrc">
-          <normaloff>:/Icons/icons/left.png</normaloff>:/Icons/icons/left.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>32</width>
-          <height>32</height>
-         </size>
-        </property>
-        <property name="default">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="2">
-       <widget class="ButtonOperator" name="aRight">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-          <horstretch>1</horstretch>
-          <verstretch>1</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>90</width>
-          <height>90</height>
-         </size>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="resources.qrc">
-          <normaloff>:/Icons/icons/right.png</normaloff>:/Icons/icons/right.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>32</width>
-          <height>32</height>
-         </size>
-        </property>
-        <property name="default">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="ButtonOperator" name="txt2speech">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>1</horstretch>
-          <verstretch>1</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>90</width>
-          <height>90</height>
-         </size>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="resources.qrc">
-          <normaloff>:/Icons/icons/speaker.png</normaloff>:/Icons/icons/speaker.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>32</width>
-          <height>32</height>
-         </size>
         </property>
         <property name="default">
          <bool>false</bool>
@@ -1709,7 +1550,7 @@ QScrollBar:vertical {
       </item>
      </layout>
     </item>
-    <item row="6" column="0" colspan="2">
+    <item row="7" column="0" colspan="2">
      <layout class="QHBoxLayout" name="horizontalLayout_3">
       <item>
        <widget class="ButtonOperator" name="special">
@@ -1773,7 +1614,7 @@ QScrollBar:vertical {
       </item>
      </layout>
     </item>
-    <item row="5" column="2" rowspan="2">
+    <item row="6" column="2" rowspan="2">
      <layout class="QGridLayout" name="gridLayout_3">
       <item row="0" column="0">
        <widget class="ButtonOperator" name="back">
@@ -1782,6 +1623,12 @@ QScrollBar:vertical {
           <horstretch>1</horstretch>
           <verstretch>1</verstretch>
          </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>70</height>
+         </size>
         </property>
         <property name="text">
          <string/>
@@ -1801,7 +1648,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="2" column="0">
+      <item row="3" column="0">
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
          <widget class="ButtonOperator" name="ctrl">
@@ -1855,7 +1702,7 @@ QScrollBar:vertical {
         </item>
        </layout>
       </item>
-      <item row="1" column="0">
+      <item row="2" column="0">
        <widget class="ButtonOperator" name="enter">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -1881,6 +1728,28 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
+      <item row="1" column="0">
+       <widget class="ButtonOperator" name="clear">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>1</horstretch>
+          <verstretch>1</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>70</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>CZYŚĆ</string>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
      </layout>
     </item>
     <item row="4" column="1">
@@ -1897,7 +1766,7 @@ QScrollBar:vertical {
       <property name="minimumSize">
        <size>
         <width>0</width>
-        <height>100</height>
+        <height>70</height>
        </size>
       </property>
       <property name="focusPolicy">
@@ -1919,66 +1788,6 @@ QScrollBar:vertical {
       <property name="rightMargin">
        <number>0</number>
       </property>
-      <item>
-       <widget class="ButtonOperator" name="home">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-          <horstretch>1</horstretch>
-          <verstretch>1</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>70</width>
-          <height>70</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>HOME</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="ButtonOperator" name="clear">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>1</horstretch>
-          <verstretch>1</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>100</width>
-          <height>100</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>CZYŚĆ</string>
-        </property>
-        <property name="default">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="ButtonOperator" name="end">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-          <horstretch>1</horstretch>
-          <verstretch>1</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>70</width>
-          <height>70</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>END</string>
-        </property>
-       </widget>
-      </item>
      </layout>
     </item>
     <item row="0" column="1">
@@ -2064,7 +1873,17 @@ QScrollBar:vertical {
        </size>
       </property>
       <property name="text">
-       <string>Menu</string>
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="resources.qrc">
+        <normaloff>:/Icons/icons/settings.png</normaloff>:/Icons/icons/settings.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>32</width>
+        <height>32</height>
+       </size>
       </property>
      </widget>
     </item>
@@ -2087,27 +1906,213 @@ QScrollBar:vertical {
       </property>
      </widget>
     </item>
-    <item row="4" column="2">
-     <widget class="QRoundProgressBar" name="roundprogressbar" native="true">
-      <property name="maximumSize">
-       <size>
-        <width>100</width>
-        <height>100</height>
-       </size>
+    <item row="5" column="0" colspan="3">
+     <widget class="QProgressBar" name="progressBar">
+      <property name="value">
+       <number>24</number>
       </property>
      </widget>
     </item>
+    <item row="1" column="2" rowspan="2">
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="2" column="0">
+       <widget class="ButtonOperator" name="aLeft">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>1</horstretch>
+          <verstretch>1</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>90</width>
+          <height>90</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/Icons/icons/left.png</normaloff>:/Icons/icons/left.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="ButtonOperator" name="aRight">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>1</horstretch>
+          <verstretch>1</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>90</width>
+          <height>90</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/Icons/icons/right.png</normaloff>:/Icons/icons/right.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="ButtonOperator" name="txt2speech">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>1</horstretch>
+          <verstretch>1</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>90</width>
+          <height>90</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/Icons/icons/speaker.png</normaloff>:/Icons/icons/speaker.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="ButtonOperator" name="end">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>1</horstretch>
+          <verstretch>1</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>90</width>
+          <height>90</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>END</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="ButtonOperator" name="home">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>1</horstretch>
+          <verstretch>1</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>90</width>
+          <height>90</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>HOME</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="4" column="2">
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item>
+       <widget class="QPushButton" name="pushButton_2">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>70</width>
+          <height>70</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_3">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>1</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>70</width>
+          <height>70</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Google</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>70</width>
+          <height>70</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
    </layout>
-  </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1074</width>
-     <height>25</height>
-    </rect>
-   </property>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
@@ -2116,12 +2121,6 @@ QScrollBar:vertical {
    <class>ButtonOperator</class>
    <extends>QPushButton</extends>
    <header location="global">buttonoperator.h</header>
-  </customwidget>
-  <customwidget>
-   <class>QRoundProgressBar</class>
-   <extends>QWidget</extends>
-   <header location="global">qroundprogressbar.h</header>
-   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>

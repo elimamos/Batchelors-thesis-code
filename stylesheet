@@ -1,40 +1,68 @@
+
+BASIC
+QWidget{
+background-color:#3D4850;
+}
+
+QProgressBar{
+    border: 2px solid #343434;
+    border-radius: 5px;
+    text-align: center;
+	color: #343434;
+
+}
+QProgressBar::chunk {
+    background-color: #FBBDA6;
+
+}
 QTextEdit{
 	 min-height: 10px;
  min-width: 100px;
   border-radius: 28px;
   font-family: Arial;
-  
   font-size: 20px;
   background:  #ffffff;
   padding: 10px 20px 10px 20px;
   text-decoration: none;
  
 }
+
 QPushButton {
- font: 20px arial, sans-serif;
+ font: 28px arial, sans-serif;
   border-radius: 28px;
 font-weight: bold;
   color: #ffffff;
- 
+ font-weight:bold;
   background: #9fb5c4;
   padding: 10px 20px 10px 20px;
   text-decoration: none;
 
 }
-QPushButton::text{
-color:red;
-}
 QPushButton:hover{
  background: #4a6373;
   text-decoration: none;
+}
+QPushButton#clear {
+  font-size: 18px;
+}
+QPushButton#home {
+  font-size: 18px;
+}
+QPushButton#end {
+  font-size: 18px;
 }
 QPushButton:pressed{
 background: #2b4454;
   text-decoration: none;
 }
+QPushButton#menu{
+background: #FBBDA6;
+  text-decoration: none;
+}
 QPushButton:focus {
    outline: none;
 }
+
 QScrollBar:vertical {           
        border: none;
         background:#343434;
@@ -42,3 +70,80 @@ QScrollBar:vertical {
         margin: 5px 5px 5px 5px;
     }
   
+
+
+
+
+DARK
+
+QWidget{
+background-color:#5a5c51;
+}
+
+QProgressBar{
+    border: 2px solid #343434;
+    border-radius: 5px;
+    text-align: center;
+	color: #343434;
+
+}
+QProgressBar::chunk {
+    background-color: #fae596;
+
+}
+QTextEdit{
+	 min-height: 10px;
+ min-width: 100px;
+  border-radius: 28px;
+  font-family: Arial;
+  font-size: 20px;
+  background:  #ffffff;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+ 
+}
+
+QPushButton {
+ font: 28px arial, sans-serif;
+  border-radius: 28px;
+font-weight: bold;
+  color: #fae596;
+ font-weight:bold;
+  background: #312c32;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+
+}
+QPushButton:hover{
+ background:#5a5c51;
+  text-decoration: none;
+}
+QPushButton#clear {
+  font-size: 18px;
+}
+QPushButton#home {
+  font-size: 18px;
+}
+QPushButton#end {
+  font-size: 18px;
+}
+QPushButton:pressed{
+background: #2b4454;
+  text-decoration: none;
+}
+QPushButton#menu{
+background: #fae596;
+  text-decoration: none;
+}
+QPushButton:focus {
+   outline: none;
+}
+
+QScrollBar:vertical {           
+       border: none;
+        background:#343434;
+        width:10px;    
+        margin: 5px 5px 5px 5px;
+    }
+  
+
