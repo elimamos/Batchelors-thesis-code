@@ -8,6 +8,7 @@
         <file>icons/down.png</file>
         <file>icons/left.png</file>
         <file>icons/right.png</file>
+        <file>icons/settings.png</file>
     </qresource>
     <qresource prefix="/">
         <file>slowa.txt</file>

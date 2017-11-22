@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
     w.show();
     //  w.setPalette(pal);
     //enter full screen mode
-  //w.setWindowState(w.windowState() ^ Qt::WindowFullScreen);
+ // w.setWindowState(w.windowState() ^ Qt::WindowFullScreen);
 
 
 

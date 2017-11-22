@@ -14,7 +14,7 @@ class TimeManager : public QObject
 
     Q_OBJECT
 public:
-    TimeManager(std::vector<ButtonOperator*> sButtonList,QTextEdit *sTextEdit,QRoundProgressBar *sProgressBar ,std::vector<ButtonOperator*> sHintButtonList);
+    TimeManager(std::vector<ButtonOperator*> sButtonList,QTextEdit *sTextEdit,QProgressBar *sProgressBar ,std::vector<ButtonOperator*> sHintButtonList);
     QTimer *timer;
     HoverManager *updateHoverState(int currentHover);
     bool stop;    
@@ -26,7 +26,7 @@ private:
     std::vector<ButtonOperator*> buttonList;
     std::vector<ButtonOperator*> hintButtonList;
     QTextEdit *textEdit;
-    QRoundProgressBar *roundProgressBar;
+    QProgressBar *progressBar;
     int getHoveredButton();
     HoverManager *executeTimerStep();
     HoverManager *executeSpecialButton();

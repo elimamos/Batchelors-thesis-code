@@ -21,7 +21,7 @@ public:
     ~MainWindow();
     std::vector<ButtonOperator*> getButtonList();
     QTextEdit *getTextEdit ();
-    QRoundProgressBar *getProgressBar();
+    QProgressBar *getProgressBar();
     std::vector<ButtonOperator*> getHintButtonList();
     QWidget *getMainWidget();
 private slots:
@@ -38,7 +38,7 @@ private:
     std::vector<ButtonOperator*> buttonList;
     std::vector<ButtonOperator*> hintButtonList;
     QTextEdit *textEdit;
-    QRoundProgressBar *roundProgressBar;
+    QProgressBar *progressBar;
     void setButtons();
     void setButtonInfo(ButtonOperator *myButton, QString s1,QString s2,QString s3,QString s4,QString s5, bool isSpecial);
     void setNoneChangingButton(ButtonOperator *myButton, QString s1, bool isSpecial);

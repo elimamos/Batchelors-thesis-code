@@ -9,13 +9,13 @@
 #include "dictionary.h"
 #include "googlesearcher.h"
 #include "personalizeview.h"
-TimeManager::TimeManager(std::vector<ButtonOperator*> sButtonList,QTextEdit *sTextEdit,QRoundProgressBar *sProgressBar,std::vector<ButtonOperator*> sHintButtonList)
+TimeManager::TimeManager(std::vector<ButtonOperator*> sButtonList,QTextEdit *sTextEdit,QProgressBar *sProgressBar,std::vector<ButtonOperator*> sHintButtonList)
 {
     hintButtonList=sHintButtonList;
     hoverState= new HoverManager(-1, -1, 0,-1,0);
     buttonList=sButtonList;
     textEdit=sTextEdit;
-    roundProgressBar=sProgressBar;
+    progressBar=sProgressBar;
     googler = new GoogleSearcher;
     googler->setHintButtonList(hintButtonList);
     googler->setTextEdit(textEdit);
@@ -40,13 +40,13 @@ void TimeManager::TimerStep()
             if(buttonList.at(currentHoverID)->getSpecial()){
                 hoverState=updateHoverState(currentHoverID);
                 hoverState= executeTimerStep();
-                roundProgressBar->setValue(hoverState->getHoveredCount());
+               progressBar->setValue(hoverState->getHoveredCount());
                 updateButtonLook();
             }
         }else{
             hoverState=updateHoverState(currentHoverID);
             hoverState= executeTimerStep();
-            roundProgressBar->setValue(hoverState->getHoveredCount());
+            progressBar->setValue(hoverState->getHoveredCount());
             updateButtonLook();
         }
     }
@@ -61,7 +61,7 @@ HoverManager *TimeManager::executeTimerStep(){
     }
 
     if(buttonList[hoverState->getLastHoveredID()]->getSpecial()==true){
-        qDebug()<<"SPECIAL PRESSED";
+        qDebug()<<QString::number(hoverState->getLastHoveredID());
         textEdit->setFocus();
         return executeSpecialButton();
 
@@ -69,6 +69,8 @@ HoverManager *TimeManager::executeTimerStep(){
     if(!stop){
 
         //   qDebug()<<"NONE special pressed";
+        qDebug()<<QString::number(hoverState->getLastHoveredID());
+
         textEdit->setFocus();
         executeNormalButton();
         if(hoverState->getLastSpecialID()==SHIFT_ID){
@@ -125,7 +127,9 @@ HoverManager *TimeManager::executeSpecialButton(){
     case SEND_ID:
         isSending=true;
         searchText= textEdit->toPlainText();
+        if(googler->checkNetworkConnection()){
         googler->search(searchText);
+        }
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
 
     case END_ID:
@@ -144,16 +148,16 @@ HoverManager *TimeManager::executeSpecialButton(){
         //textEdit->moveCursor(QTextCursor::Left);
         dictionary->moveCursor("left");
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
-    case UP_ID:
-        textEdit->moveCursor(QTextCursor::Up);
-        return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
+    //case UP_ID:
+       // textEdit->moveCursor(QTextCursor::Up);
+        //return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
     case RIGHT_ID:
         dictionary->moveCursor("right");
         //  textEdit->moveCursor(QTextCursor::Right);
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
-    case DOWN_ID:
-        textEdit->moveCursor(QTextCursor::Down);
-        return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
+    //case DOWN_ID:
+      //  textEdit->moveCursor(QTextCursor::Down);
+       // return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
     case TXT2SPEACH_ID:
         //HERE Text to speech  BE IMPLEMENTED
         return hoverState;
@@ -162,7 +166,7 @@ HoverManager *TimeManager::executeSpecialButton(){
         personalize->setAttribute( Qt::WA_DeleteOnClose );
         personalize->setButtonList(buttonList);
         personalize->setSendingState(&sendingState);
-
+        personalize->setTextEdit(textEdit);
         personalize->show();
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
     case HINT1_ID:
@@ -215,7 +219,7 @@ HoverManager *TimeManager::executeSpecialButton(){
                     buttonList.at(i)->setStyleSheet("QPushButton { background: #9fb5c4;} QPushButton:hover{background: #4a6373;}");
                 }
             }
-            roundProgressBar->setMaximum(TICK_COUNTER);
+           progressBar->setMaximum(TICK_COUNTER);
 
         }
         else {
@@ -232,7 +236,7 @@ HoverManager *TimeManager::executeSpecialButton(){
                     buttonList.at(i)->setStyleSheet("background-color:#818b91");
                 }
             }
-            //  roundProgressBar->setMaximum(0.0);
+            //  progressBar->setMaximum(0.0);
 
         }
 

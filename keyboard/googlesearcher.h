@@ -23,6 +23,7 @@ public:
     void openLink(int index);
     void setHintButtonList( vector<ButtonOperator*> sHintButtonList);
     void setTextEdit(QTextEdit *sEdit);
+    bool checkNetworkConnection();
 public slots:
     void handleNetworkData(QNetworkReply *networkReply);
 private:

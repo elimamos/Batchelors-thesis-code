@@ -35,13 +35,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
 }
-QRoundProgressBar *MainWindow::getProgressBar(){
-    return roundProgressBar;
+QProgressBar *MainWindow::getProgressBar(){
+    return progressBar;
 }
 void MainWindow::setButtons(){
     textEdit=ui->textBox;
-    roundProgressBar=ui->roundprogressbar;
-    roundProgressBar->setMaximum(TICK_COUNTER);
+    progressBar=ui->progressBar;
+    progressBar->setMaximum(TICK_COUNTER);
     setNoneChangingButton(ui->b1,"1",false);
     setNoneChangingButton(ui->b2,"2",false);
     setNoneChangingButton(ui->b3,"3",false);
@@ -95,11 +95,11 @@ void MainWindow::setButtons(){
     setNoneChangingButton(ui->clear,"CZYŚĆ",true);
     setNoneChangingButton(ui->home,"HOME",true);
     setNoneChangingButton(ui->aLeft,"",true);
-    setNoneChangingButton(ui->aUP,"",true);
+  //  setNoneChangingButton(ui->aUP,"",true);
     setNoneChangingButton(ui->aRight,"",true);
-    setNoneChangingButton(ui->aDown,"",true);
+   // setNoneChangingButton(ui->aDown,"",true);
     setNoneChangingButton(ui->txt2speech,"",true);
-    setNoneChangingButton(ui->menu,"menu",true);
+    setNoneChangingButton(ui->menu,"",true);
     setNoneChangingButton(ui->hintB1,"",true);
     setNoneChangingButton(ui->hintB2,"",true);
     setNoneChangingButton(ui->hintB3,"",true);
