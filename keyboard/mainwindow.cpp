@@ -4,7 +4,7 @@
 #include "buttonoperator.h"
 #include <QStringList>
 #include<vector>
-#include "qroundprogressbar.h"
+
 #include "personalizeview.h"
 
 
@@ -20,20 +20,6 @@ MainWindow::MainWindow(QWidget *parent) :
     setButtons();
 
 
-    /*m_button[0] = ui->zero;
-   m_button[0]->setIndex(3);
-    QStringList qlist;
-    qlist.append("ELEMENT1");
-    qlist.append("ELEMENT2");
-    m_button[0]->setDisplayList(qlist);
-
-    qDebug()<<m_button[0]->getIndex();
-    qDebug()<<m_button[0]->getDisplayList().at(1);
-    m_button[0]->setText(m_button[0]->getDisplayList().at(1));*/
-
-    //  connect(ui->zero,SIGNAL(onHover()),ui->textEdit,SLOT(setText()));
-
-
 }
 QProgressBar *MainWindow::getProgressBar(){
     return progressBar;
@@ -41,7 +27,7 @@ QProgressBar *MainWindow::getProgressBar(){
 void MainWindow::setButtons(){
     textEdit=ui->textBox;
     progressBar=ui->progressBar;
-    progressBar->setMaximum(TICK_COUNTER);
+    progressBar->setMaximum(STARTING_COUNT);
     setNoneChangingButton(ui->b1,"1",false);
     setNoneChangingButton(ui->b2,"2",false);
     setNoneChangingButton(ui->b3,"3",false);

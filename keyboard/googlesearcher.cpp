@@ -30,7 +30,7 @@ bool GoogleSearcher::checkNetworkConnection(){
     connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
     loop.exec();
     if(reply->bytesAvailable()){
-    return true;
+        return true;
     }else{
         QMessageBox *mbox = new QMessageBox;
         mbox->setWindowTitle(tr("UWAGA!"));
@@ -38,7 +38,7 @@ bool GoogleSearcher::checkNetworkConnection(){
         mbox->setStandardButtons(0);
         mbox->show();
         QTimer::singleShot(2000, mbox, SLOT(hide()));
-    return false;
+        return false;
     }
 }
 void GoogleSearcher::handleNetworkData(QNetworkReply *networkReply)
@@ -50,36 +50,31 @@ void GoogleSearcher::handleNetworkData(QNetworkReply *networkReply)
 
         QByteArray response(networkReply->readAll());
         QString string = QString(response);
-        //qDebug()<<string;
-        //QJsonDocument json=QJsonDocument(response);
+
         QJsonDocument jsonDoc = QJsonDocument::fromJson(string.toUtf8());
 
         searchResults = jsonDoc.object();
-     //   QJsonValue value = searchResults.value(QString("items")).toArray();
-       // QJsonValue value = jo.value(QString("items")).toArray()[0].toObject().value("link");
-      //  qDebug()<<value;
 
-       // QDesktopServices::openUrl(QUrl(value.toString()));
         switch(sendingState){
         case 0:
             //Google
             setHintButtons();
             textEdit->clear();
-
             textEdit->append(setDisplayListElement(0));
             textEdit->append(setDisplayListElement(1));
             textEdit->append(setDisplayListElement(2));
             textEdit->append(setDisplayListElement(3));
+
             break;
         case 1:
             //YouTube
             for(int i=0;i<searchResults.value(QString("items")).toArray().count();i++){
                 QString link = searchResults.value(QString("items")).toArray()[i].toObject().value("link").toString();
                 if(link.contains("youtube",Qt::CaseInsensitive)){
-                     QDesktopServices::openUrl(QUrl(link));
-                     break;
+                    QDesktopServices::openUrl(QUrl(link));
+                    break;
                 }
-               else{
+                else{
                     textEdit->setText("Nie znaleziono poszukiwanej frazy!");
                 }
             }
@@ -89,10 +84,10 @@ void GoogleSearcher::handleNetworkData(QNetworkReply *networkReply)
             for(int i=0;i<searchResults.value(QString("items")).toArray().count();i++){
                 QString link = searchResults.value(QString("items")).toArray()[i].toObject().value("link").toString();
                 if(link.contains("www.filmweb.pl/film/",Qt::CaseInsensitive)){
-                     QDesktopServices::openUrl(QUrl(link));
-                     break;
+                    QDesktopServices::openUrl(QUrl(link));
+                    break;
                 }
-               else{
+                else{
                     textEdit->setText("Nie znaleziono poszukiwanej frazy!");
                 }
             }
@@ -105,20 +100,21 @@ void GoogleSearcher::handleNetworkData(QNetworkReply *networkReply)
     networkReply->deleteLater();
 }
 QString GoogleSearcher::setDisplayListElement( int index){
+
     return QString::number(index+1)+". "+ searchResults.value(QString("items")).toArray()[index].toObject().value("title").toString()+"\n"+
-            searchResults.value(QString("items")).toArray()[index].toObject().value("link").toString()+"\n";
+            searchResults.value(QString("items")).toArray()[index].toObject().value("link").toString();
 }
 
 void GoogleSearcher::setHintButtonList( vector<ButtonOperator*> sHintButtonList){
-        hintButtonList=sHintButtonList;
+    hintButtonList=sHintButtonList;
 }
 void GoogleSearcher::setTextEdit(QTextEdit *sEdit){
-        textEdit=sEdit;
+    textEdit=sEdit;
 }
 void GoogleSearcher::openLink(int index){
     QJsonValue value = searchResults.value(QString("items")).toArray()[index].toObject().value("link");
 
-     QDesktopServices::openUrl(QUrl(value.toString()));
+    QDesktopServices::openUrl(QUrl(value.toString()));
 
 }
 void GoogleSearcher::setHintButtons(){

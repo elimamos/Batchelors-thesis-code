@@ -41,9 +41,11 @@ private:
     int sendingState;
     QUdpSocket *udpSocket;
     QByteArray datagram;
-
+    int tickCounter;
     map < int , QString > sendingPossibilities;
-
+    void verifyTimerTickCount();
+    int ticksSinceLastChange;
+    int backspaceCount;
 
 
 

@@ -19,7 +19,6 @@ SOURCES += main.cpp\
     hovermanager.cpp \
     TimeManager.cpp \
     dictionary.cpp \
-    qroundprogressbar.cpp \
     personalizeview.cpp \
     googlesearcher.cpp \
     layoutlook.cpp
@@ -30,7 +29,6 @@ HEADERS  += mainwindow.h \
     hovermanager.h \
     TimeManager.h \
     dictionary.h \
-    qroundprogressbar.h \
     personalizeview.h \
     googlesearcher.h \
     layoutlook.h

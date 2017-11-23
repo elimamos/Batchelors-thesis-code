@@ -284,6 +284,9 @@ void Dictionary::backSpace(){
         wholeTxt.remove(currentWordSart,currentWord.length());
     }
     textEdit->moveCursor (QTextCursor::Start);
+    if(currentPosition<0){
+        currentPosition=0;
+    }
  moveCursor("right",currentPosition);
     updateHints();
 }

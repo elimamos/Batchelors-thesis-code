@@ -20,10 +20,9 @@ public:
      QTimer *timer;
      vector<ButtonOperator*> menuButtons;
       void setButtonList(vector<ButtonOperator*> buttonList);
-      void setSendingState(int *sSendingState);
+      void setTickCount(int *sTickCount);
       void setTextEdit(QTextEdit *sTextEdit);
-private slots:
-    void on_pushButton_clicked();
+
 
 public slots:
     void TimerStep();
@@ -34,7 +33,7 @@ private:
     vector<LayoutLook> layoutList;
     void setButtonInfo(ButtonOperator *myButton, QString s1,QString s2,QString s3,QString s4,QString s5,bool isSpecial);
     void setNoneChangingButton(ButtonOperator *myButton, QString s1,bool isSpecial);
-    int *sendingState;
+    int *tickCounter;
     HoverManager *hoverState;
     HoverManager *updateHoverState(int currentHover);
     void updateButtonLook();

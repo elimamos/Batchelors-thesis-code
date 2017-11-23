@@ -15,9 +15,8 @@ PersonalizeView::PersonalizeView(QWidget *parent) :QWidget(parent), ui(new Ui::P
     setNoneChangingButton(ui->m2,"",false);
     setNoneChangingButton(ui->f1,"",false);
     setNoneChangingButton(ui->f2,"",false);
-    //  setNoneChangingButton(ui->mod1,"Wiadomość",false);
-    //  setNoneChangingButton(ui->mod2,"Google",false);
-    // setNoneChangingButton(ui->mod3,"Filmweb",false);
+    setNoneChangingButton(ui->timeLess,"",true);
+    setNoneChangingButton(ui->timeMore,"",true);
     QPalette pal =this->palette();
     pal.setColor(QPalette::Background, "#343434");
     QPalette pal2 = this->palette();
@@ -32,6 +31,8 @@ PersonalizeView::PersonalizeView(QWidget *parent) :QWidget(parent), ui(new Ui::P
     ui->listWidget->addItem(layoutList.at(0).getLayoutName());
     ui->listWidget->addItem(layoutList.at(1).getLayoutName());
     ui->listWidget->item(0)->setSelected(true);
+
+
     /*   for(int row = 0; row < ui->listWidget->count(); row++)
     {
              QListWidgetItem *item = ui->listWidget->item(row);
@@ -40,7 +41,7 @@ PersonalizeView::PersonalizeView(QWidget *parent) :QWidget(parent), ui(new Ui::P
 */
     // ui->listWidget->setTextElideMode();
     //  ui->listWidget->sortItems(Qt::DescendingOrder);
-    ui->progressBar->setMaximum(TICK_COUNTER);
+    ui->progressBar->setMaximum(STARTING_COUNT);
     timer = new QTimer (this);
     textFontSize=20;
     ui->lineEdit->setText(QString::number(textFontSize)+"px");
@@ -75,12 +76,7 @@ PersonalizeView::~PersonalizeView()
 
 }
 
-void PersonalizeView::on_pushButton_clicked()
-{
 
-
-
-}
 void PersonalizeView::setButtonList(vector<ButtonOperator*> buttonList){
     keyboardButtons=buttonList;
 }
@@ -94,41 +90,13 @@ void PersonalizeView::TimerStep()
         updateButtonLook();
     }
 
-    /*  if(currentHoverID==1){
-
-        //  *sendingState=2;
-        for (int i = 0; i < keyboardButtons.size(); ++i)
-        {
-            QWidget *widget = keyboardButtons.at(i);
-
-            widget->setStyleSheet("QPushButton {font: 28px arial, sans-serif; border-radius: 28px;font-weight: bold; color: #ffffff;font-weight:bold;background: #9fb5c4;padding: 10px 20px 10px 20px;text-decoration: none;QPushButton:hover{background: #4a6373;    text-decoration: none;}QPushButton#clear {font-size: 18px;}QPushButton#home {    font-size: 18px;}QPushButton#end { font-size: 18px;},background-color:black;");
-        }/*
-        for (int i = 0; i < menuButtons.size(); ++i)
-        {
-            QWidget *widget = menuButtons.at(i);
-
-            widget->setStyleSheet("background-color:black;");
-        }*/
-    //}
-    /* else if(currentHoverID==2){
-        for (int i = 0; i < keyboardButtons.size(); ++i)
-        {
-            QWidget *widget = keyboardButtons.at(i);
-
-            widget->setStyleSheet(layoutList.at(0).getLayouButtonLook());
-        }
-        for (int i = 0; i < menuButtons.size(); ++i)
-        {
-            QWidget *widget = menuButtons.at(i);
-
-            widget->setStyleSheet(layoutList.at(0).getLayouButtonLook());
-        }
-    }*/
-    //    qDebug()<<currentHoverID;
-
 }
-void PersonalizeView::setSendingState(int *sSendingState){
-    sendingState=sSendingState;
+void PersonalizeView::setTickCount(int *sTickCount){
+
+    tickCounter=sTickCount;
+    double time = *tickCounter*TIMER_TICK/1000.0;
+    ui->timeValue->setText(QString::number(time));
+     ui->progressBar->setMaximum(*tickCounter);
 
 }
 int PersonalizeView::getHoveredButton(){
@@ -164,7 +132,7 @@ void PersonalizeView::updateButtonLook(){
 
 }
 HoverManager *PersonalizeView::executeTimerStep(){
-    if(hoverState->getHoveredCount()<TICK_COUNTER){
+    if(hoverState->getHoveredCount()<*tickCounter){
         return hoverState;
     }
 
@@ -174,10 +142,11 @@ HoverManager *PersonalizeView::executeTimerStep(){
 
 }
 HoverManager *PersonalizeView::executeButton(){
+      double time;
     switch(hoverState->getLastHoveredID()){
     case EXIT:
         this->close();
-         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
+        return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
     case MODE_UP:
         if(currentMod<layoutList.size()-1){
             currentMod++;
@@ -214,6 +183,33 @@ HoverManager *PersonalizeView::executeButton(){
         ui->lineEdit->setText(QString::number(textFontSize)+"px");
         ui->lineEdit->setStyleSheet("font-size: "+QString::number(textFontSize)+"px;");
         textEdit->setStyleSheet("font-size: "+QString::number(textFontSize)+"px;");
+        return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
+    case SIZE_DOWN:
+        if(textFontSize!=1){
+            textFontSize--;
+            ui->lineEdit->setText(QString::number(textFontSize)+"px");
+            ui->lineEdit->setStyleSheet("font-size: "+QString::number(textFontSize)+"px;");
+            textEdit->setStyleSheet("font-size: "+QString::number(textFontSize)+"px;");}
+        return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
+    case TIME_LESS:
+        *tickCounter-=TICK_COUNT_STEP;
+        if(*tickCounter<TICK_COUNT_MIN)
+        {
+            *tickCounter=TICK_COUNT_MIN;
+        }
+         time = *tickCounter*TIMER_TICK/1000.0;
+        ui->timeValue->setText(QString::number(time));
+           ui->progressBar->setMaximum(*tickCounter);
+        return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
+    case TIME_MORE:
+        *tickCounter+=TICK_COUNT_STEP;
+        if(*tickCounter>TICK_COUNT_MAX)
+        {
+            *tickCounter=TICK_COUNT_MAX;
+        }
+         time = *tickCounter*TIMER_TICK/1000.0;
+        ui->timeValue->setText(QString::number(time));
+           ui->progressBar->setMaximum(*tickCounter);
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
 
     }

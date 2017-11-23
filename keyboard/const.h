@@ -2,22 +2,24 @@
 #ifndef CONST_H
 #define CONST_H
 const int TIMER_TICK=200;
-const int TICK_COUNTER=8;
-const int BUTTON_COUNT=3;
+const int STARTING_COUNT=15;
+const int TICK_COUNT_MIN=5;
+const int TICK_COUNT_MAX=30;
+const int TICK_COUNT_STEP=5;
+const int TICK_COUNT_EVALUATION=100;
+const int BACKSPACE_MIN=2;
+const int BACKSPACE_MAX=4;
 const int CAPS_ID=20;
 const int SHIFT_ID=30;
 const int PL_ID=42;
 const int SPECIAL_ID=40;
-//if no ctrl and alt added - else BACK_ID = 46 and anything after ID +2
 const int BACK_ID=44;
 const int SEND_ID=45;
 const int END_ID=46;
 const int CLEAR_ID=47;
 const int HOME_ID=48;
 const int LEFT_ID=49;
-//const int UP_ID=50;
 const int RIGHT_ID=50;
-//const int DOWN_ID=52;
 const int TXT2SPEACH_ID=51;
 const int MENU_ID=52;
 const int HINT1_ID=53;
@@ -30,13 +32,13 @@ const int SENDING_LEFT=59;
 const int SENDING=60;
 const int SENDING_RIGHT=61;
 
-
+const int EXIT=0;
 const int MODE_UP=1;
 const int MODE_DOWN=2;
 const int SIZE_UP=3;
 const int SIZE_DOWN=4;
-const int EXIT=0;
-
+const int TIME_LESS=5;
+const int TIME_MORE=6;
 
 
 

@@ -11,6 +11,9 @@
 #include "personalizeview.h"
 TimeManager::TimeManager(std::vector<ButtonOperator*> sButtonList,QTextEdit *sTextEdit,QProgressBar *sProgressBar,std::vector<ButtonOperator*> sHintButtonList)
 {
+    tickCounter = STARTING_COUNT;
+    ticksSinceLastChange=0;
+    backspaceCount=0;
     hintButtonList=sHintButtonList;
     hoverState= new HoverManager(-1, -1, 0,-1,0);
     buttonList=sButtonList;
@@ -33,6 +36,7 @@ TimeManager::TimeManager(std::vector<ButtonOperator*> sButtonList,QTextEdit *sTe
     sendingPossibilities[1]="YouTube";
     sendingPossibilities[2]="Filmweb";
 
+
 }
 
 void TimeManager::TimerStep()
@@ -54,13 +58,11 @@ void TimeManager::TimerStep()
             updateButtonLook();
         }
     }
-    //   qDebug()<<hoverState->getLastHoveredID();
-    // qDebug()<<hoverState->getHoveredCount();
-    // qDebug()<<" ";
+    verifyTimerTickCount();
 
 }
 HoverManager *TimeManager::executeTimerStep(){
-    if(hoverState->getHoveredCount()<TICK_COUNTER){
+    if(hoverState->getHoveredCount()<tickCounter){
         return hoverState;
     }
 
@@ -97,7 +99,7 @@ HoverManager *TimeManager::executeSpecialButton(){
     QStringList myList;
     switch(hoverState->getLastHoveredID()){
     case CAPS_ID:
-        qDebug()<<"CAPSLOCK";
+        //   qDebug()<<"CAPSLOCK";
         if(hoverState->getLastSpecialID()==CAPS_ID){
 
 
@@ -128,6 +130,7 @@ HoverManager *TimeManager::executeSpecialButton(){
         return new HoverManager(hoverState->getLastHoveredID(),0,4,PL_ID,0);
     case BACK_ID:
         //textEdit->textCursor().deletePreviousChar();
+        backspaceCount++;
         dictionary->backSpace();
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
     case SEND_ID:
@@ -145,6 +148,7 @@ HoverManager *TimeManager::executeSpecialButton(){
             mbox->show();
             QTimer::singleShot(2000, mbox, SLOT(hide()));
         }
+
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
 
     case END_ID:
@@ -180,7 +184,7 @@ HoverManager *TimeManager::executeSpecialButton(){
         personalize= new PersonalizeView(); // Be sure to destroy your window somewhere
         personalize->setAttribute( Qt::WA_DeleteOnClose );
         personalize->setButtonList(buttonList);
-        personalize->setSendingState(&sendingState);
+        personalize->setTickCount(&tickCounter);
         personalize->setTextEdit(textEdit);
         personalize->show();
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
@@ -238,7 +242,7 @@ HoverManager *TimeManager::executeSpecialButton(){
                     buttonList.at(i)->setStyleSheet("QPushButton { background: #9fb5c4;} QPushButton:hover{background: #4a6373;}");
                 }
             }
-            progressBar->setMaximum(TICK_COUNTER);
+
 
         }
         else {
@@ -280,7 +284,7 @@ HoverManager *TimeManager::executeSpecialButton(){
             if(googler->checkNetworkConnection()){
                 if(searchText!=""){
                     googler->search(searchText,sendingState);
-                     updateButtonLook();
+                    updateButtonLook();
                 }
             }
 
@@ -344,4 +348,37 @@ void TimeManager::updateButtonLook(){
     }
 
 }
+void TimeManager::verifyTimerTickCount(){
 
+    if(!stop){
+
+        ticksSinceLastChange++;
+        // qDebug()<<QString::number(ticksSinceLastChange);
+        if(ticksSinceLastChange>TICK_COUNT_EVALUATION){
+            qDebug()<<"EVALUATING!";
+            if(backspaceCount>=BACKSPACE_MAX){
+                qDebug()<<"SLOOOOOOW";
+                tickCounter+=TICK_COUNT_STEP;
+                if(tickCounter>TICK_COUNT_MAX)
+                {
+                    tickCounter=TICK_COUNT_MAX;
+                }
+            }else if(backspaceCount<=BACKSPACE_MIN){
+                qDebug()<<"SOOOO FAAAAST";
+                tickCounter-=TICK_COUNT_STEP;
+                if(tickCounter<TICK_COUNT_MIN)
+                {
+                    tickCounter=TICK_COUNT_MIN;
+                }
+            }
+            backspaceCount=0;
+            ticksSinceLastChange=0;
+
+        }
+
+
+    }
+      progressBar->setMaximum(tickCounter);
+
+
+}
