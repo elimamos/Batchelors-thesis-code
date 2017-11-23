@@ -441,11 +441,9 @@
    <bool>true</bool>
   </property>
   <property name="styleSheet">
-   <string notr="true">
-DARK
-
+   <string notr="true">BASIC
 QWidget{
-background-color:#5a5c51;
+background-color:#3D4850;
 }
 
 QProgressBar{
@@ -456,7 +454,7 @@ QProgressBar{
 
 }
 QProgressBar::chunk {
-    background-color: #fae596;
+    background-color: #FBBDA6;
 
 }
 QTextEdit{
@@ -475,15 +473,15 @@ QPushButton {
  font: 28px arial, sans-serif;
   border-radius: 28px;
 font-weight: bold;
-  color: #fae596;
+  color: #ffffff;
  font-weight:bold;
-  background: #312c32;
+  background: #9fb5c4;
   padding: 10px 20px 10px 20px;
   text-decoration: none;
 
 }
 QPushButton:hover{
- background:#5a5c51;
+ background: #4a6373;
   text-decoration: none;
 }
 QPushButton#clear {
@@ -500,7 +498,7 @@ background: #2b4454;
   text-decoration: none;
 }
 QPushButton#menu{
-background: #fae596;
+background: #FBBDA6;
   text-decoration: none;
 }
 QPushButton:focus {
@@ -512,7 +510,10 @@ QScrollBar:vertical {
         background:#343434;
         width:10px;    
         margin: 5px 5px 5px 5px;
-    }</string>
+    }
+  
+
+</string>
   </property>
   <property name="toolButtonStyle">
    <enum>Qt::ToolButtonFollowStyle</enum>
@@ -1765,8 +1766,8 @@ QScrollBar:vertical {
       </property>
       <property name="minimumSize">
        <size>
-        <width>0</width>
-        <height>70</height>
+        <width>90</width>
+        <height>90</height>
        </size>
       </property>
       <property name="focusPolicy">
@@ -1897,8 +1898,8 @@ QScrollBar:vertical {
       </property>
       <property name="minimumSize">
        <size>
-        <width>70</width>
-        <height>70</height>
+        <width>90</width>
+        <height>90</height>
        </size>
       </property>
       <property name="text">
@@ -2054,7 +2055,7 @@ QScrollBar:vertical {
     <item row="4" column="2">
      <layout class="QHBoxLayout" name="horizontalLayout_4">
       <item>
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="ButtonOperator" name="sendingLeft">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -2063,27 +2064,37 @@ QScrollBar:vertical {
         </property>
         <property name="minimumSize">
          <size>
-          <width>70</width>
-          <height>70</height>
+          <width>90</width>
+          <height>90</height>
          </size>
         </property>
         <property name="text">
          <string/>
         </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/Icons/icons/left.png</normaloff>:/Icons/icons/left.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_3">
+       <widget class="ButtonOperator" name="sendingType">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>1</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
         <property name="minimumSize">
          <size>
-          <width>70</width>
-          <height>70</height>
+          <width>200</width>
+          <height>90</height>
          </size>
         </property>
         <property name="text">
@@ -2092,7 +2103,7 @@ QScrollBar:vertical {
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="ButtonOperator" name="sendingRight">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -2101,12 +2112,22 @@ QScrollBar:vertical {
         </property>
         <property name="minimumSize">
          <size>
-          <width>70</width>
-          <height>70</height>
+          <width>90</width>
+          <height>90</height>
          </size>
         </property>
         <property name="text">
          <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/Icons/icons/right.png</normaloff>:/Icons/icons/right.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
         </property>
        </widget>
       </item>

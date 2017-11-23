@@ -32,6 +32,7 @@ public:
     void moveCursor(QString direction);
     void moveCursorEnd(QString direction);
     void clearTextbox();
+    void resetAll();
 
 private:
     QString currentWord;

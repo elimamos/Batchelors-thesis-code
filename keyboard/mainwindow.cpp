@@ -106,6 +106,9 @@ void MainWindow::setButtons(){
     setNoneChangingButton(ui->hintB4,"",true);
     setNoneChangingButton(ui->leave,"x",true);
     setNoneChangingButton(ui->stop,"START",true);
+    setNoneChangingButton(ui->sendingLeft,"",true);
+    setNoneChangingButton(ui->sendingType,"Google",true);
+    setNoneChangingButton(ui->sendingRight,"",true);
     hintButtonList.push_back(ui->hintB1);
     hintButtonList.push_back(ui->hintB2);
     hintButtonList.push_back(ui->hintB3);

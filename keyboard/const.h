@@ -26,15 +26,17 @@ const int HINT3_ID=55;
 const int HINT4_ID=56;
 const int LEAVE_ID=57;
 const int STOP_ID=58;
+const int SENDING_LEFT=59;
+const int SENDING=60;
+const int SENDING_RIGHT=61;
+
 
 const int MODE_UP=1;
 const int MODE_DOWN=2;
 const int SIZE_UP=3;
 const int SIZE_DOWN=4;
 const int EXIT=0;
-const int BRODCAST=5;
-const int GOOGLE=6;
-const int FILM=7;
+
 
 
 

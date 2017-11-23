@@ -19,7 +19,7 @@ public:
     GoogleSearcher(QWidget *parent = 0);
   //  ~GoogleSearcher();
 
-    void search(QString searchText);
+    void search(QString searchText, int sSendingState);
     void openLink(int index);
     void setHintButtonList( vector<ButtonOperator*> sHintButtonList);
     void setTextEdit(QTextEdit *sEdit);
@@ -34,7 +34,7 @@ private:
      QTextEdit *textEdit;
      void setHintText(QString text,ButtonOperator *button);
      QString setDisplayListElement( int index);
-
+     int sendingState;
 };
 
 #endif // GOOGLESEARCHER_H

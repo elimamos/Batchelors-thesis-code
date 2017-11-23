@@ -6,7 +6,19 @@ GoogleSearcher::GoogleSearcher(QWidget *parent): QObject(parent)
             this, SLOT(handleNetworkData(QNetworkReply*)));
 }
 
-void GoogleSearcher::search(QString searchText){
+void GoogleSearcher::search(QString searchText, int sSendingState){
+    sendingState=sSendingState;
+    switch(sendingState){
+    case 1:
+        //YouTube
+        searchText="YouTube "+searchText;
+        break;
+    case 2:
+        //Filmweb
+        searchText="Filmweb "+searchText;
+        break;
+    }
+
     QString url = QString(GOOGLE_URL).arg(searchText);
     networkManager.get(QNetworkRequest(QString(url)));
 }
@@ -48,14 +60,47 @@ void GoogleSearcher::handleNetworkData(QNetworkReply *networkReply)
       //  qDebug()<<value;
 
        // QDesktopServices::openUrl(QUrl(value.toString()));
+        switch(sendingState){
+        case 0:
+            //Google
+            setHintButtons();
+            textEdit->clear();
 
-        setHintButtons();
-        textEdit->clear();
+            textEdit->append(setDisplayListElement(0));
+            textEdit->append(setDisplayListElement(1));
+            textEdit->append(setDisplayListElement(2));
+            textEdit->append(setDisplayListElement(3));
+            break;
+        case 1:
+            //YouTube
+            for(int i=0;i<searchResults.value(QString("items")).toArray().count();i++){
+                QString link = searchResults.value(QString("items")).toArray()[i].toObject().value("link").toString();
+                if(link.contains("youtube",Qt::CaseInsensitive)){
+                     QDesktopServices::openUrl(QUrl(link));
+                     break;
+                }
+               else{
+                    textEdit->setText("Nie znaleziono poszukiwanej frazy!");
+                }
+            }
+            break;
+        case 2:
+            //Filmweb
+            for(int i=0;i<searchResults.value(QString("items")).toArray().count();i++){
+                QString link = searchResults.value(QString("items")).toArray()[i].toObject().value("link").toString();
+                if(link.contains("www.filmweb.pl/film/",Qt::CaseInsensitive)){
+                     QDesktopServices::openUrl(QUrl(link));
+                     break;
+                }
+               else{
+                    textEdit->setText("Nie znaleziono poszukiwanej frazy!");
+                }
+            }
 
-        textEdit->append(setDisplayListElement(0));
-        textEdit->append(setDisplayListElement(1));
-        textEdit->append(setDisplayListElement(2));
-        textEdit->append(setDisplayListElement(3));
+            break;
+        }
+
+
     }
     networkReply->deleteLater();
 }

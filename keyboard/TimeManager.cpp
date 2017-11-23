@@ -21,13 +21,17 @@ TimeManager::TimeManager(std::vector<ButtonOperator*> sButtonList,QTextEdit *sTe
     googler->setTextEdit(textEdit);
     isSending=false;
     stop=true;
-    sendingState=1;
+    sendingState=0;
     for(int i=0;i<buttonList.size();i++){
         if(buttonList.at(i)->getSpecial()==false){
             buttonList.at(i)->setStyleSheet("background-color:#818b91");
         }
     }
     dictionary= new Dictionary(sTextEdit,sHintButtonList);
+    udpSocket = new QUdpSocket(this);
+    sendingPossibilities[0]="Google";
+    sendingPossibilities[1]="YouTube";
+    sendingPossibilities[2]="Filmweb";
 
 }
 
@@ -40,7 +44,7 @@ void TimeManager::TimerStep()
             if(buttonList.at(currentHoverID)->getSpecial()){
                 hoverState=updateHoverState(currentHoverID);
                 hoverState= executeTimerStep();
-               progressBar->setValue(hoverState->getHoveredCount());
+                progressBar->setValue(hoverState->getHoveredCount());
                 updateButtonLook();
             }
         }else{
@@ -89,6 +93,8 @@ void TimeManager::executeNormalButton(){
 
 HoverManager *TimeManager::executeSpecialButton(){
     QString searchText;
+    QMessageBox *mbox;
+    QStringList myList;
     switch(hoverState->getLastHoveredID()){
     case CAPS_ID:
         qDebug()<<"CAPSLOCK";
@@ -125,10 +131,19 @@ HoverManager *TimeManager::executeSpecialButton(){
         dictionary->backSpace();
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
     case SEND_ID:
-        isSending=true;
+
         searchText= textEdit->toPlainText();
-        if(googler->checkNetworkConnection()){
-        googler->search(searchText);
+        if(searchText!=""){
+            datagram = searchText.toUtf8();
+            udpSocket->writeDatagram(datagram.data(), datagram.size(),
+                                     QHostAddress::Broadcast, 45454);
+            dictionary->resetAll();
+            mbox = new QMessageBox;
+            mbox->setWindowTitle(tr("INFO"));
+            mbox->setText("Wiadomość wysłano.");
+            mbox->setStandardButtons(0);
+            mbox->show();
+            QTimer::singleShot(2000, mbox, SLOT(hide()));
         }
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
 
@@ -137,9 +152,9 @@ HoverManager *TimeManager::executeSpecialButton(){
         // textEdit->moveCursor(QTextCursor::End);
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
     case CLEAR_ID:
-        dictionary->clearTextbox();
-        //  textEdit->clear();
-        return hoverState;
+        dictionary->resetAll();
+        isSending=false;
+        return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
     case HOME_ID:
         dictionary->moveCursorEnd("home");
         // textEdit->moveCursor(QTextCursor::Start);
@@ -148,16 +163,16 @@ HoverManager *TimeManager::executeSpecialButton(){
         //textEdit->moveCursor(QTextCursor::Left);
         dictionary->moveCursor("left");
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
-    //case UP_ID:
-       // textEdit->moveCursor(QTextCursor::Up);
+        //case UP_ID:
+        // textEdit->moveCursor(QTextCursor::Up);
         //return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
     case RIGHT_ID:
         dictionary->moveCursor("right");
         //  textEdit->moveCursor(QTextCursor::Right);
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
-    //case DOWN_ID:
-      //  textEdit->moveCursor(QTextCursor::Down);
-       // return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
+        //case DOWN_ID:
+        //  textEdit->moveCursor(QTextCursor::Down);
+        // return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
     case TXT2SPEACH_ID:
         //HERE Text to speech  BE IMPLEMENTED
         return hoverState;
@@ -174,22 +189,25 @@ HoverManager *TimeManager::executeSpecialButton(){
 
             googler->openLink(0);
             isSending=false;
-            textEdit->clear();
+            dictionary->resetAll();
         }else dictionary->useHint(0);
+
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
     case HINT2_ID:
         if(isSending){
             googler->openLink(1);
             isSending=false;
-            textEdit->clear();
+            dictionary->resetAll();
         }else dictionary->useHint(1);
+
+
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
 
     case HINT3_ID:
         if(isSending){
             googler->openLink(2);
             isSending=false;
-            textEdit->clear();
+            dictionary->resetAll();
         }else dictionary->useHint(2);
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
 
@@ -197,8 +215,9 @@ HoverManager *TimeManager::executeSpecialButton(){
         if(isSending){
             googler->openLink(3);
             isSending=false;
-            textEdit->clear();
+            dictionary->resetAll();
         }else dictionary->useHint(3);
+
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
 
     case LEAVE_ID:
@@ -207,7 +226,7 @@ HoverManager *TimeManager::executeSpecialButton(){
     case STOP_ID:
         if(stop){
             stop=false;
-            QStringList myList;
+            myList.clear();
             myList.append("STOP");
             myList.append("STOP");
             myList.append("STOP");
@@ -219,12 +238,12 @@ HoverManager *TimeManager::executeSpecialButton(){
                     buttonList.at(i)->setStyleSheet("QPushButton { background: #9fb5c4;} QPushButton:hover{background: #4a6373;}");
                 }
             }
-           progressBar->setMaximum(TICK_COUNTER);
+            progressBar->setMaximum(TICK_COUNTER);
 
         }
         else {
             stop=true;
-            QStringList myList;
+            myList.clear();
             myList.append("START");
             myList.append("START");
             myList.append("START");
@@ -241,12 +260,52 @@ HoverManager *TimeManager::executeSpecialButton(){
         }
 
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
+    case SENDING_LEFT:
+        if(sendingState==0){
+            sendingState=sendingPossibilities.size()-1;
+        }else sendingState--;
+        myList.clear();
+        myList.append(sendingPossibilities[sendingState]);
+        myList.append(sendingPossibilities[sendingState]);
+        myList.append(sendingPossibilities[sendingState]);
+        myList.append(sendingPossibilities[sendingState]);
+        myList.append(sendingPossibilities[sendingState]);
+        buttonList.at(SENDING)->setDisplayList(myList);
+        return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
+    case SENDING:
+        if(isSending==false){
+            isSending=true;
+            searchText= textEdit->toPlainText();
 
+            if(googler->checkNetworkConnection()){
+                if(searchText!=""){
+                    googler->search(searchText,sendingState);
+                     updateButtonLook();
+                }
+            }
+
+        }
+        return hoverState;
+    case SENDING_RIGHT:
+        if(sendingState==sendingPossibilities.size()-1){
+            sendingState=0;
+        }else sendingState++;
+        myList.clear();
+        myList.append(sendingPossibilities[sendingState]);
+        myList.append(sendingPossibilities[sendingState]);
+        myList.append(sendingPossibilities[sendingState]);
+        myList.append(sendingPossibilities[sendingState]);
+        myList.append(sendingPossibilities[sendingState]);
+        buttonList.at(SENDING)->setDisplayList(myList);
+        return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
 
     }
     return hoverState;
 
+
+
 }
+
 int TimeManager::getHoveredButton(){
     for(unsigned int i=0;i<buttonList.size();i++)
     {

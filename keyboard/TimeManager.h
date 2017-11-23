@@ -9,6 +9,8 @@
 #include"dictionary.h"
 #include "googlesearcher.h"
 #include"personalizeview.h"
+class QUdpSocket;
+using namespace std;
 class TimeManager : public QObject
 {
 
@@ -17,7 +19,7 @@ public:
     TimeManager(std::vector<ButtonOperator*> sButtonList,QTextEdit *sTextEdit,QProgressBar *sProgressBar ,std::vector<ButtonOperator*> sHintButtonList);
     QTimer *timer;
     HoverManager *updateHoverState(int currentHover);
-    bool stop;    
+    bool stop;
 
 
     void startTimer();
@@ -35,9 +37,12 @@ private:
     Dictionary *dictionary;
     bool isSending;
     GoogleSearcher *googler;
-     PersonalizeView *personalize;
-     int sendingState;
+    PersonalizeView *personalize;
+    int sendingState;
+    QUdpSocket *udpSocket;
+    QByteArray datagram;
 
+    map < int , QString > sendingPossibilities;
 
 
 

@@ -464,6 +464,15 @@ void Dictionary::getSimilarEndings(struct node * trieTree, vector<QChar> word,ve
 
     //  word.pop_back();
 }
+void Dictionary::resetAll(){
+        textEdit->clear();
+        currentPosition=0;
+        currentWord="";
+        currentWordSart=0;
+        wholeTxt="";
+        moveCursorEnd("home");
+        clearHints();
+}
 
 
 
