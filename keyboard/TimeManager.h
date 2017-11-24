@@ -5,7 +5,7 @@
 #include"buttonoperator.h"
 #include "hovermanager.h"
 #include<vector>
-#include"qroundprogressbar.h"
+
 #include"dictionary.h"
 #include "googlesearcher.h"
 #include"personalizeview.h"
@@ -32,7 +32,7 @@ private:
     int getHoveredButton();
     HoverManager *executeTimerStep();
     HoverManager *executeSpecialButton();
-    void executeNormalButton();
+   HoverManager *executeNormalButton();
     void updateButtonLook();
     Dictionary *dictionary;
     bool isSending;
@@ -46,7 +46,7 @@ private:
     void verifyTimerTickCount();
     int ticksSinceLastChange;
     int backspaceCount;
-
+    bool menuIsOpen;
 
 
 

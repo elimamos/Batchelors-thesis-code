@@ -14,7 +14,7 @@ using namespace std;
 class Dictionary
 {
 public:
-    Dictionary(QTextEdit *sTextEdit,std::vector<ButtonOperator*> sHintButtonList);
+    Dictionary(QTextEdit *sTextEdit,std::vector<ButtonOperator*> sHintButtonList,std::vector<ButtonOperator*> sButtonList);
     struct node
     {
         struct node * parent;
@@ -26,7 +26,7 @@ public:
     void removeWord(struct node * trieTree, QString word);
     void getSimilarEndings(struct node * trieTree, vector<QChar> word,vector<QString>*endings);
     int getLetterIndex(char alfabet[], char currentLetter);
-    void update(QString chosenLetter);
+    int update(QString chosenLetter,int keyboardState);
     void backSpace();
     void useHint(int hintID);
     void moveCursor(QString direction);
@@ -39,21 +39,23 @@ private:
     int currentWordSart;
     int currentPosition;
     QString wholeTxt;
-    //   int cursorsPosition;
     QTextEdit *textEdit;
     std::vector<ButtonOperator*> hintButtonList;
     map<QString, int> alfabet;
     map<int,QString> reverseAlfabet;
-    void setHintText(QString text,ButtonOperator *button);
     struct node * trieTree;
     vector<QChar> printUtil;
+    std::vector<ButtonOperator*> buttonList;
+    bool isLower;
     void readDictionaryFile();
     void updateHints();
     void clearHints();
     void getCurrentWordStart();
     void getCurrentWord();
     void moveCursor(QString direction, int distance );
-
+    void setHintText(QString text,ButtonOperator *button);
+    int switchBetweenKeyboards(QString letter, bool isLower);
+    void clearFiftKeyboard();
 };
 
 #endif // DICTIONARY_H

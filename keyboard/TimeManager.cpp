@@ -11,6 +11,7 @@
 #include "personalizeview.h"
 TimeManager::TimeManager(std::vector<ButtonOperator*> sButtonList,QTextEdit *sTextEdit,QProgressBar *sProgressBar,std::vector<ButtonOperator*> sHintButtonList)
 {
+    menuIsOpen=false;
     tickCounter = STARTING_COUNT;
     ticksSinceLastChange=0;
     backspaceCount=0;
@@ -30,7 +31,7 @@ TimeManager::TimeManager(std::vector<ButtonOperator*> sButtonList,QTextEdit *sTe
             buttonList.at(i)->setStyleSheet("background-color:#818b91");
         }
     }
-    dictionary= new Dictionary(sTextEdit,sHintButtonList);
+    dictionary= new Dictionary(sTextEdit,sHintButtonList,buttonList);
     udpSocket = new QUdpSocket(this);
     sendingPossibilities[0]="Google";
     sendingPossibilities[1]="YouTube";
@@ -78,25 +79,25 @@ HoverManager *TimeManager::executeTimerStep(){
         qDebug()<<QString::number(hoverState->getLastHoveredID());
 
         textEdit->setFocus();
-        executeNormalButton();
+        hoverState=executeNormalButton();
         if(hoverState->getLastSpecialID()==SHIFT_ID){
             return new HoverManager(hoverState->getLastHoveredID(),0,0,-1,0);
         }else return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
     }
     return hoverState;//new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
 }
-void TimeManager::executeNormalButton(){
+HoverManager *TimeManager::executeNormalButton(){
 
-    //textEdit->insertPlainText(buttonList[hoverState->getLastHoveredID()]->getDisplayList().at(hoverState->getKeyboardState()));
-    // QString currentText=textEdit->toPlainText();
-    dictionary->update(buttonList[hoverState->getLastHoveredID()]->getDisplayList().at(hoverState->getKeyboardState()));
-    //    textEdit->moveCursor (QTextCursor::End);
+
+   int currentKeyboardState= dictionary->update(buttonList[hoverState->getLastHoveredID()]->getDisplayList().at(hoverState->getKeyboardState()),hoverState->getKeyboardState());
+ return new HoverManager(hoverState->getLastHoveredID(),0,currentKeyboardState,hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
 }
 
 HoverManager *TimeManager::executeSpecialButton(){
     QString searchText;
     QMessageBox *mbox;
     QStringList myList;
+
     switch(hoverState->getLastHoveredID()){
     case CAPS_ID:
         //   qDebug()<<"CAPSLOCK";
@@ -167,26 +168,24 @@ HoverManager *TimeManager::executeSpecialButton(){
         //textEdit->moveCursor(QTextCursor::Left);
         dictionary->moveCursor("left");
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
-        //case UP_ID:
-        // textEdit->moveCursor(QTextCursor::Up);
-        //return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
     case RIGHT_ID:
         dictionary->moveCursor("right");
         //  textEdit->moveCursor(QTextCursor::Right);
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
-        //case DOWN_ID:
-        //  textEdit->moveCursor(QTextCursor::Down);
-        // return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
     case TXT2SPEACH_ID:
         //HERE Text to speech  BE IMPLEMENTED
         return hoverState;
     case MENU_ID:
-        personalize= new PersonalizeView(); // Be sure to destroy your window somewhere
-        personalize->setAttribute( Qt::WA_DeleteOnClose );
-        personalize->setButtonList(buttonList);
-        personalize->setTickCount(&tickCounter);
-        personalize->setTextEdit(textEdit);
-        personalize->show();
+        if(menuIsOpen==false){
+            menuIsOpen=true;
+            personalize= new PersonalizeView(); // Be sure to destroy your window somewhere
+            personalize->setAttribute( Qt::WA_DeleteOnClose );
+            personalize->setButtonList(buttonList);
+            personalize->setTickCount(&tickCounter);
+            personalize->setTextEdit(textEdit);
+            personalize->setIsOpen(&menuIsOpen);
+            personalize->show();
+        }
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
     case HINT1_ID:
         if(isSending){
@@ -236,6 +235,7 @@ HoverManager *TimeManager::executeSpecialButton(){
             myList.append("STOP");
             myList.append("STOP");
             myList.append("STOP");
+            myList.append("STOP");
             buttonList.at(STOP_ID)->setDisplayList(myList);
             for(int i=0;i<buttonList.size();i++){
                 if(buttonList.at(i)->getSpecial()==false){
@@ -253,6 +253,7 @@ HoverManager *TimeManager::executeSpecialButton(){
             myList.append("START");
             myList.append("START");
             myList.append("START");
+              myList.append("START");
             buttonList.at(STOP_ID)->setDisplayList(myList);
             for(int i=0;i<buttonList.size();i++){
                 if(buttonList.at(i)->getSpecial()==false){
@@ -289,7 +290,7 @@ HoverManager *TimeManager::executeSpecialButton(){
             }
 
         }
-        return hoverState;
+         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
     case SENDING_RIGHT:
         if(sendingState==sendingPossibilities.size()-1){
             sendingState=0;
@@ -378,7 +379,7 @@ void TimeManager::verifyTimerTickCount(){
 
 
     }
-      progressBar->setMaximum(tickCounter);
+    progressBar->setMaximum(tickCounter);
 
 
 }

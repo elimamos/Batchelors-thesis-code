@@ -17,6 +17,7 @@ PersonalizeView::PersonalizeView(QWidget *parent) :QWidget(parent), ui(new Ui::P
     setNoneChangingButton(ui->f2,"",false);
     setNoneChangingButton(ui->timeLess,"",true);
     setNoneChangingButton(ui->timeMore,"",true);
+
     QPalette pal =this->palette();
     pal.setColor(QPalette::Background, "#343434");
     QPalette pal2 = this->palette();
@@ -25,11 +26,15 @@ PersonalizeView::PersonalizeView(QWidget *parent) :QWidget(parent), ui(new Ui::P
     look +="QPushButton:hover{ background: #4a6373; text-decoration: none;}";
     QString look2 ="QPushButton {font: 28px arial, sans-serif; border-radius: 28px; font-weight: bold;color: #ffffff;font-weight:bold; background: #000000; padding: 10px 20px 10px 20px;text-decoration: none;} ";
     look2 +="QPushButton:hover{ background: #4a6373; text-decoration: none;}";
+    QString look3="QWidget{         background-color:#5a5c51;           } QProgressBar{ border: 2px solid #343434;  border-radius: 5px;text-align: center; color: #343434; } QProgressBar::chunk { background-color: #fae596; } QTextEdit{ min-height: 10px; min-width: 100px;  border-radius: 28px; font-family: Arial; font-size: 20px; background:  #ffffff; padding: 10px 20px 10px 20px; text-decoration: none;} QPushButton { font: 28px arial, sans-serif; border-radius: 28px;font-weight: bold; color: #fae596; font-weight:bold; background: #312c32;  padding: 10px 20px 10px 20px; text-decoration: none; }";
+       look3+="     QPushButton:hover{    background:#5a5c51;          text-decoration: none;      }   QPushButton#clear {   font-size: 18px;  }  QPushButton#home {    font-size: 18px;   }QPushButton#end {    font-size: 18px;      }   QPushButton:pressed{        background: #2b4454;       text-decoration: none;} QPushButton#menu{ background: #fae596;              text-decoration: none;} QPushButton:focus { outline: none; }     QScrollBar:vertical {   border: none;   background:#343434;        width:10px;    margin: 5px 5px 5px 5px;      }  ";
+       layoutList.push_back(LayoutLook(QString("Basic"),look,pal));
+       layoutList.push_back(LayoutLook(QString("Light"),look2,pal2));
+       layoutList.push_back(LayoutLook(QString("Dark"),look,pal));
 
-    layoutList.push_back(LayoutLook(QString("Basic"),look,pal));
-    layoutList.push_back(LayoutLook(QString("Light"),look2,pal2));
     ui->listWidget->addItem(layoutList.at(0).getLayoutName());
     ui->listWidget->addItem(layoutList.at(1).getLayoutName());
+    ui->listWidget->addItem(layoutList.at(2).getLayoutName());
     ui->listWidget->item(0)->setSelected(true);
 
 
@@ -66,6 +71,9 @@ void PersonalizeView::setButtonInfo(ButtonOperator *myButton, QString s1,QString
     menuButtons.push_back(myButton);
 
 
+}
+void PersonalizeView::setIsOpen(bool sIsOpen){
+        isOpen=sIsOpen;
 }
 void PersonalizeView::setNoneChangingButton(ButtonOperator *myButton, QString s1,bool isSpecial){
     setButtonInfo(myButton,s1,s1,s1,s1,s1,isSpecial);
@@ -145,6 +153,7 @@ HoverManager *PersonalizeView::executeButton(){
       double time;
     switch(hoverState->getLastHoveredID()){
     case EXIT:
+        isOpen=false;
         this->close();
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
     case MODE_UP:
@@ -159,8 +168,9 @@ HoverManager *PersonalizeView::executeButton(){
         //ui->modeText->setText(layoutList.at(currentMod).getLayoutName());
         //     ui->listWidget->addItem();
         ui->listWidget->item(currentMod)->setSelected(true);
-        setLayout(currentMod);
-        this->setPalette(layoutList.at(currentMod).getLayoutBackgroundLook());
+       setLayout(currentMod);
+       this->setPalette(layoutList.at(currentMod).getLayoutBackgroundLook());
+      //   qApp->setStyleSheet(layoutList.at(currentMod).getLayouButtonLook());
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
     case MODE_DOWN:
 

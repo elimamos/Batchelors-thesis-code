@@ -6,7 +6,7 @@
 #include<QString>
 #include"const.h"
 #include<vector>
-#include"qroundprogressbar.h"
+
 
 namespace Ui {
 class MainWindow;

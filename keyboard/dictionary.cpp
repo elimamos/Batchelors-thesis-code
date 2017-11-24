@@ -2,11 +2,12 @@
 #include "const.h"
 #include <fstream>
 
-Dictionary::Dictionary(QTextEdit *sTextEdit,std::vector<ButtonOperator*> sHintButtonList)
+Dictionary::Dictionary(QTextEdit *sTextEdit,std::vector<ButtonOperator*> sHintButtonList,std::vector<ButtonOperator*> sButtonList)
 {
     trieTree= (Dictionary:: node *) calloc(1, sizeof(Dictionary::node));
     textEdit=sTextEdit;
     hintButtonList=sHintButtonList;
+    buttonList=sButtonList;
     //alfabet;
     alfabet[QString::fromUtf8("a")]=0;
     alfabet[QString::fromUtf8("ą")]=1;
@@ -84,6 +85,7 @@ Dictionary::Dictionary(QTextEdit *sTextEdit,std::vector<ButtonOperator*> sHintBu
     currentPosition=0;
     wholeTxt="";
     currentWordSart=0;
+    isLower=true;
 
     readDictionaryFile();
 
@@ -154,15 +156,44 @@ void Dictionary::clearTextbox(){
     currentWord="";
     currentPosition=0;
     currentWordSart=0;
-      textEdit->clear();
+    textEdit->clear();
 }
-void Dictionary::update(QString chosenLetter){
+int Dictionary::update(QString chosenLetter,int keyboardState){
+    //StringList myList=buttonList.at(21)->getDisplayList();
+    // myList.replace(4,"ą");
+    //buttonList.at(21)->setDisplayList(myList);
 
-
+    if(keyboardState!=5){
+          isLower=false;
+        if(currentWord!=""){
+            if(chosenLetter.at(0).isLower()){
+                isLower=true;
+            }
+            QString lowerLetter=chosenLetter.toLower();
+            QString lowerWord=currentWord.toLower();
+            if(lowerLetter==QString(lowerWord[lowerWord.length()-1])){
+                clearFiftKeyboard();
+                keyboardState=switchBetweenKeyboards(lowerLetter,isLower);
+            }}
+    }else{
+        QString lowerLetter=chosenLetter.toLower();
+        QString lowerWord=currentWord.toLower();
+        if(lowerLetter==QString(lowerWord[lowerWord.length()-1])){
+            currentWord.remove(currentPosition-1,1);
+            currentPosition--;
+        }
+        else{
+            currentWord.remove(currentPosition-2,2);
+            currentPosition-=2;
+        }
+        if(isLower){
+            keyboardState=0;
+        }else keyboardState=1;
+    }
     currentWord+=chosenLetter;
     QString currentText=wholeTxt;
     currentText.insert(currentWordSart,currentWord);
-    currentPosition++;
+    currentPosition+=chosenLetter.length();
 
     textEdit->clear();
     textEdit->insertPlainText(currentText);
@@ -175,8 +206,124 @@ void Dictionary::update(QString chosenLetter){
         getCurrentWord();
     }
     updateHints();
+    return keyboardState;
 }
+int Dictionary::switchBetweenKeyboards(QString letter, bool isLower){
+    QString showText1="";
+    QString showText2="";
+    QString showText3="";
+    if(letter=="a"){
+        showText1="a";
+        showText2="ą";
+        if(!isLower){
+            showText1=showText1.toUpper();
+            showText2=showText2.toUpper();
+        }
+        QStringList myList=buttonList.at(21)->getDisplayList();
+        myList.replace(5,showText1);
+        buttonList.at(21)->setDisplayList(myList);
+        QStringList myList2=buttonList.at(22)->getDisplayList();
+        myList2.replace(5,showText2);
+        buttonList.at(22)->setDisplayList(myList2);
 
+    }
+    else if(letter=="c"){
+        showText1="c";
+        showText2="ć";
+        if(!isLower){
+            showText1=showText1.toUpper();
+            showText2=showText2.toUpper();
+        }
+        QStringList myList=buttonList.at(33)->getDisplayList();
+        myList.replace(5,showText1);
+        buttonList.at(33)->setDisplayList(myList);
+        QStringList myList2=buttonList.at(34)->getDisplayList();
+        myList2.replace(5,showText2);
+        buttonList.at(34)->setDisplayList(myList2);
+
+    }
+    else if(letter=="e"){
+        showText1="e";
+        showText2="ę";
+        if(!isLower){
+            showText1=showText1.toUpper();
+            showText2=showText2.toUpper();
+        }
+        QStringList myList=buttonList.at(12)->getDisplayList();
+        myList.replace(5,showText1);
+        buttonList.at(12)->setDisplayList(myList);
+        QStringList myList2=buttonList.at(13)->getDisplayList();
+        myList2.replace(5,showText2);
+        buttonList.at(13)->setDisplayList(myList2);
+
+    }
+    else if(letter=="l"){
+        showText1="l";
+        showText2="ł";
+        if(!isLower){
+            showText1=showText1.toUpper();
+            showText2=showText2.toUpper();
+        }
+        QStringList myList=buttonList.at(29)->getDisplayList();
+        myList.replace(5,showText1);
+        buttonList.at(29)->setDisplayList(myList);
+        QStringList myList2=buttonList.at(28)->getDisplayList();
+        myList2.replace(5,showText2);
+        buttonList.at(28)->setDisplayList(myList2);
+
+    }
+    else if(letter=="n"){
+        showText1="n";
+        showText2="ń";
+        if(!isLower){
+            showText1=showText1.toUpper();
+            showText2=showText2.toUpper();
+        }
+        QStringList myList=buttonList.at(36)->getDisplayList();
+        myList.replace(5,showText1);
+        buttonList.at(36)->setDisplayList(myList);
+        QStringList myList2=buttonList.at(37)->getDisplayList();
+        myList2.replace(5,showText2);
+        buttonList.at(37)->setDisplayList(myList2);
+
+    }
+    else if(letter=="o"){
+        showText1="o";
+        showText2="ó";
+        if(!isLower){
+            showText1=showText1.toUpper();
+            showText2=showText2.toUpper();
+        }
+        QStringList myList=buttonList.at(18)->getDisplayList();
+        myList.replace(5,showText1);
+        buttonList.at(18)->setDisplayList(myList);
+        QStringList myList2=buttonList.at(19)->getDisplayList();
+        myList2.replace(5,showText2);
+        buttonList.at(19)->setDisplayList(myList2);
+
+    }
+    else if(letter=="z"){
+        showText1="z";
+        showText2="ż";
+        showText3="ź";
+        if(!isLower){
+            showText1=showText1.toUpper();
+            showText2=showText2.toUpper();
+            showText3=showText3.toUpper();
+        }
+        QStringList myList=buttonList.at(31)->getDisplayList();
+        myList.replace(5,showText1);
+        buttonList.at(31)->setDisplayList(myList);
+        QStringList myList2=buttonList.at(32)->getDisplayList();
+        myList2.replace(5,showText2);
+        buttonList.at(32)->setDisplayList(myList2);
+        QStringList myList3=buttonList.at(33)->getDisplayList();
+        myList3.replace(5,showText3);
+        buttonList.at(33)->setDisplayList(myList3);
+
+    }
+    return 5;
+}
 void Dictionary::updateHints(){
 
     if(currentWord.size()>MIN_HINT_SIZE){
@@ -203,7 +350,16 @@ void Dictionary::updateHints(){
 
     clearHints();
 }
+void Dictionary::clearFiftKeyboard(){
+    for(ButtonOperator *button: buttonList){
+        if(!button->getSpecial()){
+            QStringList myList=button->getDisplayList();
+            myList.replace(5,"");
+            button->setDisplayList(myList);
+        }
 
+    }
+}
 void Dictionary::useHint(int hintID){
     if(hintButtonList.at(hintID)->getDisplayList().at(0)!=""){
         QString hintText=hintButtonList.at(hintID)->getDisplayList().at(0)+" ";
@@ -287,12 +443,13 @@ void Dictionary::backSpace(){
     if(currentPosition<0){
         currentPosition=0;
     }
- moveCursor("right",currentPosition);
+    moveCursor("right",currentPosition);
     updateHints();
 }
 
 void Dictionary::setHintText(QString text,ButtonOperator *button){
     QStringList myList;
+    myList.append(text);
     myList.append(text);
     myList.append(text);
     myList.append(text);
@@ -468,13 +625,13 @@ void Dictionary::getSimilarEndings(struct node * trieTree, vector<QChar> word,ve
     //  word.pop_back();
 }
 void Dictionary::resetAll(){
-        textEdit->clear();
-        currentPosition=0;
-        currentWord="";
-        currentWordSart=0;
-        wholeTxt="";
-        moveCursorEnd("home");
-        clearHints();
+    textEdit->clear();
+    currentPosition=0;
+    currentWord="";
+    currentWordSart=0;
+    wholeTxt="";
+    moveCursorEnd("home");
+    clearHints();
 }
 
 

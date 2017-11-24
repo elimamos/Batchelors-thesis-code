@@ -22,7 +22,7 @@ public:
       void setButtonList(vector<ButtonOperator*> buttonList);
       void setTickCount(int *sTickCount);
       void setTextEdit(QTextEdit *sTextEdit);
-
+      void setIsOpen(bool isOpen);
 
 public slots:
     void TimerStep();
@@ -43,6 +43,7 @@ private:
     void setLayout(int id);
     int textFontSize;
     QTextEdit *textEdit;
+    bool isOpen;
 
 
 };

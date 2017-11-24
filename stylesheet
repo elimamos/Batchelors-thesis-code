@@ -76,8 +76,9 @@ QScrollBar:vertical {
 
 DARK
 
+
 QWidget{
-background-color:#5a5c51;
+background-color:#4C4243;
 }
 
 QProgressBar{
@@ -115,7 +116,7 @@ font-weight: bold;
 
 }
 QPushButton:hover{
- background:#5a5c51;
+ background:#8F7F89;
   text-decoration: none;
 }
 QPushButton#clear {
@@ -145,5 +146,228 @@ QScrollBar:vertical {
         width:10px;    
         margin: 5px 5px 5px 5px;
     }
+
+LIGHT
+
+
+QWidget{
+background-color:#ffffff;
+}
+
+QProgressBar{
+    border: 2px solid #343434;
+    border-radius: 5px;
+    text-align: center;
+	color: #963019;
+
+}
+QProgressBar::chunk {
+    background-color: #334431;
+
+}
+QTextEdit{
+	 min-height: 10px;
+ min-width: 100px;
+  border-radius: 28px;
+  font-family: Arial;
+  font-size: 20px;
+  background:  #ffffff;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+ border: 2px solid #343434;
+ 
+}
+
+QPushButton {
+ font: 28px arial, sans-serif;
+  border-radius: 28px;
+font-weight: bold;
+  color: #ffffff;
+ font-weight:bold;
+  background: #B3BDB4;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+
+}
+QPushButton:hover{
+ background:#7C9979;
+  text-decoration: none;
+}
+QPushButton#clear {
+  font-size: 18px;
+}
+QPushButton#home {
+  font-size: 18px;
+}
+QPushButton#end {
+  font-size: 18px;
+}
+QPushButton:pressed{
+background: #2b4454;
+  text-decoration: none;
+}
+QPushButton#menu{
+background: #334431;
+  text-decoration: none;
+}
+QPushButton:focus {
+   outline: none;
+}
+
+QScrollBar:vertical {           
+       border: none;
+        background:#963019;
+        width:10px;    
+        margin: 5px 5px 5px 5px;
+    }
   
+MODERN
+
+QWidget{
+background-color:#ffffff;
+}
+
+QProgressBar{
+    border: 2px solid #343434;
+    border-radius: 5px;
+    text-align: center;
+	color: #000000;
+
+}
+QProgressBar::chunk {
+    background-color: #fae596;
+
+}
+QTextEdit{
+	 min-height: 10px;
+ min-width: 100px;
+  border-radius: 28px;
+  font-family: Arial;
+  font-size: 20px;
+  background:  #ffffff;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+ border: 2px solid #343434;
+ 
+}
+
+QPushButton {
+ font: 28px arial, sans-serif;
+  border-radius: 28px;
+font-weight: bold;
+  color: #ffffff;
+ font-weight:bold;
+  background: #173e43;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+
+}
+QPushButton:hover{
+ background:#3fb0ac;
+  text-decoration: none;
+}
+QPushButton#clear {
+  font-size: 18px;
+}
+QPushButton#home {
+  font-size: 18px;
+}
+QPushButton#end {
+  font-size: 18px;
+}
+QPushButton:pressed{
+background: #2b4454;
+  text-decoration: none;
+}
+QPushButton#menu{
+background: #fae596;
+  text-decoration: none;
+}
+QPushButton:focus {
+   outline: none;
+}
+
+QScrollBar:vertical {           
+       border: none;
+        background:#963019;
+        width:10px;    
+        margin: 5px 5px 5px 5px;
+    }
+  
+WINE
+
+QWidget{
+background-color:#FFF5E5;
+}
+
+QProgressBar{
+    border: 2px solid #343434;
+    border-radius: 5px;
+    text-align: center;
+	color: #000000;
+
+}
+QProgressBar::chunk {
+    background-color: #2F4B5E;
+
+}
+QTextEdit{
+	 min-height: 10px;
+ min-width: 100px;
+  border-radius: 28px;
+  font-family: Arial;
+  font-size: 20px;
+  background:  #ffffff;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+ border: 2px solid #343434;
+ 
+}
+
+QPushButton {
+ font: 28px arial, sans-serif;
+  border-radius: 28px;
+font-weight: bold;
+  color: #ffffff;
+ font-weight:bold;
+  background: #5F0015;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+
+}
+QPushButton:hover{
+ background:#6F2839;
+  text-decoration: none;
+}
+QPushButton#clear {
+  font-size: 18px;
+}
+QPushButton#home {
+  font-size: 18px;
+}
+QPushButton#end {
+  font-size: 18px;
+}
+QPushButton:pressed{
+background: #2b4454;
+  text-decoration: none;
+}
+QPushButton#menu{
+background: #2F4B5E;
+  text-decoration: none;
+}
+QPushButton:focus {
+   outline: none;
+}
+
+QScrollBar:vertical {           
+       border: none;
+        background:#963019;
+        width:10px;    
+        margin: 5px 5px 5px 5px;
+    }
+  
+
+  
+
 

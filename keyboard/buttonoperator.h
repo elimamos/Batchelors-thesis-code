@@ -3,7 +3,7 @@
 using namespace std;
 #include <QtWidgets>
 #include <QStringList>
-#include"qroundprogressbar.h"
+
 
 
 
@@ -31,14 +31,7 @@ private:
     bool isHovered;
 
     QStringList displayList;
-protected slots:
-   /* void mousePressEvent(QMouseEvent *e){
-        if (e->button() == Qt::RightButton) emit rightClicked();
-        else if (e->button() == Qt::LeftButton) emit clicked();
-    };*/
-signals:
-  //  void rightClicked();
-public slots:
+
 };
 
 

@@ -40,3 +40,4 @@ DISTFILES +=
 
 RESOURCES += \
     resources.qrc
+

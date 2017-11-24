@@ -7,6 +7,7 @@
 #include "dictionary.h"
 #include<QPalette>
 
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -18,13 +19,14 @@ int main(int argc, char *argv[])
 
 
     w.show();
-    /
+
+
     //enter full screen mode
  // w.setWindowState(w.windowState() ^ Qt::WindowFullScreen);
 
 
 
-   /
+
     TimeManager *mTimer= new TimeManager(w.getButtonList(),w.getTextEdit(),w.getProgressBar(),w.getHintButtonList());
     mTimer->startTimer();
 

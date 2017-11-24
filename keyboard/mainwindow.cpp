@@ -81,9 +81,9 @@ void MainWindow::setButtons(){
     setNoneChangingButton(ui->clear,"CZYŚĆ",true);
     setNoneChangingButton(ui->home,"HOME",true);
     setNoneChangingButton(ui->aLeft,"",true);
-  //  setNoneChangingButton(ui->aUP,"",true);
+    //  setNoneChangingButton(ui->aUP,"",true);
     setNoneChangingButton(ui->aRight,"",true);
-   // setNoneChangingButton(ui->aDown,"",true);
+    // setNoneChangingButton(ui->aDown,"",true);
     setNoneChangingButton(ui->txt2speech,"",true);
     setNoneChangingButton(ui->menu,"",true);
     setNoneChangingButton(ui->hintB1,"",true);
@@ -95,6 +95,8 @@ void MainWindow::setButtons(){
     setNoneChangingButton(ui->sendingLeft,"",true);
     setNoneChangingButton(ui->sendingType,"Google",true);
     setNoneChangingButton(ui->sendingRight,"",true);
+    setNoneChangingButton(ui->ctrl,"Ctrl",true);
+    setNoneChangingButton(ui->alt,"Alt",true);
     hintButtonList.push_back(ui->hintB1);
     hintButtonList.push_back(ui->hintB2);
     hintButtonList.push_back(ui->hintB3);
@@ -120,6 +122,10 @@ void MainWindow::setButtonInfo(ButtonOperator *myButton, QString s1,QString s2,Q
     myList.append(s3);
     myList.append(s4);
     myList.append(s5);
+    if(isSpecial){
+        myList.append(s5);
+    }else{
+        myList.append("");}
     myButton->setDisplayList(myList);
     myButton->setSpecial(isSpecial);
     buttonList.push_back(myButton);
