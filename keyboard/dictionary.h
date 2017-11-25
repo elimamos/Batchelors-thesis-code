@@ -28,12 +28,12 @@ public:
     int getLetterIndex(char alfabet[], char currentLetter);
     int update(QString chosenLetter,int keyboardState);
     void backSpace();
-    void useHint(int hintID);
+    int useHint(int hintID,int keyboardState);
     void moveCursor(QString direction);
     void moveCursorEnd(QString direction);
     void clearTextbox();
     void resetAll();
-
+    void jumpWord(QString direction);
 private:
     QString currentWord;
     int currentWordSart;
@@ -54,8 +54,9 @@ private:
     void getCurrentWord();
     void moveCursor(QString direction, int distance );
     void setHintText(QString text,ButtonOperator *button);
-    int switchBetweenKeyboards(QString letter, bool isLower);
+    int switchBetweenKeyboards(QString letter, bool isLower, int keyboardState);
     void clearFiftKeyboard();
+
 };
 
 #endif // DICTIONARY_H

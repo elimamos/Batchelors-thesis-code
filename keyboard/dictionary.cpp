@@ -90,6 +90,52 @@ Dictionary::Dictionary(QTextEdit *sTextEdit,std::vector<ButtonOperator*> sHintBu
     readDictionaryFile();
 
 }
+void Dictionary::jumpWord(QString direction){
+    //  wholeTxt.insert(currentWordSart,currentWord);
+    if(direction=="left"){
+        if(currentPosition!=0){
+            if(currentPosition!=currentWordSart){
+
+                int dist=currentPosition-currentWordSart;
+                moveCursor("left",dist);
+                currentPosition=currentPosition-dist;
+            }
+            else{
+                moveCursor("left");
+                int dist=currentPosition-currentWordSart;
+                moveCursor("left",dist);
+                currentPosition=currentPosition-dist;
+            }
+            wholeTxt.insert(currentWordSart,currentWord);
+            getCurrentWordStart();
+            getCurrentWord();
+        }
+    }else{
+        if(currentPosition==0 && wholeTxt==""){
+            return;
+        }
+        QString currentText= wholeTxt;
+        currentText.insert(currentWordSart,currentWord);
+        if(currentPosition==currentText.length()-1){
+            return;
+        }
+
+        moveCursor("right");
+
+       while(currentWord!="" ){
+            moveCursor("right");
+            if(currentPosition==currentText.length()){
+                break;
+            }
+           // qDebug()<<"searching "<< currentWord;
+       }
+       //moveCursor("right");
+   //      wholeTxt.insert(currentWordSart,currentWord);
+     //   qDebug()<<"found end!";
+
+    }
+
+}
 void Dictionary::moveCursorEnd(QString direction){
     if(direction=="home"){
         wholeTxt.insert(currentWordSart,currentWord);
@@ -110,15 +156,26 @@ void Dictionary::moveCursorEnd(QString direction){
 
 }
 void Dictionary::moveCursor(QString direction){
-    moveCursor(direction,1);
+
     if(direction=="right"){
         currentPosition++;
 
 
+
     }
     else{currentPosition--;}
-
+    moveCursor(direction,1);
     wholeTxt.insert(currentWordSart,currentWord);
+    if(currentPosition>wholeTxt.length()){
+        currentPosition--;
+        moveCursor(direction,-1);
+
+    }
+    else if(currentPosition<0){
+        currentPosition=0;
+        moveCursor(direction,-1);
+    }
+
     getCurrentWordStart();
     getCurrentWord();
     wholeTxt.remove(currentWordSart,currentWord.length());
@@ -164,7 +221,7 @@ int Dictionary::update(QString chosenLetter,int keyboardState){
     //buttonList.at(21)->setDisplayList(myList);
 
     if(keyboardState!=5){
-          isLower=false;
+        isLower=false;
         if(currentWord!=""){
             if(chosenLetter.at(0).isLower()){
                 isLower=true;
@@ -173,17 +230,20 @@ int Dictionary::update(QString chosenLetter,int keyboardState){
             QString lowerWord=currentWord.toLower();
             if(lowerLetter==QString(lowerWord[lowerWord.length()-1])){
                 clearFiftKeyboard();
-                keyboardState=switchBetweenKeyboards(lowerLetter,isLower);
+                keyboardState=switchBetweenKeyboards(lowerLetter,isLower,keyboardState);
             }}
     }else{
         QString lowerLetter=chosenLetter.toLower();
         QString lowerWord=currentWord.toLower();
         if(lowerLetter==QString(lowerWord[lowerWord.length()-1])){
-            currentWord.remove(currentPosition-1,1);
+            currentWord.chop(1);
             currentPosition--;
         }
         else{
-            currentWord.remove(currentPosition-2,2);
+            //   QString removed=
+            currentWord.chop(2);
+            //currentWord.remove(currentPosition-2,2);
+            //  currentWord=removed;
             currentPosition-=2;
         }
         if(isLower){
@@ -208,7 +268,7 @@ int Dictionary::update(QString chosenLetter,int keyboardState){
     updateHints();
     return keyboardState;
 }
-int Dictionary::switchBetweenKeyboards(QString letter, bool isLower){
+int Dictionary::switchBetweenKeyboards(QString letter, bool isLower,int keyboardState){
     QString showText1="";
     QString showText2="";
     QString showText3="";
@@ -225,9 +285,9 @@ int Dictionary::switchBetweenKeyboards(QString letter, bool isLower){
         QStringList myList2=buttonList.at(22)->getDisplayList();
         myList2.replace(5,showText2);
         buttonList.at(22)->setDisplayList(myList2);
-
+        return 5;
     }
-    else if(letter=="c"){
+    if(letter=="c"){
         showText1="c";
         showText2="ć";
         if(!isLower){
@@ -240,9 +300,9 @@ int Dictionary::switchBetweenKeyboards(QString letter, bool isLower){
         QStringList myList2=buttonList.at(34)->getDisplayList();
         myList2.replace(5,showText2);
         buttonList.at(34)->setDisplayList(myList2);
-
+        return 5;
     }
-    else if(letter=="e"){
+    if(letter=="e"){
         showText1="e";
         showText2="ę";
         if(!isLower){
@@ -255,9 +315,9 @@ int Dictionary::switchBetweenKeyboards(QString letter, bool isLower){
         QStringList myList2=buttonList.at(13)->getDisplayList();
         myList2.replace(5,showText2);
         buttonList.at(13)->setDisplayList(myList2);
-
+        return 5;
     }
-    else if(letter=="l"){
+    if(letter=="l"){
         showText1="l";
         showText2="ł";
         if(!isLower){
@@ -271,8 +331,9 @@ int Dictionary::switchBetweenKeyboards(QString letter, bool isLower){
         myList2.replace(5,showText2);
         buttonList.at(28)->setDisplayList(myList2);
 
+        return 5;
     }
-    else if(letter=="n"){
+    if(letter=="n"){
         showText1="n";
         showText2="ń";
         if(!isLower){
@@ -285,9 +346,9 @@ int Dictionary::switchBetweenKeyboards(QString letter, bool isLower){
         QStringList myList2=buttonList.at(37)->getDisplayList();
         myList2.replace(5,showText2);
         buttonList.at(37)->setDisplayList(myList2);
-
+        return 5;
     }
-    else if(letter=="o"){
+    if(letter=="o"){
         showText1="o";
         showText2="ó";
         if(!isLower){
@@ -300,9 +361,24 @@ int Dictionary::switchBetweenKeyboards(QString letter, bool isLower){
         QStringList myList2=buttonList.at(19)->getDisplayList();
         myList2.replace(5,showText2);
         buttonList.at(19)->setDisplayList(myList2);
-
+        return 5;
     }
-    else if(letter=="z"){
+    if(letter=="s"){
+        showText1="s";
+        showText2="ś";
+        if(!isLower){
+            showText1=showText1.toUpper();
+            showText2=showText2.toUpper();
+        }
+        QStringList myList=buttonList.at(22)->getDisplayList();
+        myList.replace(5,showText1);
+        buttonList.at(22)->setDisplayList(myList);
+        QStringList myList2=buttonList.at(23)->getDisplayList();
+        myList2.replace(5,showText2);
+        buttonList.at(23)->setDisplayList(myList2);
+        return 5;
+    }
+    if(letter=="z"){
         showText1="z";
         showText2="ż";
         showText3="ź";
@@ -320,9 +396,9 @@ int Dictionary::switchBetweenKeyboards(QString letter, bool isLower){
         QStringList myList3=buttonList.at(33)->getDisplayList();
         myList3.replace(5,showText3);
         buttonList.at(33)->setDisplayList(myList3);
-
+        return 5;
     }
-    return 5;
+    return keyboardState;
 }
 void Dictionary::updateHints(){
 
@@ -360,7 +436,7 @@ void Dictionary::clearFiftKeyboard(){
 
     }
 }
-void Dictionary::useHint(int hintID){
+int Dictionary::useHint(int hintID,int keyboardState){
     if(hintButtonList.at(hintID)->getDisplayList().at(0)!=""){
         QString hintText=hintButtonList.at(hintID)->getDisplayList().at(0)+" ";
         wholeTxt.insert(currentWordSart,hintText);
@@ -375,6 +451,9 @@ void Dictionary::useHint(int hintID){
 
         clearHints();
     }
+    if(keyboardState==5){
+        return 0;
+    }else return keyboardState;
 
 }
 void Dictionary::moveCursor(QString direction, int distance ){
@@ -416,6 +495,7 @@ void Dictionary::clearHints(){
     setHintText("",hintButtonList.at(1));
     setHintText("",hintButtonList.at(2));
     setHintText("",hintButtonList.at(3));
+
 }
 
 void Dictionary::backSpace(){
@@ -429,9 +509,10 @@ void Dictionary::backSpace(){
 
     }
     else{
-        currentPosition--;
 
-        currentWord.remove(currentPosition,1);
+        currentPosition--;
+        wholeTxt.remove(currentPosition,1);
+        //   currentWord.remove(currentPosition,1);
         getCurrentWordStart();
         getCurrentWord();
 

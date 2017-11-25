@@ -89,15 +89,15 @@ HoverManager *TimeManager::executeTimerStep(){
 HoverManager *TimeManager::executeNormalButton(){
 
 
-   int currentKeyboardState= dictionary->update(buttonList[hoverState->getLastHoveredID()]->getDisplayList().at(hoverState->getKeyboardState()),hoverState->getKeyboardState());
- return new HoverManager(hoverState->getLastHoveredID(),0,currentKeyboardState,hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
+    int currentKeyboardState= dictionary->update(buttonList[hoverState->getLastHoveredID()]->getDisplayList().at(hoverState->getKeyboardState()),hoverState->getKeyboardState());
+    return new HoverManager(hoverState->getLastHoveredID(),0,currentKeyboardState,hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
 }
 
 HoverManager *TimeManager::executeSpecialButton(){
     QString searchText;
     QMessageBox *mbox;
     QStringList myList;
-
+    int keyboardSt;
     switch(hoverState->getLastHoveredID()){
     case CAPS_ID:
         //   qDebug()<<"CAPSLOCK";
@@ -193,7 +193,11 @@ HoverManager *TimeManager::executeSpecialButton(){
             googler->openLink(0);
             isSending=false;
             dictionary->resetAll();
-        }else dictionary->useHint(0);
+        }else {
+            keyboardSt= dictionary->useHint(0,hoverState->getKeyboardState());
+            return new HoverManager(hoverState->getLastHoveredID(),0,keyboardSt,hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
+
+        }
 
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
     case HINT2_ID:
@@ -201,7 +205,11 @@ HoverManager *TimeManager::executeSpecialButton(){
             googler->openLink(1);
             isSending=false;
             dictionary->resetAll();
-        }else dictionary->useHint(1);
+        }else {
+            keyboardSt= dictionary->useHint(1,hoverState->getKeyboardState());
+            return new HoverManager(hoverState->getLastHoveredID(),0,keyboardSt,hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
+
+        }
 
 
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
@@ -211,7 +219,11 @@ HoverManager *TimeManager::executeSpecialButton(){
             googler->openLink(2);
             isSending=false;
             dictionary->resetAll();
-        }else dictionary->useHint(2);
+        }else{
+            keyboardSt= dictionary->useHint(2,hoverState->getKeyboardState());
+            return new HoverManager(hoverState->getLastHoveredID(),0,keyboardSt,hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
+
+        }
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
 
     case HINT4_ID:
@@ -219,7 +231,11 @@ HoverManager *TimeManager::executeSpecialButton(){
             googler->openLink(3);
             isSending=false;
             dictionary->resetAll();
-        }else dictionary->useHint(3);
+        }else {
+            keyboardSt= dictionary->useHint(3,hoverState->getKeyboardState());
+            return new HoverManager(hoverState->getLastHoveredID(),0,keyboardSt,hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
+
+        }
 
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
 
@@ -253,7 +269,7 @@ HoverManager *TimeManager::executeSpecialButton(){
             myList.append("START");
             myList.append("START");
             myList.append("START");
-              myList.append("START");
+            myList.append("START");
             buttonList.at(STOP_ID)->setDisplayList(myList);
             for(int i=0;i<buttonList.size();i++){
                 if(buttonList.at(i)->getSpecial()==false){
@@ -290,7 +306,7 @@ HoverManager *TimeManager::executeSpecialButton(){
             }
 
         }
-         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
+        return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
     case SENDING_RIGHT:
         if(sendingState==sendingPossibilities.size()-1){
             sendingState=0;
@@ -302,6 +318,12 @@ HoverManager *TimeManager::executeSpecialButton(){
         myList.append(sendingPossibilities[sendingState]);
         myList.append(sendingPossibilities[sendingState]);
         buttonList.at(SENDING)->setDisplayList(myList);
+        return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
+    case PREVIOUS_ID:
+        dictionary->jumpWord("left");
+        return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
+    case NEXT_ID:
+        dictionary->jumpWord("right");
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
 
     }

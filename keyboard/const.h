@@ -31,6 +31,8 @@ const int STOP_ID=58;
 const int SENDING_LEFT=59;
 const int SENDING=60;
 const int SENDING_RIGHT=61;
+const int PREVIOUS_ID=62;
+const int NEXT_ID=63;
 
 const int EXIT=0;
 const int MODE_UP=1;

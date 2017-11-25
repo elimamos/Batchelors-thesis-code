@@ -31,9 +31,9 @@
      <colorrole role="Button">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>255</red>
-        <green>245</green>
-        <blue>229</blue>
+        <red>61</red>
+        <green>72</green>
+        <blue>80</blue>
        </color>
       </brush>
      </colorrole>
@@ -103,18 +103,18 @@
      <colorrole role="Base">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>255</red>
-        <green>245</green>
-        <blue>229</blue>
+        <red>61</red>
+        <green>72</green>
+        <blue>80</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Window">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>255</red>
-        <green>245</green>
-        <blue>229</blue>
+        <red>61</red>
+        <green>72</green>
+        <blue>80</blue>
        </color>
       </brush>
      </colorrole>
@@ -168,9 +168,9 @@
      <colorrole role="Button">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>255</red>
-        <green>245</green>
-        <blue>229</blue>
+        <red>61</red>
+        <green>72</green>
+        <blue>80</blue>
        </color>
       </brush>
      </colorrole>
@@ -240,18 +240,18 @@
      <colorrole role="Base">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>255</red>
-        <green>245</green>
-        <blue>229</blue>
+        <red>61</red>
+        <green>72</green>
+        <blue>80</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Window">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>255</red>
-        <green>245</green>
-        <blue>229</blue>
+        <red>61</red>
+        <green>72</green>
+        <blue>80</blue>
        </color>
       </brush>
      </colorrole>
@@ -305,9 +305,9 @@
      <colorrole role="Button">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>255</red>
-        <green>245</green>
-        <blue>229</blue>
+        <red>61</red>
+        <green>72</green>
+        <blue>80</blue>
        </color>
       </brush>
      </colorrole>
@@ -377,18 +377,18 @@
      <colorrole role="Base">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>255</red>
-        <green>245</green>
-        <blue>229</blue>
+        <red>61</red>
+        <green>72</green>
+        <blue>80</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Window">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>255</red>
-        <green>245</green>
-        <blue>229</blue>
+        <red>61</red>
+        <green>72</green>
+        <blue>80</blue>
        </color>
       </brush>
      </colorrole>
@@ -441,20 +441,19 @@
    <bool>false</bool>
   </property>
   <property name="styleSheet">
-   <string notr="true">
-QWidget{
-background-color:#FFF5E5;
+   <string notr="true">QWidget{
+background-color:#3D4850;
 }
 
 QProgressBar{
     border: 2px solid #343434;
     border-radius: 5px;
     text-align: center;
-	color: #000000;
+	color: #343434;
 
 }
 QProgressBar::chunk {
-    background-color: #2F4B5E;
+    background-color: #FBBDA6;
 
 }
 QTextEdit{
@@ -466,7 +465,6 @@ QTextEdit{
   background:  #ffffff;
   padding: 10px 20px 10px 20px;
   text-decoration: none;
- border: 2px solid #343434;
  
 }
 
@@ -476,13 +474,13 @@ QPushButton {
 font-weight: bold;
   color: #ffffff;
  font-weight:bold;
-  background: #5F0015;
+  background: #9fb5c4;
   padding: 10px 20px 10px 20px;
   text-decoration: none;
 
 }
 QPushButton:hover{
- background:#6F2839;
+ background: #4a6373;
   text-decoration: none;
 }
 QPushButton#clear {
@@ -499,7 +497,7 @@ background: #2b4454;
   text-decoration: none;
 }
 QPushButton#menu{
-background: #2F4B5E;
+background: #FBBDA6;
   text-decoration: none;
 }
 QPushButton:focus {
@@ -508,7 +506,7 @@ QPushButton:focus {
 
 QScrollBar:vertical {           
        border: none;
-        background:#963019;
+        background:#343434;
         width:10px;    
         margin: 5px 5px 5px 5px;
     }
@@ -540,27 +538,27 @@ QScrollBar:vertical {
       <colorrole role="Button">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>255</red>
-         <green>245</green>
-         <blue>229</blue>
+         <red>61</red>
+         <green>72</green>
+         <blue>80</blue>
         </color>
        </brush>
       </colorrole>
       <colorrole role="Base">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>255</red>
-         <green>245</green>
-         <blue>229</blue>
+         <red>61</red>
+         <green>72</green>
+         <blue>80</blue>
         </color>
        </brush>
       </colorrole>
       <colorrole role="Window">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>255</red>
-         <green>245</green>
-         <blue>229</blue>
+         <red>61</red>
+         <green>72</green>
+         <blue>80</blue>
         </color>
        </brush>
       </colorrole>
@@ -578,27 +576,27 @@ QScrollBar:vertical {
       <colorrole role="Button">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>255</red>
-         <green>245</green>
-         <blue>229</blue>
+         <red>61</red>
+         <green>72</green>
+         <blue>80</blue>
         </color>
        </brush>
       </colorrole>
       <colorrole role="Base">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>255</red>
-         <green>245</green>
-         <blue>229</blue>
+         <red>61</red>
+         <green>72</green>
+         <blue>80</blue>
         </color>
        </brush>
       </colorrole>
       <colorrole role="Window">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>255</red>
-         <green>245</green>
-         <blue>229</blue>
+         <red>61</red>
+         <green>72</green>
+         <blue>80</blue>
         </color>
        </brush>
       </colorrole>
@@ -616,27 +614,27 @@ QScrollBar:vertical {
       <colorrole role="Button">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>255</red>
-         <green>245</green>
-         <blue>229</blue>
+         <red>61</red>
+         <green>72</green>
+         <blue>80</blue>
         </color>
        </brush>
       </colorrole>
       <colorrole role="Base">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>255</red>
-         <green>245</green>
-         <blue>229</blue>
+         <red>61</red>
+         <green>72</green>
+         <blue>80</blue>
         </color>
        </brush>
       </colorrole>
       <colorrole role="Window">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>255</red>
-         <green>245</green>
-         <blue>229</blue>
+         <red>61</red>
+         <green>72</green>
+         <blue>80</blue>
         </color>
        </brush>
       </colorrole>
@@ -1843,6 +1841,64 @@ QScrollBar:vertical {
       <property name="rightMargin">
        <number>0</number>
       </property>
+      <item>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="ButtonOperator" name="txt2speech">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>1</horstretch>
+          <verstretch>1</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>90</width>
+          <height>90</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/Icons/icons/speaker.png</normaloff>:/Icons/icons/speaker.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
      </layout>
     </item>
     <item row="0" column="1">
@@ -1970,7 +2026,30 @@ QScrollBar:vertical {
     </item>
     <item row="1" column="2" rowspan="2">
      <layout class="QGridLayout" name="gridLayout">
-      <item row="2" column="0">
+      <item row="2" column="1">
+       <widget class="ButtonOperator" name="previous">
+        <property name="minimumSize">
+         <size>
+          <width>90</width>
+          <height>90</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/Icons/icons/previous.png</normaloff>:/Icons/icons/previous.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
        <widget class="ButtonOperator" name="aLeft">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -2002,7 +2081,7 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="2" column="2">
+      <item row="0" column="3">
        <widget class="ButtonOperator" name="aRight">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -2034,14 +2113,8 @@ QScrollBar:vertical {
         </property>
        </widget>
       </item>
-      <item row="2" column="1">
-       <widget class="ButtonOperator" name="txt2speech">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>1</horstretch>
-          <verstretch>1</verstretch>
-         </sizepolicy>
-        </property>
+      <item row="2" column="3">
+       <widget class="ButtonOperator" name="next">
         <property name="minimumSize">
          <size>
           <width>90</width>
@@ -2053,7 +2126,7 @@ QScrollBar:vertical {
         </property>
         <property name="icon">
          <iconset resource="resources.qrc">
-          <normaloff>:/Icons/icons/speaker.png</normaloff>:/Icons/icons/speaker.png</iconset>
+          <normaloff>:/Icons/icons/next.png</normaloff>:/Icons/icons/next.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -2061,31 +2134,12 @@ QScrollBar:vertical {
           <height>32</height>
          </size>
         </property>
-        <property name="default">
-         <bool>false</bool>
+        <property name="shortcut">
+         <string/>
         </property>
        </widget>
       </item>
       <item row="3" column="1">
-       <widget class="ButtonOperator" name="end">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-          <horstretch>1</horstretch>
-          <verstretch>1</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>90</width>
-          <height>90</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>END</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
        <widget class="ButtonOperator" name="home">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -2101,6 +2155,25 @@ QScrollBar:vertical {
         </property>
         <property name="text">
          <string>HOME</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="3">
+       <widget class="ButtonOperator" name="end">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>1</horstretch>
+          <verstretch>1</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>90</width>
+          <height>90</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>END</string>
         </property>
        </widget>
       </item>

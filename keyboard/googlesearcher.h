@@ -35,6 +35,7 @@ private:
      void setHintText(QString text,ButtonOperator *button);
      QString setDisplayListElement( int index);
      int sendingState;
+
 };
 
 #endif // GOOGLESEARCHER_H
