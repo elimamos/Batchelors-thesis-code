@@ -33,7 +33,9 @@
    <bool>true</bool>
   </property>
   <property name="styleSheet">
-   <string notr="true">
+   <string notr="true">QLabel{
+color:#5C83D5;
+}
 QProgressBar{
     border: 2px solid #343434;
     border-radius: 5px;

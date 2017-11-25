@@ -441,9 +441,7 @@
    <bool>false</bool>
   </property>
   <property name="styleSheet">
-   <string notr="true">QWidget{
-background-color:#3D4850;
-}
+   <string notr="true">
 
 QProgressBar{
     border: 2px solid #343434;
@@ -492,8 +490,8 @@ QPushButton#home {
 QPushButton#end {
   font-size: 18px;
 }
-QPushButton:pressed{
-background: #2b4454;
+QPushButton:checked{
+background: #818b91;
   text-decoration: none;
 }
 QPushButton#menu{

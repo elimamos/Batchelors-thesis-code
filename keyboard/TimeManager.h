@@ -9,6 +9,7 @@
 #include"dictionary.h"
 #include "googlesearcher.h"
 #include"personalizeview.h"
+#include"layoutlook.h"
 class QUdpSocket;
 using namespace std;
 class TimeManager : public QObject
@@ -47,6 +48,8 @@ private:
     int ticksSinceLastChange;
     int backspaceCount;
     bool menuIsOpen;
+    int layoutMod;
+
 
 
 

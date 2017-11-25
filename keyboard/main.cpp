@@ -13,9 +13,9 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
 
-    QPalette pal =w.palette();
+   QPalette pal =w.palette();
 
-    pal.setColor(QPalette::Background, Qt::white);
+ pal.setColor(QPalette::Background, Qt::white);
 
 
     w.show();

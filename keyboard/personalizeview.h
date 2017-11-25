@@ -23,6 +23,9 @@ public:
       void setTickCount(int *sTickCount);
       void setTextEdit(QTextEdit *sTextEdit);
       void setIsOpen(bool isOpen);
+      void setWindow(QWidget *sWindow);
+      void setCurrentMod(int *mod);
+
 
 public slots:
     void TimerStep();
@@ -39,11 +42,14 @@ private:
     void updateButtonLook();
     HoverManager *executeTimerStep();
     HoverManager *executeButton();
-    int currentMod;
+    int *currentMod;
     void setLayout(int id);
     int textFontSize;
     QTextEdit *textEdit;
     bool isOpen;
+    QWidget *mainWindow;
+    //LayoutLook currentLook;
+
 
 
 };

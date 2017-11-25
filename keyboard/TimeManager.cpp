@@ -26,20 +26,23 @@ TimeManager::TimeManager(std::vector<ButtonOperator*> sButtonList,QTextEdit *sTe
     isSending=false;
     stop=true;
     sendingState=0;
-    for(int i=0;i<buttonList.size();i++){
+        for(int i=0;i<buttonList.size();i++){
         if(buttonList.at(i)->getSpecial()==false){
-            buttonList.at(i)->setStyleSheet("background-color:#818b91");
+           buttonList.at(i)->setCheckable(true);
+           buttonList.at(i)->setChecked(true);
         }
     }
+
+
     dictionary= new Dictionary(sTextEdit,sHintButtonList,buttonList);
     udpSocket = new QUdpSocket(this);
     sendingPossibilities[0]="Google";
     sendingPossibilities[1]="YouTube";
     sendingPossibilities[2]="Filmweb";
 
+layoutMod=0;
 
 }
-
 void TimeManager::TimerStep()
 {
 
@@ -98,6 +101,7 @@ HoverManager *TimeManager::executeSpecialButton(){
     QMessageBox *mbox;
     QStringList myList;
     int keyboardSt;
+    QString buttonLook2;
     switch(hoverState->getLastHoveredID()){
     case CAPS_ID:
         //   qDebug()<<"CAPSLOCK";
@@ -184,6 +188,9 @@ HoverManager *TimeManager::executeSpecialButton(){
             personalize->setTickCount(&tickCounter);
             personalize->setTextEdit(textEdit);
             personalize->setIsOpen(&menuIsOpen);
+            personalize->setWindow(qApp->activeWindow());
+           personalize->setCurrentMod(&layoutMod);
+
             personalize->show();
         }
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
@@ -255,8 +262,15 @@ HoverManager *TimeManager::executeSpecialButton(){
             buttonList.at(STOP_ID)->setDisplayList(myList);
             for(int i=0;i<buttonList.size();i++){
                 if(buttonList.at(i)->getSpecial()==false){
-                    buttonList.at(i)->setStyleSheet("QPushButton { background: #9fb5c4;} QPushButton:hover{background: #4a6373;}");
+                    buttonList.at(i)->setChecked(false);
+                    /*if(currentLook!=NULL){
+                        buttonList.at(i)->setStyleSheet(currentLook->getLayouButtonLook());
+                    }else{
+
+                        buttonList.at(i)->setStyleSheet("QPushButton { background: #9fb5c4;} QPushButton:hover{background: #4a6373;}");
+                    }*/
                 }
+
             }
 
 
@@ -273,7 +287,20 @@ HoverManager *TimeManager::executeSpecialButton(){
             buttonList.at(STOP_ID)->setDisplayList(myList);
             for(int i=0;i<buttonList.size();i++){
                 if(buttonList.at(i)->getSpecial()==false){
-                    buttonList.at(i)->setStyleSheet("background-color:#818b91");
+                    /*QPushButton btn;
+                    btn.setDown(tru);*/
+
+                    buttonList.at(i)->setChecked(true);
+/*
+                    if(currentLook!=NULL){
+                        buttonList.at(i)->setStyleSheet(currentLook->getStopButtonLook());
+                    }else{
+
+                        buttonList.at(i)->setStyleSheet("background-color:#818b91");
+                    }*/
+
+
+
                 }
             }
             //  progressBar->setMaximum(0.0);
@@ -378,16 +405,16 @@ void TimeManager::verifyTimerTickCount(){
         ticksSinceLastChange++;
         // qDebug()<<QString::number(ticksSinceLastChange);
         if(ticksSinceLastChange>TICK_COUNT_EVALUATION){
-            qDebug()<<"EVALUATING!";
+
             if(backspaceCount>=BACKSPACE_MAX){
-                qDebug()<<"SLOOOOOOW";
+
                 tickCounter+=TICK_COUNT_STEP;
                 if(tickCounter>TICK_COUNT_MAX)
                 {
                     tickCounter=TICK_COUNT_MAX;
                 }
             }else if(backspaceCount<=BACKSPACE_MIN){
-                qDebug()<<"SOOOO FAAAAST";
+
                 tickCounter-=TICK_COUNT_STEP;
                 if(tickCounter<TICK_COUNT_MIN)
                 {
@@ -405,3 +432,4 @@ void TimeManager::verifyTimerTickCount(){
 
 
 }
+
