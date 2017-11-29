@@ -62,7 +62,7 @@ void TimeManager::TimerStep()
             updateButtonLook();
         }
     }
-    verifyTimerTickCount();
+
 
 }
 HoverManager *TimeManager::executeTimerStep(){
@@ -71,17 +71,13 @@ HoverManager *TimeManager::executeTimerStep(){
     }
 
     if(buttonList[hoverState->getLastHoveredID()]->getSpecial()==true){
-        qDebug()<<QString::number(hoverState->getLastHoveredID());
-        textEdit->setFocus();
+             textEdit->setFocus();
         return executeSpecialButton();
 
     }
     if(!stop){
 
-        //   qDebug()<<"NONE special pressed";
-        qDebug()<<QString::number(hoverState->getLastHoveredID());
-
-        textEdit->setFocus();
+       textEdit->setFocus();
         hoverState=executeNormalButton();
         if(hoverState->getLastSpecialID()==SHIFT_ID){
             return new HoverManager(hoverState->getLastHoveredID(),0,0,-1,0);
@@ -104,13 +100,9 @@ HoverManager *TimeManager::executeSpecialButton(){
     QString buttonLook2;
     switch(hoverState->getLastHoveredID()){
     case CAPS_ID:
-        //   qDebug()<<"CAPSLOCK";
         if(hoverState->getLastSpecialID()==CAPS_ID){
-
-
             return new HoverManager(hoverState->getLastHoveredID(),0,0,-1,0);
         }
-        //   dictionary->update("o");
         return new HoverManager(hoverState->getLastHoveredID(),0,1,CAPS_ID,0);
     case SHIFT_ID:
 

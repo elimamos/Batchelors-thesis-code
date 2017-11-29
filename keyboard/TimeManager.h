@@ -18,40 +18,38 @@ class TimeManager : public QObject
     Q_OBJECT
 public:
     TimeManager(std::vector<ButtonOperator*> sButtonList,QTextEdit *sTextEdit,QProgressBar *sProgressBar ,std::vector<ButtonOperator*> sHintButtonList);
-    QTimer *timer;
+    void startTimer();
     HoverManager *updateHoverState(int currentHover);
     bool stop;
+    QTimer *timer;
 
-
-    void startTimer();
 private:
+
+    HoverManager *executeTimerStep();
+    HoverManager *executeSpecialButton();
+    HoverManager *executeNormalButton();
+    void updateButtonLook();
+    void verifyTimerTickCount();
+    int getHoveredButton();
+
     HoverManager *hoverState;
     std::vector<ButtonOperator*> buttonList;
     std::vector<ButtonOperator*> hintButtonList;
     QTextEdit *textEdit;
     QProgressBar *progressBar;
-    int getHoveredButton();
-    HoverManager *executeTimerStep();
-    HoverManager *executeSpecialButton();
-   HoverManager *executeNormalButton();
-    void updateButtonLook();
     Dictionary *dictionary;
-    bool isSending;
     GoogleSearcher *googler;
     PersonalizeView *personalize;
-    int sendingState;
     QUdpSocket *udpSocket;
     QByteArray datagram;
-    int tickCounter;
     map < int , QString > sendingPossibilities;
-    void verifyTimerTickCount();
     int ticksSinceLastChange;
     int backspaceCount;
     bool menuIsOpen;
     int layoutMod;
-
-
-
+    bool isSending;
+    int tickCounter;
+    int sendingState;
 
 public slots:
     void TimerStep();

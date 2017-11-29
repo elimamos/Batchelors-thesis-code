@@ -221,8 +221,6 @@ HoverManager *PersonalizeView::executeButton(){
             *currentMod=layoutList.size()-1;
 
         }
-        //ui->modeText->setText(layoutList.at(*currentMod).getLayoutName());
-        //     ui->listWidget->addItem();
         ui->listWidget->item(*currentMod)->setSelected(true);
         setLayout(*currentMod);
         textEdit->setStyleSheet(layoutList.at(*currentMod).getTextEditLook());
@@ -237,17 +235,13 @@ HoverManager *PersonalizeView::executeButton(){
 
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
     case MODE_DOWN:
-        //  qApp->setStyleSheet("QPushButton { background-color: yellow }");
         if(*currentMod<layoutList.size()-1){
             *currentMod+=1;
-
         }
         else{
             *currentMod=0;
 
         }
-
-
         textEdit->setStyleSheet(layoutList.at(*currentMod).getTextEditLook());
         ui->listWidget->item(*currentMod)->setSelected(true);
         setLayout(*currentMod);

@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 
 
     //enter full screen mode
- // w.setWindowState(w.windowState() ^ Qt::WindowFullScreen);
+  w.setWindowState(w.windowState() ^ Qt::WindowFullScreen);
 
 
 

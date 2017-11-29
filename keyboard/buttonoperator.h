@@ -12,8 +12,8 @@ class ButtonOperator : public QPushButton
     Q_OBJECT
 
 public:
-   explicit ButtonOperator(QWidget *parent=0);
-       void setDisplayList(QStringList sDisplayList);
+    explicit ButtonOperator(QWidget *parent=0);
+    void setDisplayList(QStringList sDisplayList);
     QStringList getDisplayList();
     void setSpecial(bool sIsSpecial);
     bool getSpecial();

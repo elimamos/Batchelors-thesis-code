@@ -115,12 +115,12 @@ void GoogleSearcher::openLink(int index){
     QJsonValue value = searchResults.value(QString("items")).toArray()[index].toObject().value("link");
 
     QDesktopServices::openUrl(QUrl(value.toString()));
-    QDesktopWidget dw;
+/*    QDesktopWidget dw;
      int x=dw.width()*0.7;
     int y=dw.height();
      Qt::WindowFlags flags = Qt::WindowStaysOnBottomHint;
 qApp->activeWindow()->setFixedSize(x,y);
-qApp->activeWindow()->setWindowState(Qt::WindowActive);
+qApp->activeWindow()->setWindowState(Qt::WindowActive);*/
 
 }
 void GoogleSearcher::setHintButtons(){

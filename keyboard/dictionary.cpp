@@ -122,17 +122,13 @@ void Dictionary::jumpWord(QString direction){
 
         moveCursor("right");
 
-       while(currentWord!="" ){
+        while(currentWord!="" ){
             moveCursor("right");
             if(currentPosition==currentText.length()){
                 break;
             }
-           // qDebug()<<"searching "<< currentWord;
-       }
-       //moveCursor("right");
-   //      wholeTxt.insert(currentWordSart,currentWord);
-     //   qDebug()<<"found end!";
 
+        }
     }
 
 }
@@ -197,10 +193,8 @@ void Dictionary::readDictionaryFile(){
         int index =0;
         while (!stream.atEnd()){
             line = stream.readLine();
-            //ui->textEdit->setText(ui->textEdit->toPlainText()+line+"\n");
             insertWord(trieTree,line,index);
             index++;
-            //qDebug() << "linea: "<<line;
         }
         QString lines= QString::number(index);
         qDebug()<<lines;
@@ -216,9 +210,7 @@ void Dictionary::clearTextbox(){
     textEdit->clear();
 }
 int Dictionary::update(QString chosenLetter,int keyboardState){
-    //StringList myList=buttonList.at(21)->getDisplayList();
-    // myList.replace(4,"ą");
-    //buttonList.at(21)->setDisplayList(myList);
+
 
     if(keyboardState!=5){
         isLower=false;
@@ -240,10 +232,8 @@ int Dictionary::update(QString chosenLetter,int keyboardState){
             currentPosition--;
         }
         else{
-            //   QString removed=
             currentWord.chop(2);
             //currentWord.remove(currentPosition-2,2);
-            //  currentWord=removed;
             currentPosition-=2;
         }
         if(isLower){
@@ -585,7 +575,7 @@ Dictionary::node * Dictionary::searchWord(struct node * treeNode, QString word)
 
     }
 
-    return traverse;
+return traverse;
 }
 
 // Searches the word first, if not found, does nothing
@@ -664,7 +654,7 @@ void Dictionary::getSimilarEndings(struct node * trieTree, vector<QChar> word,ve
     int i;
     bool noChild = true;
 
-    if (trieTree->occurrences.size() != 0) {
+  if (trieTree->occurrences.size() != 0) {
         // Condition trie_tree->occurrences.size() != 0,
         // is a neccessary and sufficient condition to
         // tell if a node is associated with a word or not
@@ -672,21 +662,16 @@ void Dictionary::getSimilarEndings(struct node * trieTree, vector<QChar> word,ve
         vector<QChar>::iterator charItr = word.begin();
         QString currentEnding="";
         while (charItr != word.end()) {
-            //  qDebug<<charItr;
             currentEnding+=*charItr;
             ++charItr;
         }
-        //   qDebug<<" -> @ index -> ";
         endings->push_back(currentEnding);
         vector<int>::iterator counter = trieTree->occurrences.begin();
         // This is to print the occurences of the word
 
-        while (counter != trieTree->occurrences.end()) {
-            //qDebug<< *counter;
+      /*  while (counter != trieTree->occurrences.end()) {
             ++counter;
-        }
-
-        //     qDebug<<"\n";
+        }*/
     }
 
     for (i = 0; i < ALPHABETS; ++i) {
@@ -703,7 +688,6 @@ void Dictionary::getSimilarEndings(struct node * trieTree, vector<QChar> word,ve
         }
     }
 
-    //  word.pop_back();
 }
 void Dictionary::resetAll(){
     textEdit->clear();
