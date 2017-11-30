@@ -127,7 +127,7 @@ void PersonalizeView::setButtonInfo(ButtonOperator *myButton, QString s1,QString
 
 
 }
-void PersonalizeView::setIsOpen(bool sIsOpen){
+void PersonalizeView::setIsOpen(bool *sIsOpen){
     isOpen=sIsOpen;
 }
 void PersonalizeView::setNoneChangingButton(ButtonOperator *myButton, QString s1,bool isSpecial){
@@ -160,6 +160,7 @@ void PersonalizeView::setTickCount(int *sTickCount){
     double time = *tickCounter*TIMER_TICK/1000.0;
     ui->timeValue->setText(QString::number(time));
     ui->progressBar->setMaximum(*tickCounter);
+
 
 }
 int PersonalizeView::getHoveredButton(){
@@ -208,7 +209,7 @@ HoverManager *PersonalizeView::executeButton(){
     double time;
     switch(hoverState->getLastHoveredID()){
     case EXIT:
-        isOpen=false;
+        *isOpen=false;
         this->close();
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
     case MODE_UP:
@@ -289,6 +290,7 @@ HoverManager *PersonalizeView::executeButton(){
         time = *tickCounter*TIMER_TICK/1000.0;
         ui->timeValue->setText(QString::number(time));
         ui->progressBar->setMaximum(*tickCounter);
+
         return new HoverManager(hoverState->getLastHoveredID(),0,hoverState->getKeyboardState(),hoverState->getLastSpecialID(),hoverState->getLastSpecialCount());
 
     }

@@ -22,7 +22,7 @@ public:
       void setButtonList(vector<ButtonOperator*> buttonList);
       void setTickCount(int *sTickCount);
       void setTextEdit(QTextEdit *sTextEdit);
-      void setIsOpen(bool isOpen);
+      void setIsOpen(bool *isOpen);
       void setWindow(QWidget *sWindow);
       void setCurrentMod(int *mod);
 
@@ -46,7 +46,7 @@ private:
     void setLayout(int id);
     int textFontSize;
     QTextEdit *textEdit;
-    bool isOpen;
+    bool *isOpen;
     QWidget *mainWindow;
     //LayoutLook currentLook;
 

@@ -45,6 +45,8 @@ layoutMod=0;
 }
 void TimeManager::TimerStep()
 {
+    verifyTimerTickCount();
+    progressBar->setMaximum(tickCounter);
 
     int currentHoverID=getHoveredButton();
     if(currentHoverID!=-1){
@@ -255,12 +257,7 @@ HoverManager *TimeManager::executeSpecialButton(){
             for(int i=0;i<buttonList.size();i++){
                 if(buttonList.at(i)->getSpecial()==false){
                     buttonList.at(i)->setChecked(false);
-                    /*if(currentLook!=NULL){
-                        buttonList.at(i)->setStyleSheet(currentLook->getLayouButtonLook());
-                    }else{
 
-                        buttonList.at(i)->setStyleSheet("QPushButton { background: #9fb5c4;} QPushButton:hover{background: #4a6373;}");
-                    }*/
                 }
 
             }
@@ -279,23 +276,13 @@ HoverManager *TimeManager::executeSpecialButton(){
             buttonList.at(STOP_ID)->setDisplayList(myList);
             for(int i=0;i<buttonList.size();i++){
                 if(buttonList.at(i)->getSpecial()==false){
-                    /*QPushButton btn;
-                    btn.setDown(tru);*/
 
-                    buttonList.at(i)->setChecked(true);
-/*
-                    if(currentLook!=NULL){
-                        buttonList.at(i)->setStyleSheet(currentLook->getStopButtonLook());
-                    }else{
-
-                        buttonList.at(i)->setStyleSheet("background-color:#818b91");
-                    }*/
+                    buttonList.at(i)->setChecked(true);                   
 
 
 
                 }
             }
-            //  progressBar->setMaximum(0.0);
 
         }
 
