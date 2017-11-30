@@ -78,9 +78,9 @@ void MainWindow::setButtons(){
     setNoneChangingButton(ui->clear,"CZYŚĆ",true);
     setNoneChangingButton(ui->home,"HOME",true);
     setNoneChangingButton(ui->aLeft,"",true);
-    //  setNoneChangingButton(ui->aUP,"",true);
+
     setNoneChangingButton(ui->aRight,"",true);
-    // setNoneChangingButton(ui->aDown,"",true);
+
     setNoneChangingButton(ui->txt2speech,"",true);
     setNoneChangingButton(ui->menu,"",true);
     setNoneChangingButton(ui->hintB1,"",true);

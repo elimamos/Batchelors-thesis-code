@@ -91,7 +91,7 @@ Dictionary::Dictionary(QTextEdit *sTextEdit,std::vector<ButtonOperator*> sHintBu
 
 }
 void Dictionary::jumpWord(QString direction){
-    //  wholeTxt.insert(currentWordSart,currentWord);
+
     if(direction=="left"){
         if(currentPosition!=0){
             if(currentPosition!=currentWordSart){
@@ -179,7 +179,7 @@ void Dictionary::moveCursor(QString direction){
 }
 void Dictionary::readDictionaryFile(){
 
-    QString filename="/home/elisa/Pulpit/gitBoard/slowa.txt";
+    QString filename="/home/elisa/Pulpit/gitBoard/slowaFULL.txt";
     QFile file(filename);
     if(!file.exists()){
         qDebug() << "Nie znaleziono pliku ze słownikiem "<<filename;
